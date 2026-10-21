@@ -1,76 +1,129 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Denmark Ready Kit</title>
-<meta name="description" content="A simple guide to the Danish 3-day home preparedness advice. En enkel guide til de danske råd om 3 døgns beredskab.">
+<meta name="description" content="Be ready at home for 3 days. A simple guide to the official Danish advice: water, food, medicine, power, and what to do when the siren sounds. In Danish and English.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#C8102E" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D151C" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ready Kit">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Denmark Ready Kit">
+<meta property="og:title" content="Denmark Ready Kit: be ready at home for 3 days">
+<meta property="og:description" content="A simple guide to the official Danish advice for home preparedness. In Danish and English.">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="da_DK">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Denmark Ready Kit: be ready at home for 3 days">
+<meta name="twitter:description" content="A simple guide to the official Danish advice for home preparedness. In Danish and English.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Denmark Ready Kit",
+  "alternateName": "Klar i Danmark",
+  "description": "A simple bilingual guide to the official Danish advice that every home can manage on its own for 3 days: water, food, medicine, hygiene, warmth, power, cash and radio.",
+  "inLanguage": ["en", "da"],
+  "audience": { "@type": "Audience", "geographicArea": { "@type": "Country", "name": "Denmark" } },
+  "about": { "@type": "Thing", "name": "Home emergency preparedness" },
+  "isBasedOn": "https://www.borger.dk/politi-retsvaesen-forsvar/Forsvar-og-beredskab/forberedt-paa-kriser"
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
 :root{
-  color-scheme:light;
-  --bg:#F2F5F7; --surface:#FFFFFF; --ink:#13202B; --muted:#56677A; --line:#D7DFE6;
-  --red:#C8102E; --red-soft:#FBE4E8; --water:#1D7DB5; --water-soft:#DDEEF8; --ok:#2A7C58; --ok-soft:#DDF0E6;
-  --warn:#9A5B00; --warn-soft:#FBEFD5;
+  color-scheme:light dark;
+  --bg:#F2F5F7; --surface:#FFFFFF; --ink:#13202B; --muted:#4A5B6D; --line:#C9D3DC;
+  --red:#C8102E; --red-ink:#B00D28; --red-soft:#FBE4E8; --on-red:#FFFFFF;
+  --water:#145F8F; --water-soft:#DDEEF8; --ok:#1F6B4A; --ok-soft:#DDF0E6;
+  --warn:#8A5000; --warn-soft:#FBEFD5; --focus:#0B5CAD;
   --f-display:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;
   --f-body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
   --f-data:'IBM Plex Mono',ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){:root{
-  color-scheme:dark;
-  --bg:#0D151C; --surface:#15212B; --ink:#E8EEF3; --muted:#9BAAB8; --line:#263643;
-  --red:#FF7487; --red-soft:#3A1A22; --water:#62B8EC; --water-soft:#143142; --ok:#5ECB9B; --ok-soft:#13322A;
-  --warn:#F0B454; --warn-soft:#38290E}}
+  --bg:#0D151C; --surface:#15212B; --ink:#E8EEF3; --muted:#A5B3C0; --line:#2B3C4A;
+  --red:#FF7487; --red-ink:#FF8C9B; --red-soft:#3A1A22; --on-red:#1A0A0E;
+  --water:#6CBDEE; --water-soft:#143142; --ok:#5ECB9B; --ok-soft:#13322A;
+  --warn:#F0B454; --warn-soft:#38290E; --focus:#8CC8F5}}
+
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;
   padding-block:0 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
 h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;line-height:1.05;letter-spacing:-.01em}
 h2{font-size:clamp(1.5rem,3.5vw,2rem);font-weight:800}
 h3{font-size:1.1rem;font-weight:700}
-p{margin:0}
-.eyebrow{font-family:var(--f-data);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+p,ul,ol,dl,dd{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:var(--water);text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:16px;top:-80px;background:var(--surface);color:var(--ink);padding:10px 16px;border-radius:8px;border:2px solid var(--focus);z-index:100;font-weight:600}
+.skip:focus{top:max(12px,env(safe-area-inset-top,0px))}
+.eyebrow{font-family:var(--f-data);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .lead{color:var(--muted);max-width:60ch}
 section{display:flex;flex-direction:column;gap:16px;min-width:0}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:max(16px,env(safe-area-inset-top,0px))}
-.lang{display:inline-flex;border:1px solid var(--line);border-radius:99px;background:var(--surface);padding:3px}
-.lang button{font:600 .85rem var(--f-body);border:0;background:transparent;color:var(--muted);padding:6px 14px;border-radius:99px;cursor:pointer;min-height:32px}
-.lang button[aria-pressed=true]{background:var(--red);color:#fff}
-.lang button:focus-visible{outline:2px solid var(--water);outline-offset:2px}
-@media (prefers-color-scheme: dark){.lang button[aria-pressed=true]{color:#1a0a0e}}
-.hero{padding-top:12px;display:grid;grid-template-columns:1fr;gap:20px}
-.hero .big{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
-.hero .num{font-family:var(--f-display);font-weight:800;font-size:clamp(6rem,24vw,13rem);line-height:.8;color:var(--red);letter-spacing:-.04em}
-.hero .unit{font-family:var(--f-display);font-weight:800;font-size:clamp(2rem,7vw,4rem);line-height:1}
-.hero h1{font-size:clamp(1.1rem,2.6vw,1.4rem);font-weight:600;font-family:var(--f-body);letter-spacing:0;line-height:1.35;max-width:46ch}
+
+/* header controls */
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-top:max(16px,env(safe-area-inset-top,0px))}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 .9rem var(--f-body);min-height:44px;padding:0 16px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--muted)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn.primary{background:var(--red);border-color:var(--red);color:var(--on-red)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:99px;background:var(--surface);padding:2px}
+.lang button{font:600 .9rem var(--f-body);min-height:44px;min-width:44px;border:0;background:transparent;color:var(--muted);padding:0 14px;border-radius:99px;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--red);color:var(--on-red)}
+
+/* hero */
+.hero{padding-top:8px;display:grid;grid-template-columns:1fr;gap:20px}
+.hero h1{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;letter-spacing:-.04em}
+.hero .num{font-weight:800;font-size:clamp(6rem,24vw,13rem);line-height:.8;color:var(--red-ink)}
+.hero .unit{font-weight:800;font-size:clamp(1.8rem,6vw,3.4rem);line-height:1;letter-spacing:-.02em}
+.hero .intro{font-size:clamp(1.1rem,2.6vw,1.4rem);font-weight:600;line-height:1.35;max-width:46ch}
 .days{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .day{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;min-width:0}
-.day b{font-family:var(--f-display);font-size:1.15rem;display:block;margin-bottom:8px}
+.day strong{font-family:var(--f-display);font-size:1.15rem;display:block;margin-bottom:8px}
 .day .row{display:flex;justify-content:space-between;gap:8px;font-size:.88rem;color:var(--muted);padding-top:6px;border-top:1px solid var(--line);margin-top:6px}
-.day .row span:last-child{font-family:var(--f-data);color:var(--ink);text-align:right}
+.day dd{font-family:var(--f-data);color:var(--ink);text-align:right}
 .bar{height:10px;border-radius:5px;background:var(--water-soft);overflow:hidden}
 .bar i{display:block;height:100%;width:100%;background:var(--water)}
 .strip{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--muted);flex-wrap:wrap}
 .strip .line{flex:1;min-width:24px;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px)}
-.strip .pill{background:var(--red-soft);color:var(--red);font-weight:600;padding:3px 10px;border-radius:99px}
+.strip .pill{background:var(--red-soft);color:var(--red-ink);font-weight:600;padding:3px 10px;border-radius:99px}
+
+/* calculator */
 .calc{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
 @media(min-width:760px){.calc{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
 .who{display:flex;align-items:center;gap:14px}
 .who output{font-family:var(--f-display);font-weight:800;font-size:3rem;line-height:1;min-width:1.2ch}
-input[type=range]{width:100%;accent-color:var(--red);height:32px}
+input[type=range]{width:100%;accent-color:var(--red);height:44px}
 .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:6px}
 .stat{background:var(--bg);border-radius:10px;padding:12px}
 .stat .v{font-family:var(--f-data);font-size:1.5rem;font-weight:500}
-.stat .l{font-size:.82rem;color:var(--muted);line-height:1.3}
+.stat .l{font-size:.85rem;color:var(--muted);line-height:1.3}
 .stat.w .v{color:var(--water)}
 .bottles{display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;min-height:70px}
 .bottle{width:20px;height:44px;flex:none}
 .bottle svg{width:100%;height:100%;display:block}
-.cap{font-size:.85rem;color:var(--muted);margin-top:10px}
+.cap{font-size:.9rem;color:var(--muted);margin-top:10px}
+
+/* kit */
 .prog{display:flex;align-items:center;gap:12px}
 .prog .bar{flex:1;background:var(--line)}
 .prog .bar i{background:var(--ok);width:0;transition:width .3s}
@@ -80,23 +133,26 @@ input[type=range]{width:100%;accent-color:var(--red);height:32px}
 .cat header{display:flex;align-items:center;gap:10px}
 .ico{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex:none;background:var(--water-soft);color:var(--water)}
 .ico svg{width:22px;height:22px}
-.cat.r .ico{background:var(--red-soft);color:var(--red)}
+.cat.r .ico{background:var(--red-soft);color:var(--red-ink)}
 .cat.o .ico{background:var(--ok-soft);color:var(--ok)}
 .cat.y .ico{background:var(--warn-soft);color:var(--warn)}
-.cat .tag{margin-left:auto;font-family:var(--f-data);font-size:.8rem;color:var(--muted);text-align:right}
-.cat ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
-.cat label{display:flex;gap:10px;align-items:flex-start;padding:6px 4px;border-radius:8px;cursor:pointer;font-size:.95rem}
+.cat .tag{white-space:nowrap;margin-left:auto;font-family:var(--f-data);font-size:.8rem;color:var(--muted);text-align:right}
+.cat ul{display:flex;flex-direction:column;gap:2px}
+.cat label{display:flex;gap:12px;align-items:flex-start;padding:8px 6px;min-height:44px;border-radius:8px;cursor:pointer;font-size:.95rem}
 .cat label:hover{background:var(--bg)}
-.cat input{margin:3px 0 0;width:18px;height:18px;accent-color:var(--ok);flex:none}
-.cat input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
-.cat input:focus-visible{outline:2px solid var(--water);outline-offset:2px}
+.cat input{margin:2px 0 0;width:20px;height:20px;accent-color:var(--ok);flex:none}
+.cat input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted)}
+
+/* steps */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px;min-width:0}
-.step .ico{width:48px;height:48px;border-radius:50%;background:var(--red-soft);color:var(--red)}
+.step .ico{width:48px;height:48px;border-radius:50%;background:var(--red-soft);color:var(--red-ink)}
 .step .ico svg{width:26px;height:26px}
 .step .tag{font-family:var(--f-data);font-size:.8rem;color:var(--muted)}
 .radio{display:flex;gap:8px;flex-wrap:wrap}
 .radio b{font-family:var(--f-data);font-weight:500;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:2px 8px;font-size:.88rem}
+
+/* facts */
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
 .fact{border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px;min-width:0}
 .fact.a{background:var(--warn-soft)} .fact.b{background:var(--red-soft)} .fact.c{background:var(--ok-soft)}
@@ -105,85 +161,115 @@ input[type=range]{width:100%;accent-color:var(--red);height:32px}
 .ages{display:flex;gap:6px;margin-top:4px}
 .ages i{flex:1;height:14px;border-radius:4px;background:var(--surface)}
 .ages i.on{background:var(--warn)}
-.note{font-size:.88rem;color:var(--muted)}
-footer{font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;gap:6px}
-footer a{color:var(--water)}
-@media(max-width:520px){.days{grid-template-columns:1fr}.day{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center}.day b{margin:0}.day .row{border:0;margin:0;padding:0}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.note{font-size:.9rem;color:var(--muted)}
+footer{font-size:.9rem;color:var(--muted);display:flex;flex-direction:column;gap:8px}
+
+/* add-to-home dialog */
+dialog{border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--ink);padding:0;width:min(520px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto}
+dialog::backdrop{background:rgba(8,14,20,.6)}
+.dlg{padding:22px;display:flex;flex-direction:column;gap:18px}
+.dlg .dlgh{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.dlg h2{font-size:1.5rem}
+.dlg .x{min-width:44px;padding:0;justify-content:center}
+.os{background:var(--bg);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.os h3{display:flex;align-items:center;gap:8px}
+.os ol{counter-reset:s;display:flex;flex-direction:column;gap:6px}
+.os li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;font-size:.95rem}
+.os li::before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:var(--red);color:var(--on-red);font:600 .8rem var(--f-data);display:grid;place-items:center;margin-top:1px}
+.os svg.inl{width:1.1em;height:1.1em;vertical-align:-.2em;display:inline-block}
+.os kbd{font-family:var(--f-data);font-size:.85em;background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+
+@media(max-width:520px){.days{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{
+  body{background:#fff;color:#000;padding:0}
+  .tools,.skip,#a2hs,.bottles,.strip,input[type=range]{display:none!important}
+  .card,.cat,.step,.day,.fact{break-inside:avoid;border-color:#999}
+  a{color:#000}
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#main" data-t="skip">Skip to content</a>
 <div class="wrap">
-  <div class="top">
-    <div class="eyebrow" data-t="eyebrow">Home preparedness &middot; Denmark</div>
-    <div class="lang" role="group" aria-label="Language / Sprog">
-      <button type="button" id="b-da" data-l="da" aria-pressed="false">Dansk</button>
-      <button type="button" id="b-en" data-l="en" aria-pressed="true">English</button>
+  <header class="top">
+    <p class="eyebrow" data-t="eyebrow">Home preparedness &middot; Denmark</p>
+    <div class="tools">
+      <button type="button" class="btn" id="a2hsBtn" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 8v6M9 11h6"/></svg>
+        <span data-t="a2hs">Add to phone</span>
+      </button>
+      <div class="lang" role="group" aria-label="Language / Sprog">
+        <button type="button" id="b-da" data-l="da" lang="da" aria-pressed="false">Dansk</button>
+        <button type="button" id="b-en" data-l="en" lang="en" aria-pressed="true">English</button>
+      </div>
     </div>
-  </div>
+  </header>
 
-  <section class="hero">
-    <div class="big"><span class="num">3</span><span class="unit" data-t="days">days</span></div>
-    <h1 data-t="lead">The Danish authorities say every home should be able to manage on its own for 3 days in a crisis. That is the whole plan. The rest of this page shows what it takes.</h1>
-    <div class="days">
-      <div class="day"><b><span data-t="day">Day</span> 1</b><div class="bar"><i></i></div><div class="row"><span data-t="water">Water</span><span>3 L</span></div><div class="row"><span data-t="food">Food</span><span data-t="nocook">no cooking</span></div></div>
-      <div class="day"><b><span data-t="day">Day</span> 2</b><div class="bar"><i></i></div><div class="row"><span data-t="water">Water</span><span>3 L</span></div><div class="row"><span data-t="medicine">Medicine</span><span data-t="oneday">1 day</span></div></div>
-      <div class="day"><b><span data-t="day">Day</span> 3</b><div class="bar"><i></i></div><div class="row"><span data-t="water">Water</span><span>3 L</span></div><div class="row"><span data-t="power">Power</span><span data-t="pbank">power bank</span></div></div>
-    </div>
-    <div class="strip"><span class="pill" data-t="alone">You are on your own</span><span class="line"></span><span data-t="alone2">Help goes first to people who need it most</span></div>
-  </section>
+  <main id="main" tabindex="-1" class="wrap">
+    <section class="hero" aria-labelledby="h1">
+      <h1 id="h1"><span class="num">3</span><span class="unit" data-t="unit">days ready at home</span></h1>
+      <p class="intro" data-t="lead">The Danish authorities say every home should be able to manage on its own for 3 days in a crisis. That is the whole plan. The rest of this page shows what it takes.</p>
+      <ul class="days" aria-label="What one person needs each day">
+        <li class="day"><strong><span data-t="day">Day</span> 1</strong><div class="bar" aria-hidden="true"><i></i></div><dl><div class="row"><dt data-t="water">Water</dt><dd>3 L</dd></div><div class="row"><dt data-t="food">Food</dt><dd data-t="nocook">no cooking</dd></div></dl></li>
+        <li class="day"><strong><span data-t="day">Day</span> 2</strong><div class="bar" aria-hidden="true"><i></i></div><dl><div class="row"><dt data-t="water">Water</dt><dd>3 L</dd></div><div class="row"><dt data-t="medicine">Medicine</dt><dd data-t="oneday">1 day</dd></div></dl></li>
+        <li class="day"><strong><span data-t="day">Day</span> 3</strong><div class="bar" aria-hidden="true"><i></i></div><dl><div class="row"><dt data-t="water">Water</dt><dd>3 L</dd></div><div class="row"><dt data-t="power">Power</dt><dd data-t="pbank">power bank</dd></div></dl></li>
+      </ul>
+      <p class="strip"><span class="pill" data-t="alone">You are on your own</span><span class="line" aria-hidden="true"></span><span data-t="alone2">Help goes first to people who need it most</span></p>
+    </section>
 
-  <section>
-    <div class="eyebrow" data-t="yn">Your numbers</div>
-    <h2 data-t="howmuch">How much do we need?</h2>
-    <div class="card calc">
-      <div>
-        <label for="people" class="lead" style="display:block;margin-bottom:8px" data-t="people">People in the home (pets need water too)</label>
-        <div class="who"><output id="peopleOut" for="people">2</output>
-          <input id="people" type="range" min="1" max="8" value="2"></div>
-        <div class="stats">
-          <div class="stat w"><div class="v" id="litres">18 L</div><div class="l" data-t="s1">drinking water for 3 days</div></div>
-          <div class="stat"><div class="v" id="meals">18</div><div class="l" data-t="s2">meals that need no fridge or hob</div></div>
-          <div class="stat w"><div class="v" id="bottleN">12</div><div class="l" data-t="s3">bottles of 1.5 L</div></div>
-          <div class="stat"><div class="v" data-t="threedays">3 days</div><div class="l" data-t="s4">of medicine for each person</div></div>
+    <section aria-labelledby="h-calc">
+      <p class="eyebrow" data-t="yn">Your numbers</p>
+      <h2 id="h-calc" data-t="howmuch">How much do we need?</h2>
+      <div class="card calc">
+        <div>
+          <label for="people" class="lead" style="display:block;margin-bottom:8px" data-t="people">People in the home (pets need water too)</label>
+          <div class="who"><output id="peopleOut" for="people">2</output>
+            <input id="people" type="range" min="1" max="8" value="2"></div>
+          <div class="stats">
+            <div class="stat w"><div class="v" id="litres">18 L</div><div class="l" data-t="s1">drinking water for 3 days</div></div>
+            <div class="stat"><div class="v" id="meals">18</div><div class="l" data-t="s2">meals that need no fridge or hob</div></div>
+            <div class="stat w"><div class="v" id="bottleN">12</div><div class="l" data-t="s3">bottles of 1.5 L</div></div>
+            <div class="stat"><div class="v" data-t="threedays">3 days</div><div class="l" data-t="s4">of medicine for each person</div></div>
+          </div>
+          <p class="note" style="margin-top:12px" data-t="example">Example: starts at 2 people. Move the slider to match your home.</p>
         </div>
-        <p class="note" style="margin-top:12px" data-t="example">Example: starts at 2 people. Move the slider to match your home.</p>
+        <div>
+          <p class="eyebrow" style="margin-bottom:10px" data-t="bottlehead">Each bottle is 1.5 L &middot; 6 bottles per person</p>
+          <div class="bottles" id="bottles" aria-hidden="true"></div>
+          <p class="cap" id="bottleCap" aria-live="polite" aria-atomic="true"></p>
+        </div>
       </div>
-      <div>
-        <div class="eyebrow" style="margin-bottom:10px" data-t="bottlehead">Each bottle is 1.5 L &middot; 6 bottles per person</div>
-        <div class="bottles" id="bottles" aria-hidden="true"></div>
-        <p class="cap" id="bottleCap"></p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <div class="eyebrow" data-t="yk">Your kit</div>
-    <h2 data-t="eight">Eight things to have at home</h2>
-    <div class="prog"><div class="bar"><i id="progBar"></i></div><span id="progTxt"></span></div>
-    <div class="kit" id="kit"></div>
-    <p class="note" data-t="ticks">Ticks stay on this device only. Buy a little extra on each normal shop and rotate it, so it stays cheap and fresh.</p>
-  </section>
+    <section aria-labelledby="h-kit">
+      <p class="eyebrow" data-t="yk">Your kit</p>
+      <h2 id="h-kit" data-t="eight">Eight things to have at home</h2>
+      <div class="prog"><div class="bar" aria-hidden="true"><i id="progBar"></i></div><span id="progTxt" role="status"></span></div>
+      <div class="kit" id="kit"></div>
+      <p class="note" data-t="ticks">Ticks stay on this device only. Buy a little extra on each normal shop and rotate it, so it stays cheap and fresh.</p>
+    </section>
 
-  <section>
-    <div class="eyebrow" data-t="ifhappens">If something happens</div>
-    <h2 data-t="siren">When the siren sounds</h2>
-    <div class="steps">
-      <div class="step"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div><span class="tag"><span data-t="step">Step</span> 1</span><h3 data-t="st1h">Go indoors</h3><p data-t="st1p">Come inside and stay inside. Close windows and doors.</p></div>
-      <div class="step"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8l10-5"/><circle cx="9" cy="14" r="2.5"/><path d="M15 12h3M15 16h3"/></svg></div><span class="tag"><span data-t="step">Step</span> 2</span><h3 data-t="st2h">Get information</h3><p data-t="st2p">Listen to the news. A battery or wind-up FM radio works when the internet does not.</p><div class="radio"><b>DR</b><b>TV 2</b></div></div>
-      <div class="step"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span class="tag"><span data-t="step">Step</span> 3</span><h3 data-t="st3h">Follow the advice</h3><p data-t="st3p">Do what the authorities say. Check a source before you share news, so rumours do not spread.</p></div>
-    </div>
-  </section>
+    <section aria-labelledby="h-siren">
+      <p class="eyebrow" data-t="ifhappens">If something happens</p>
+      <h2 id="h-siren" data-t="siren">When the siren sounds</h2>
+      <ol class="steps">
+        <li class="step"><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div><span class="tag"><span data-t="step">Step</span> 1</span><h3 data-t="st1h">Go indoors</h3><p data-t="st1p">Come inside and stay inside. Close windows and doors.</p></li>
+        <li class="step"><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8l10-5"/><circle cx="9" cy="14" r="2.5"/><path d="M15 12h3M15 16h3"/></svg></div><span class="tag"><span data-t="step">Step</span> 2</span><h3 data-t="st2h">Get information</h3><p data-t="st2p">Listen to the news. A battery or wind-up FM radio works when the internet does not.</p><p class="radio"><b>DR</b><b>TV 2</b></p></li>
+        <li class="step"><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span class="tag"><span data-t="step">Step</span> 3</span><h3 data-t="st3h">Follow the advice</h3><p data-t="st3p">Do what the authorities say. Check a source before you share news, so rumours do not spread.</p></li>
+      </ol>
+    </section>
 
-  <section>
-    <div class="eyebrow" data-t="gtk">Good to know</div>
-    <h2 data-t="three">Three quick facts</h2>
-    <div class="facts">
-      <div class="fact a"><h3 data-t="f1h">Iodine tablets</h3><div class="big" data-t="f1b">Under 40</div><p data-t="f1p">Also for pregnant or breastfeeding women. Only for a nuclear accident. Stay indoors and follow the authorities.</p><div class="ages" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><span class="note" data-t="f1n">Age bands 0 to 40 highlighted</span></div>
-      <div class="fact b"><h3 data-t="f2h">Cooking without power</h3><div class="big" data-t="f2b">Outside only</div><p data-t="f2p">A camping stove or barbecue can boil water. Never use it indoors or in a closed space. Smoke and carbon monoxide are dangerous.</p></div>
-      <div class="fact c"><h3 data-t="f3h">Call 112</h3><div class="big" data-t="f3b">Real emergencies</div><p data-t="f3p">Keep the line free for life-threatening calls. If 112 is down, the authorities will announce other numbers.</p></div>
-    </div>
-  </section>
+    <section aria-labelledby="h-facts">
+      <p class="eyebrow" data-t="gtk">Good to know</p>
+      <h2 id="h-facts" data-t="three">Three quick facts</h2>
+      <ul class="facts">
+        <li class="fact a"><h3 data-t="f1h">Iodine tablets</h3><p class="big" data-t="f1b">Under 40</p><p data-t="f1p">Also for pregnant or breastfeeding women. Only for a nuclear accident. Stay indoors and follow the authorities.</p><div class="ages" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><p class="note" data-t="f1n">Age bands 0 to 40 highlighted</p></li>
+        <li class="fact b"><h3 data-t="f2h">Cooking without power</h3><p class="big" data-t="f2b">Outside only</p><p data-t="f2p">A camping stove or barbecue can boil water. Never use it indoors or in a closed space. Smoke and carbon monoxide are dangerous.</p></li>
+        <li class="fact c"><h3 data-t="f3h">Call 112</h3><p class="big" data-t="f3b">Real emergencies</p><p data-t="f3p">Keep the line free for life-threatening calls. If 112 is down, the authorities will announce other numbers.</p></li>
+      </ul>
+    </section>
+  </main>
 
   <footer>
     <p data-t="foot">Based on the official Danish advice for households. Use the calculator and checklist at <a href="https://samsik.dk" target="_blank" rel="noopener">samsik.dk</a> for your exact needs. Not medical advice.</p>
@@ -191,10 +277,42 @@ footer a{color:var(--water)}
   </footer>
 </div>
 
+<dialog id="a2hs" aria-labelledby="a2hsT">
+  <div class="dlg">
+    <div class="dlgh">
+      <h2 id="a2hsT" data-t="dT">Add to your phone</h2>
+      <button type="button" class="btn x" id="a2hsX" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <p class="lead" data-t="dP">Put this page on your home screen. It opens like an app and also works without internet.</p>
+    <section class="os" aria-labelledby="os-ios">
+      <h3 id="os-ios">iPhone (Safari)</h3>
+      <ol>
+        <li><span data-t="i1">Open this page in Safari.</span></li>
+        <li><span data-t="i2">Tap the Share button <svg class="inl" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Share"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v8h14v-8"/></svg> at the bottom or top of the screen.</span></li>
+        <li><span data-t="i3">Scroll down and tap <kbd>Add to Home Screen</kbd>.</span></li>
+        <li><span data-t="i4">Tap <kbd>Add</kbd>.</span></li>
+      </ol>
+    </section>
+    <section class="os" aria-labelledby="os-and">
+      <h3 id="os-and">Android (Chrome)</h3>
+      <ol>
+        <li><span data-t="a1">Open this page in Chrome.</span></li>
+        <li><span data-t="a2">Tap the menu <kbd>⋮</kbd> at the top right.</span></li>
+        <li><span data-t="a3">Tap <kbd>Add to Home screen</kbd> or <kbd>Install app</kbd>.</span></li>
+        <li><span data-t="a4">Tap <kbd>Install</kbd> or <kbd>Add</kbd>.</span></li>
+      </ol>
+    </section>
+    <button type="button" class="btn primary" id="installNow" hidden data-t="installNow">Install now</button>
+    <button type="button" class="btn" id="a2hsClose" data-t="close">Close</button>
+  </div>
+</dialog>
+
 <script>
 (function(){
   var DA={
-    eyebrow:'Beredskab derhjemme &middot; Danmark',days:'dage',
+    skip:'Hop til indhold',
+    eyebrow:'Beredskab derhjemme &middot; Danmark',a2hs:'Tilføj til telefon',
+    unit:'dages beredskab derhjemme',
     lead:'De danske myndigheder anbefaler, at alle hjem kan klare sig selv i 3 døgn i en krise. Det er hele planen. Resten af siden viser, hvad der skal til.',
     day:'Dag',water:'Vand',food:'Mad',nocook:'ingen madlavning',medicine:'Medicin',oneday:'1 dag',power:'Strøm',pbank:'powerbank',
     alone:'I er på egen hånd',alone2:'Hjælpen går først til dem, der har mest brug for den',
@@ -213,8 +331,17 @@ footer a{color:var(--water)}
     f2h:'Madlavning uden strøm',f2b:'Kun udendørs',f2p:'Et campingkomfur eller en grill kan koge vand. Brug det aldrig indendørs eller i lukkede rum. Røg og kulilte er farligt.',
     f3h:'Ring 112',f3b:'Kun ved nødsituationer',f3p:'Hold linjen fri til livstruende opkald. Hvis 112 er nede, melder myndighederne andre numre ud.',
     foot:'Baseret på de officielle danske råd til husstande. Brug beregneren og tjeklisten på <a href="https://samsik.dk" target="_blank" rel="noopener">samsik.dk</a> til jeres præcise behov. Ikke medicinsk rådgivning.',
-    src:'Kilder:'
+    src:'Kilder:',
+    dT:'Tilføj til din telefon',dP:'Læg siden på din hjemmeskærm. Den åbner som en app og virker også uden internet.',
+    i1:'Åbn siden i Safari.',
+    i2:'Tryk på Del-knappen <svg class="inl" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Del"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v8h14v-8"/></svg> nederst eller øverst på skærmen.',
+    i3:'Rul ned og tryk på <kbd>Føj til hjemmeskærm</kbd>.',i4:'Tryk på <kbd>Tilføj</kbd>.',
+    a1:'Åbn siden i Chrome.',a2:'Tryk på menuen <kbd>⋮</kbd> øverst til højre.',
+    a3:'Tryk på <kbd>Føj til startskærm</kbd> eller <kbd>Installer app</kbd>.',a4:'Tryk på <kbd>Installer</kbd> eller <kbd>Tilføj</kbd>.',
+    installNow:'Installer nu',close:'Luk'
   };
+  var DESC={en:document.querySelector('meta[name=description]').getAttribute('content'),
+    da:'Vær klar derhjemme i 3 døgn. En enkel guide til de officielle danske råd: vand, mad, medicin, strøm og hvad du gør, når sirenen lyder. På dansk og engelsk.'};
   var EN={},nodes=document.querySelectorAll('[data-t]');
   nodes.forEach(function(el){EN[el.getAttribute('data-t')]=el.innerHTML;});
 
@@ -254,8 +381,9 @@ footer a{color:var(--water)}
   function renderKit(){
     total=0;kit.innerHTML='';
     cats.forEach(function(c){
-      var d=c[lang],el=document.createElement('article');el.className='cat '+c.c;
-      var h='<header><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+icons[c.id]+'</svg></div><h3>'+d.t+'</h3>'+(d.tag?'<span class="tag">'+d.tag+'</span>':'')+'</header><ul>';
+      var d=c[lang],hid='h-'+c.id,el=document.createElement('div');el.className='cat '+c.c;
+      el.setAttribute('role','group');el.setAttribute('aria-labelledby',hid);
+      var h='<header><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+icons[c.id]+'</svg></div><h3 id="'+hid+'">'+d.t+'</h3>'+(d.tag?'<span class="tag">'+d.tag+'</span>':'')+'</header><ul>';
       d.i.forEach(function(t,n){total++;var id='k-'+c.id+'-'+n;
         h+='<li><label for="'+id+'"><input type="checkbox" id="'+id+'"'+(store[id]?' checked':'')+'><span>'+t+'</span></label></li>';});
       el.innerHTML=h+'</ul>';kit.appendChild(el);
@@ -283,20 +411,25 @@ footer a{color:var(--water)}
     document.getElementById('bottleN').textContent=b;
     for(var i=0;i<b;i++)s+='<span class="bottle">'+bottleSvg+'</span>';
     document.getElementById('bottles').innerHTML=s;
-    document.getElementById('bottleCap').textContent=lang==='da'
-      ? p+(p===1?' person':' personer')+' × 3 L × 3 dage = '+L+' liter. Læg mere til for kæledyr.'
-      : p+(p===1?' person':' people')+' × 3 L × 3 days = '+L+' litres. Add more for pets.';
+    var da=lang==='da';
+    range.setAttribute('aria-valuetext',p+(da?(p===1?' person':' personer'):(p===1?' person':' people')));
+    document.getElementById('bottleCap').textContent=da
+      ? p+(p===1?' person':' personer')+' × 3 L × 3 dage = '+L+' liter ('+b+' flasker). Læg mere til for kæledyr.'
+      : p+(p===1?' person':' people')+' × 3 L × 3 days = '+L+' litres ('+b+' bottles). Add more for pets.';
   }
   range.addEventListener('input',calc);
 
+  var meta=document.querySelector('meta[name=description]');
   function setLang(l,save){
     lang=l;document.documentElement.lang=l;
     var dict=l==='da'?DA:EN;
     nodes.forEach(function(el){var k=el.getAttribute('data-t');if(dict[k]!=null)el.innerHTML=dict[k];});
     document.getElementById('b-da').setAttribute('aria-pressed',l==='da');
     document.getElementById('b-en').setAttribute('aria-pressed',l==='en');
-    range.setAttribute('aria-label',l==='da'?'Antal personer':'Number of people');
+    document.querySelector('.days').setAttribute('aria-label',l==='da'?'Hvad én person har brug for hver dag':'What one person needs each day');
+    document.getElementById('a2hsX').setAttribute('aria-label',l==='da'?'Luk':'Close');
     document.title=l==='da'?'Klar i Danmark':'Denmark Ready Kit';
+    meta.setAttribute('content',DESC[l]);
     renderKit();calc();
     if(save){try{localStorage.setItem('dk-ready-lang',l)}catch(e){}}
   }
@@ -304,6 +437,28 @@ footer a{color:var(--water)}
     b.addEventListener('click',function(){setLang(b.getAttribute('data-l'),true);});
   });
   setLang(lang,false);
+
+  /* add to home screen */
+  var dlg=document.getElementById('a2hs'),btn=document.getElementById('a2hsBtn'),inst=document.getElementById('installNow'),deferred=null;
+  function openDlg(){ if(dlg.showModal){dlg.showModal();}else{dlg.setAttribute('open','');} }
+  function closeDlg(){ if(dlg.close){dlg.close();}else{dlg.removeAttribute('open');} btn.focus(); }
+  btn.addEventListener('click',openDlg);
+  document.getElementById('a2hsX').addEventListener('click',closeDlg);
+  document.getElementById('a2hsClose').addEventListener('click',closeDlg);
+  dlg.addEventListener('click',function(e){if(e.target===dlg)closeDlg();});
+  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferred=e;inst.hidden=false;});
+  inst.addEventListener('click',function(){
+    if(!deferred)return;
+    deferred.prompt();
+    deferred.userChoice.then(function(){deferred=null;inst.hidden=true;closeDlg();});
+  });
+  window.addEventListener('appinstalled',function(){btn.hidden=true;});
+  try{ if(window.matchMedia('(display-mode: standalone)').matches||navigator.standalone)btn.hidden=true; }catch(e){}
+
+  /* offline support */
+  if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
+    window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});
+  }
 })();
 </script>
 </body>
