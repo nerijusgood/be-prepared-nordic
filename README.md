@@ -6,31 +6,39 @@ A one-page website (Danish and English) that explains the official Danish advice
 - Water calculator and a tick-off kit list (saved on the device only)
 - "Add to phone" button with step-by-step help for iPhone and Android
 - Works offline after the first visit (installable web app)
+- Contact form (subject list, privacy notice) that saves messages to a private Google Sheet, no email
+- Buy Me a Coffee button
 - Accessible: keyboard friendly, screen reader labels, WCAG AA contrast in light and dark mode
+- Privacy friendly: no cookies, no analytics, no tracking, fonts hosted on the site itself
 - SEO basics: title, description, link-preview tags, structured data, crawlable checklist text
 - Full favicon set and a share image (`og-image.png`)
-- No tracking, no cookies, no build step
 
 Based on the official Danish advice for households (borger.dk and the Danish Emergency Management Agency). See also https://samsik.dk. Not medical advice.
 
 ## Files
 
-- `index.html` the whole page (HTML, CSS, JS)
+- `index.html`, `app.js` the page
+- `api/contact.js` Vercel function: checks and cleans the message, saves it to the Sheet
+- `docs/google-sheet-setup.md` and `docs/google-sheet-Code.gs` how to set up the Sheet (10 minutes)
+- `vercel.json` security headers (strict Content Security Policy)
 - `manifest.webmanifest`, `sw.js` installable app and offline support
-- `favicon.ico`, `favicon-16/32/48.png`, `icon.svg`, `icon-192/512.png`, `icon-maskable-512.png`, `apple-touch-icon.png` icons
-- `og-image.png` share image (1200x630)
-- `robots.txt`
+- `fonts/` self-hosted fonts (SIL Open Font License)
+- icons: `favicon.ico`, `favicon-16/32/48.png`, `icon.svg`, `icon-192/512.png`, `icon-maskable-512.png`, `apple-touch-icon.png`; share image `og-image.png`
+- `test/contact.test.js` tests for the function (`npm test`)
+- `dev-server.js` local server with the API (`npm run dev`)
 
 ## Run locally
 
-Offline support and install need http(s). From this folder run `python3 -m http.server 8000` and open http://localhost:8000.
+`npm run dev` and open http://localhost:3000. For the form to save, copy `.env.example` to `.env` values into your shell (`SHEET_WEBHOOK_URL`, `SHEET_SECRET`). Without them the form shows an error, which is expected.
 
-## Deploy
+## Deploy (Vercel)
 
-Any static host works (for example Vercel: import this repo, framework "Other", no build command).
+Import this repo. Framework: Other. No build command. Add the two environment variables from `.env.example`, then follow `docs/google-sheet-setup.md`.
 
 ## To do once the site has its final address
 
 - Add `<link rel="canonical" href="https://YOUR-DOMAIN/">` to `index.html`
 - Add `sitemap.xml` and a `Sitemap:` line in `robots.txt`
 - Add `og:image` and `og:url` tags that point to `https://YOUR-DOMAIN/og-image.png` (the image already exists), and switch `twitter:card` to `summary_large_image`
+- Add a Vercel Firewall rate-limit rule for `/api/contact`
+- Review the privacy notice text (it names the site owner and says messages are deleted after 12 months)

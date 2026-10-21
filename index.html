@@ -44,10 +44,12 @@
   "isBasedOn": "https://www.borger.dk/politi-retsvaesen-forsvar/Forsvar-og-beredskab/forberedt-paa-kriser"
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="preload" href="fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{font-family:'Bricolage Grotesque';src:url(fonts/bricolage-grotesque-latin-wght-normal.woff2) format('woff2');font-weight:200 800;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Figtree';src:url(fonts/figtree-latin-wght-normal.woff2) format('woff2');font-weight:300 900;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format('woff2');font-weight:500;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 :root{
   color-scheme:light dark;
   --bg:#F2F5F7; --surface:#FFFFFF; --ink:#13202B; --muted:#4A5B6D; --line:#C9D3DC;
@@ -206,11 +208,33 @@ dialog::backdrop{background:rgba(8,14,20,.6)}
 .gear .act{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
 .btn.contact{min-height:48px;padding:0 22px;text-decoration:none}
 
+/* forms and modals */
+.dlg form{display:flex;flex-direction:column;gap:14px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field>label{font-size:.95rem;font-weight:600}
+.field .opt{font-weight:400;color:var(--muted)}
+input:not([type=checkbox]):not([type=range]),select,textarea{font:inherit;font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid var(--muted);border-radius:10px;padding:11px 14px;min-height:46px;width:100%}
+textarea{min-height:120px;resize:vertical}
+.count{font:.8rem var(--f-data);color:var(--muted);text-align:right}
+.hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:.95rem;cursor:pointer;min-height:44px}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--ok);flex:none}
+.err{background:var(--red-soft);color:var(--red-ink);padding:10px 14px;border-radius:10px;font-weight:600}
+.okmsg{background:var(--ok-soft);color:var(--ok);padding:10px 14px;border-radius:10px;font-weight:600}
+.row-btns{display:flex;gap:10px;flex-wrap:wrap}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--water);text-decoration:underline;text-underline-offset:3px;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
+.foot-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.foot-actions .btn{text-align:left;line-height:1.3;padding-block:10px;height:auto}
+.pv{display:flex;flex-direction:column;gap:4px}
+.pv h3{font-size:1rem}
+.pv p{font-size:.95rem;color:var(--muted)}
+.dlg.wide{gap:14px}
+
 @media(max-width:520px){.days{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media print{
   body{background:#fff;color:#000;padding:0}
-  .tools,.skip,#a2hs,.coffee,.gear,.bottles,.strip,input[type=range]{display:none!important}
+  .tools,.skip,#a2hs,.coffee,.gear,.foot-actions,.bottles,.strip,input[type=range]{display:none!important}
   .card,.cat,.step,.day,.fact{break-inside:avoid;border-color:#999}
   a{color:#000}
 }
@@ -305,17 +329,72 @@ dialog::backdrop{background:rgba(8,14,20,.6)}
     <a class="btn coffee-btn" id="coffeeLink" href="https://www.buymeacoffee.com/nerithegooddude" target="_blank" rel="noopener noreferrer"><span data-t="coffeeB">Buy me a coffee</span></a>
   </aside>
 
-  <aside class="gear" aria-labelledby="gearH" hidden id="gear">
+  <aside class="gear" aria-labelledby="gearH" id="gear">
     <svg class="ico2" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="20" y="22" width="24" height="38" rx="5"/><path d="M26 22V8h12v14"/><path d="M26 32h12M26 40h12"/><circle cx="32" cy="50" r="3"/></svg>
     <div class="txt"><h2 id="gearH" data-t="gearH">Got gear for people in need?</h2><p data-t="gearP">Do you make or sell walkie-talkies, power banks or solar chargers? Offer a discount for people in need and tell me. I may share good offers here. I do not sell anything on this page.</p></div>
-    <div class="act"><a class="btn primary contact" id="contactLink" href="mailto:YOUR-EMAIL@EXAMPLE.COM?subject=Ready%20Kit%3A%20discount%20offer"><span data-t="gearB">Get in touch</span></a><span class="mail" id="contactMail">YOUR-EMAIL@EXAMPLE.COM</span></div>
+    <div class="act"><button type="button" class="btn primary contact" id="gearContact"><span data-t="gearB">Get in touch</span></button></div>
   </aside>
 
   <footer>
+    <div class="foot-actions"><button type="button" class="btn" id="openContact"><span data-t="footContact">Have suggestions? Looking for where to get survival gear cheaper? Contact</span></button><button type="button" class="linkbtn" id="openPrivacy" data-t="privacyLink">Privacy</button></div>
     <p data-t="foot">Based on the official Danish advice for households. Use the calculator and checklist at <a href="https://samsik.dk" target="_blank" rel="noopener">samsik.dk</a> for your exact needs. Not medical advice.</p>
     <p><span data-t="src">Sources:</span> <a href="https://www.borger.dk/politi-retsvaesen-forsvar/Forsvar-og-beredskab/forberedt-paa-kriser" target="_blank" rel="noopener">borger.dk, Forberedt på kriser</a> &middot; <a href="https://brs.dk/globalassets/brs---beredskabsstyrelsen/dokumenter/forberedt/oversaettelser/-forberedt-pa-kriser_en-.pdf" target="_blank" rel="noopener">Be prepared for crises (English, Danish Emergency Management Agency)</a></p>
   </footer>
 </div>
+
+<dialog id="contactDlg" aria-labelledby="cT">
+  <div class="dlg">
+    <div class="dlgh">
+      <h2 id="cT" data-t="cT">Contact</h2>
+      <button type="button" class="btn x" id="cX" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <p class="lead" data-t="cP">Suggestions, gear tips and offers from shops or companies are all welcome.</p>
+    <form id="cForm" novalidate>
+      <div class="field"><label for="cSubject" data-t="fSubject">What is it about?</label>
+        <select id="cSubject" name="subject" required>
+          <option value="" disabled selected data-t="optPick">Choose a subject</option>
+          <option value="suggestion" data-t="o1">Suggest an improvement</option>
+          <option value="cheaper" data-t="o2">Where to buy survival gear cheaper</option>
+          <option value="offer" data-t="o3">I have a discount offer (shop or brand)</option>
+          <option value="company" data-t="o4">I am a company and want to contribute</option>
+          <option value="correction" data-t="o5">Correction to the advice</option>
+          <option value="privacy" data-t="o6">Privacy request (see or delete my data)</option>
+          <option value="other" data-t="o7">Something else</option>
+        </select></div>
+      <div class="field"><label for="cName"><span data-t="fName">Name</span> <span class="opt" data-t="optional">(optional)</span></label>
+        <input id="cName" name="name" type="text" maxlength="80" autocomplete="name"></div>
+      <div class="field"><label for="cEmail" data-t="fEmail">Your email (so I can reply)</label>
+        <input id="cEmail" name="email" type="email" required maxlength="120" autocomplete="email" inputmode="email"></div>
+      <div class="field"><label for="cMsg" data-t="fMsg">Message</label>
+        <textarea id="cMsg" name="message" required minlength="10" maxlength="1500" rows="5"></textarea>
+        <div class="count" id="cCount" aria-hidden="true">0 / 1500</div></div>
+      <div class="hp" aria-hidden="true"><label>Website <input id="cWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+      <label class="check"><input type="checkbox" id="cConsent" name="consent" required><span data-t="fConsent">I agree that my message and email are stored so you can answer me.</span></label>
+      <div><button type="button" class="linkbtn" id="cPriv" data-t="privacyLink2">Read the privacy notice</button></div>
+      <p class="err" id="cErr" role="alert" hidden></p>
+      <p class="okmsg" id="cOk" role="status" hidden data-t="cOk">Thank you! Your message was sent.</p>
+      <div class="row-btns"><button type="submit" class="btn primary" id="cSend"><span data-t="send">Send</span></button><button type="button" class="btn" id="cClose" data-t="close">Close</button></div>
+    </form>
+  </div>
+</dialog>
+
+<dialog id="privacyDlg" aria-labelledby="pT">
+  <div class="dlg wide">
+    <div class="dlgh">
+      <h2 id="pT" data-t="pT">Privacy notice</h2>
+      <button type="button" class="btn x" id="pX" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="pv"><h3 data-t="p1h">Who I am</h3><p data-t="p1">I am Nerijus Gudas, a private person in Denmark. This site is a personal project. You can reach me through the contact form (subject: Privacy request).</p></div>
+    <div class="pv"><h3 data-t="p2h">What I store</h3><p data-t="p2">When you use the form: the subject, your name (if you give it), your email, your message, the language and the time you sent it.</p></div>
+    <div class="pv"><h3 data-t="p3h">Why, and on what basis</h3><p data-t="p3">To read your message and answer you. The basis is your consent (the checkbox). You can take it back at any time.</p></div>
+    <div class="pv"><h3 data-t="p4h">Where it is kept</h3><p data-t="p4">In a private Google Sheet. Google processes it for me. The site is hosted on Vercel, which sees your IP address in normal server logs.</p></div>
+    <div class="pv"><h3 data-t="p5h">How long</h3><p data-t="p5">Up to 12 months, then I delete it. Sooner if you ask.</p></div>
+    <div class="pv"><h3 data-t="p6h">Your rights</h3><p data-t="p6">You can ask to see, correct or delete your data. You can also complain to the Danish Data Protection Agency (Datatilsynet, datatilsynet.dk).</p></div>
+    <div class="pv"><h3 data-t="p7h">On your device</h3><p data-t="p7">The page remembers your language and your ticked items on your own device only. This is never sent to me. There are no cookies, no analytics and no tracking. Fonts are hosted on this site.</p></div>
+    <div class="pv"><h3 data-t="p8h">Other sites</h3><p data-t="p8">The coffee button opens Buy Me a Coffee, a separate service with its own rules.</p></div>
+    <button type="button" class="btn" id="pClose" data-t="close">Close</button>
+  </div>
+</dialog>
 
 <dialog id="a2hs" aria-labelledby="a2hsT">
   <div class="dlg">
@@ -347,161 +426,6 @@ dialog::backdrop{background:rgba(8,14,20,.6)}
   </div>
 </dialog>
 
-<script>
-(function(){
-  var DA={
-    skip:'Hop til indhold',
-    eyebrow:'Beredskab derhjemme &middot; Danmark',a2hs:'Tilføj til telefon',
-    unit:'dages beredskab derhjemme',
-    lead:'De danske myndigheder anbefaler, at alle hjem kan klare sig selv i 3 døgn i en krise. Det er hele planen. Resten af siden viser, hvad der skal til.',
-    day:'Dag',water:'Vand',food:'Mad',nocook:'ingen madlavning',medicine:'Medicin',oneday:'1 dag',power:'Strøm',pbank:'powerbank',
-    alone:'I er på egen hånd',alone2:'Hjælpen går først til dem, der har mest brug for den',
-    yn:'Jeres tal',howmuch:'Hvor meget skal vi bruge?',people:'Personer i hjemmet (kæledyr skal også have vand)',
-    s1:'drikkevand til 3 døgn',s2:'måltider uden køleskab eller komfur',s3:'flasker à 1,5 L',threedays:'3 dage',s4:'medicin til hver person',
-    example:'Eksempel: starter ved 2 personer. Flyt skyderen, så det passer til jer.',
-    bottlehead:'Hver flaske er 1,5 L &middot; 6 flasker pr. person',
-    yk:'Jeres beredskab',eight:'Otte ting at have hjemme',
-    ticks:'Flueben gemmes kun på denne enhed. Køb lidt ekstra, hver gang I handler, og brug af lageret løbende, så er det billigt og friskt.',
-    ifhappens:'Hvis noget sker',siren:'Når sirenen lyder',step:'Trin',
-    st1h:'Gå indendørs',st1p:'Kom indenfor og bliv inde. Luk vinduer og døre.',
-    st2h:'Find information',st2p:'Lyt til nyhederne. En radio med batteri eller håndsving virker, også når internettet er nede.',
-    st3h:'Følg rådene',st3p:'Gør, som myndighederne siger. Tjek kilden, før du deler nyheder, så rygter ikke spredes.',
-    gtk:'Godt at vide',three:'Tre hurtige fakta',
-    f1h:'Jodtabletter',f1b:'Under 40 år',f1p:'Også til gravide og ammende. Kun ved en atomulykke. Bliv indendørs og følg myndighedernes anvisninger.',f1n:'Aldersgrupper op til 40 år er markeret',
-    f2h:'Madlavning uden strøm',f2b:'Kun udendørs',f2p:'Et campingkomfur eller en grill kan koge vand. Brug det aldrig indendørs eller i lukkede rum. Røg og kulilte er farligt.',
-    f3h:'Ring 112',f3b:'Kun ved nødsituationer',f3p:'Hold linjen fri til livstruende opkald. Hvis 112 er nede, melder myndighederne andre numre ud.',
-    foot:'Baseret på de officielle danske råd til husstande. Brug beregneren og tjeklisten på <a href="https://samsik.dk" target="_blank" rel="noopener">samsik.dk</a> til jeres præcise behov. Ikke medicinsk rådgivning.',
-    src:'Kilder:',
-    dT:'Tilføj til din telefon',dP:'Læg siden på din hjemmeskærm. Den åbner som en app og virker også uden internet.',
-    i1:'Åbn siden i Safari.',
-    i2:'Tryk på Del-knappen <svg class="inl" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Del"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v8h14v-8"/></svg> nederst eller øverst på skærmen.',
-    i3:'Rul ned og tryk på <kbd>Føj til hjemmeskærm</kbd>.',i4:'Tryk på <kbd>Tilføj</kbd>.',
-    a1:'Åbn siden i Chrome.',a2:'Tryk på menuen <kbd>⋮</kbd> øverst til højre.',
-    a3:'Tryk på <kbd>Føj til startskærm</kbd> eller <kbd>Installer app</kbd>.',a4:'Tryk på <kbd>Installer</kbd> eller <kbd>Tilføj</kbd>.',
-    coffeeH:'Kan du lide projektet?',coffeeP:'Så giv mig en kop kaffe. Siden er lavet på koffein, og dåsebønnerne var ikke gratis.',coffeeB:'Giv mig en kop kaffe',
-    gearH:'Har du udstyr til dem, der har brug for det?',gearP:'Laver eller sælger du walkie-talkies, powerbanks eller solcelleopladere? Tilbyd rabat til folk i nød og skriv til mig. Jeg deler gerne gode tilbud her. Jeg sælger ikke noget på denne side.',gearB:'Kontakt mig',
-    installNow:'Installer nu',close:'Luk'
-  };
-  var DESC={en:document.querySelector('meta[name=description]').getAttribute('content'),
-    da:'Vær klar derhjemme i 3 døgn. En enkel guide til de officielle danske råd: vand, mad, medicin, strøm og hvad du gør, når sirenen lyder. På dansk og engelsk.'};
-  var EN={},nodes=document.querySelectorAll('[data-t]');
-  nodes.forEach(function(el){EN[el.getAttribute('data-t')]=el.innerHTML;});
-
-  var icons={
-    water:'<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/>',
-    food:'<path d="M4 11h16l-1.5 8h-13z"/><path d="M8 11c0-3 1.5-5 4-5s4 2 4 5"/>',
-    med:'<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/>',
-    hyg:'<path d="M7 3h10v4H7z"/><path d="M6 7h12v14H6z"/><path d="M10 12h4"/>',
-    warm:'<path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/>',
-    power:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
-    cash:'<rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 15h4"/>',
-    radio:'<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8l10-5"/><circle cx="9" cy="14" r="2.5"/><path d="M15 12h3M15 16h3"/>'
-  };
-  var cats=[
-    {id:'water',c:'',en:{t:'Water',tag:'3 L per person per day',i:['9 L per person for 3 days','Bottled, or tap water in clean sealed food containers','Water for pets']},
-      da:{t:'Vand',tag:'3 L pr. person pr. dag',i:['9 L pr. person i 3 døgn','På flaske, eller postevand i rene, lukkede madbeholdere','Vand til kæledyr']}},
-    {id:'food',c:'o',en:{t:'Food',tag:'3 days',i:['Food that keeps without a fridge','Needs no oven or hob (tins, crispbread)','Things your family already eats','A camping stove to boil water (outside only)']},
-      da:{t:'Mad',tag:'3 dage',i:['Mad, der kan holde sig uden køleskab','Skal ikke varmes i ovn eller på komfur (dåsemad, knækbrød)','Mad, som familien allerede spiser','Et campingkomfur til at koge vand (kun udendørs)']}},
-    {id:'med',c:'r',en:{t:'Medicine and first aid',tag:'3 days',i:['3 days of regular medicine for everyone','Plasters, dressings, bandages','Wound cleaner and disinfectant','Iodine tablets (under 40, pregnant or breastfeeding)']},
-      da:{t:'Medicin og førstehjælp',tag:'3 dage',i:['3 dages fast medicin til alle','Plastre, forbindinger, bandager','Sårrens og desinfektion','Jodtabletter (under 40 år, gravide eller ammende)']}},
-    {id:'hyg',c:'',en:{t:'Hygiene',tag:'',i:['Toilet paper','Wet wipes and hand sanitiser','Sanitary products','Nappies, baby formula if needed']},
-      da:{t:'Hygiejne',tag:'',i:['Toiletpapir','Vådservietter og håndsprit','Menstruationsbeskyttelse','Bleer og modermælkserstatning, hvis det er nødvendigt']}},
-    {id:'warm',c:'y',en:{t:'Warmth',tag:'',i:['Blankets and duvets','Warm clothes','Candles on a solid surface, away from curtains','Plan to stay mostly in one room']},
-      da:{t:'Varme',tag:'',i:['Tæpper og dyner','Varmt tøj','Stearinlys på et fast underlag, væk fra gardiner','Hold jer mest i ét rum']}},
-    {id:'power',c:'y',en:{t:'Power and light',tag:'',i:['Power bank for phones','Torch','Spare batteries','Matches']},
-      da:{t:'Strøm og lys',tag:'',i:['Powerbank til mobiler','Lommelygte','Ekstra batterier','Tændstikker']}},
-    {id:'cash',c:'o',en:{t:'Cash and cards',tag:'',i:['Some coins and small notes','A physical bank card','Know your PIN by heart','Key phone numbers on paper']},
-      da:{t:'Kontanter og kort',tag:'',i:['Lidt mønter og små sedler','Et fysisk betalingskort','Kend din pinkode udenad','Vigtige telefonnumre på papir']}},
-    {id:'radio',c:'r',en:{t:'Radio and news',tag:'FM',i:['Battery, wind-up or solar FM radio (a car radio can work)','Plan to listen to DR or TV 2','Know where your nearest neighbours are']},
-      da:{t:'Radio og nyheder',tag:'FM',i:['Radio med FM og batteri, håndsving eller solcelle (en bilradio kan også bruges)','Lyt til DR eller TV 2','Kend dine nærmeste naboer']}}
-  ];
-  var lang='en',store={},total=0;
-  try{store=JSON.parse(localStorage.getItem('dk-ready-kit')||'{}')||{}}catch(e){store={}}
-  try{var sl=localStorage.getItem('dk-ready-lang');if(sl==='da'||sl==='en')lang=sl;else if((navigator.language||'').toLowerCase().indexOf('da')===0)lang='da';}catch(e){}
-
-  var kit=document.getElementById('kit');
-  function renderKit(){
-    total=0;kit.innerHTML='';
-    cats.forEach(function(c){
-      var d=c[lang],hid='h-'+c.id,el=document.createElement('div');el.className='cat '+c.c;
-      el.setAttribute('role','group');el.setAttribute('aria-labelledby',hid);
-      var h='<header><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+icons[c.id]+'</svg></div><h3 id="'+hid+'">'+d.t+'</h3>'+(d.tag?'<span class="tag">'+d.tag+'</span>':'')+'</header><ul>';
-      d.i.forEach(function(t,n){total++;var id='k-'+c.id+'-'+n;
-        h+='<li><label><input type="checkbox" id="'+id+'"'+(store[id]?' checked':'')+'><span>'+t+'</span></label></li>';});
-      el.innerHTML=h+'</ul>';kit.appendChild(el);
-    });
-    prog();
-  }
-  function prog(){
-    var n=0;kit.querySelectorAll('input').forEach(function(b){if(b.checked)n++;});
-    document.getElementById('progBar').style.width=(total?n/total*100:0)+'%';
-    document.getElementById('progTxt').textContent=n+(lang==='da'?' af ':' of ')+total+(lang==='da'?' klar':' ready');
-  }
-  kit.addEventListener('change',function(e){
-    if(e.target.type==='checkbox'){store[e.target.id]=e.target.checked;
-      try{localStorage.setItem('dk-ready-kit',JSON.stringify(store))}catch(x){}
-      prog();}
-  });
-
-  var range=document.getElementById('people');
-  var bottleSvg='<svg viewBox="0 0 20 44" aria-hidden="true"><rect x="7" y="1" width="6" height="5" rx="1.5" fill="var(--muted)"/><path d="M6 8h8c2 2 3 4 3 7v24a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V15c0-3 1-5 3-7z" fill="var(--water-soft)" stroke="var(--water)" stroke-width="1.5"/><path d="M3.8 21h12.4v18a2 2 0 0 1-2 2H5.8a2 2 0 0 1-2-2z" fill="var(--water)"/></svg>';
-  function calc(){
-    var p=+range.value,L=p*9,b=Math.ceil(L/1.5),s='';
-    document.getElementById('peopleOut').textContent=p;
-    document.getElementById('litres').textContent=L+' L';
-    document.getElementById('meals').textContent=p*9;
-    document.getElementById('bottleN').textContent=b;
-    for(var i=0;i<b;i++)s+='<span class="bottle">'+bottleSvg+'</span>';
-    document.getElementById('bottles').innerHTML=s;
-    var da=lang==='da';
-    range.setAttribute('aria-valuetext',p+(da?(p===1?' person':' personer'):(p===1?' person':' people')));
-    document.getElementById('bottleCap').textContent=da
-      ? p+(p===1?' person':' personer')+' × 3 L × 3 dage = '+L+' liter ('+b+' flasker). Læg mere til for kæledyr.'
-      : p+(p===1?' person':' people')+' × 3 L × 3 days = '+L+' litres ('+b+' bottles). Add more for pets.';
-  }
-  range.addEventListener('input',calc);
-
-  var meta=document.querySelector('meta[name=description]');
-  function setLang(l,save){
-    lang=l;document.documentElement.lang=l;
-    var dict=l==='da'?DA:EN;
-    nodes.forEach(function(el){var k=el.getAttribute('data-t');if(dict[k]!=null)el.innerHTML=dict[k];});
-    document.getElementById('b-da').setAttribute('aria-pressed',l==='da');
-    document.getElementById('b-en').setAttribute('aria-pressed',l==='en');
-    document.querySelector('.days').setAttribute('aria-label',l==='da'?'Hvad én person har brug for hver dag':'What one person needs each day');
-    document.getElementById('a2hsX').setAttribute('aria-label',l==='da'?'Luk':'Close');
-    document.title=l==='da'?'Klar i Danmark':'Denmark Ready Kit';
-    meta.setAttribute('content',DESC[l]);
-    renderKit();calc();
-    if(save){try{localStorage.setItem('dk-ready-lang',l)}catch(e){}}
-  }
-  document.querySelectorAll('.lang button').forEach(function(b){
-    b.addEventListener('click',function(){setLang(b.getAttribute('data-l'),true);});
-  });
-  setLang(lang,false);
-
-  /* add to home screen */
-  var dlg=document.getElementById('a2hs'),btn=document.getElementById('a2hsBtn'),inst=document.getElementById('installNow'),deferred=null;
-  function openDlg(){ if(dlg.showModal){dlg.showModal();}else{dlg.setAttribute('open','');} }
-  function closeDlg(){ if(dlg.close){dlg.close();}else{dlg.removeAttribute('open');} btn.focus(); }
-  btn.addEventListener('click',openDlg);
-  document.getElementById('a2hsX').addEventListener('click',closeDlg);
-  document.getElementById('a2hsClose').addEventListener('click',closeDlg);
-  dlg.addEventListener('click',function(e){if(e.target===dlg)closeDlg();});
-  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferred=e;inst.hidden=false;});
-  inst.addEventListener('click',function(){
-    if(!deferred)return;
-    deferred.prompt();
-    deferred.userChoice.then(function(){deferred=null;inst.hidden=true;closeDlg();});
-  });
-  window.addEventListener('appinstalled',function(){btn.hidden=true;});
-  try{ if(window.matchMedia('(display-mode: standalone)').matches||navigator.standalone)btn.hidden=true; }catch(e){}
-
-  /* offline support */
-  if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
-    window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});
-  }
-})();
-</script>
+<script src="app.js" defer></script>
 </body>
 </html>

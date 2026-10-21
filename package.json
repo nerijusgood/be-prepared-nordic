@@ -1,0 +1,11 @@
+{
+  "name": "be-prepared-nordic",
+  "version": "1.0.0",
+  "private": true,
+  "description": "One-page Danish/English home preparedness guide with a contact form that saves to a Google Sheet.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "node dev-server.js",
+    "test": "node --test"
+  }
+}
