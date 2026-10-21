@@ -1,0 +1,283 @@
+<title>Ready Kit Launch Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:wght@400..800&display=swap">
+<style>
+/* Layout: a vertical route. Done strip, three numbered stops on one line, a side track, then the sticker */
+:root{
+  --bg:#F1F2EC; --surface:#FBFBF7; --ink:#1D2E2B; --muted:#56635F; --line:#D5DAD2;
+  --red:#C2443B; --red-soft:#F6DFDA;
+  --candle:#9A6510; --candle-soft:#F7EACB;
+  --fjord:#2F6D96; --fjord-soft:#DCEAF3;
+  --moss:#3A7452; --moss-soft:#DCEEE2;
+  --f-display:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;
+  --f-body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121A19; --surface:#1A2523; --ink:#E7ECE8; --muted:#A3B0AB; --line:#2E3D3A;
+  --red:#F08A7E; --red-soft:#3B211E; --candle:#F2C162; --candle-soft:#3A2F17;
+  --fjord:#7DB8DE; --fjord-soft:#173041; --moss:#7CC79A; --moss-soft:#163226;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121A19; --surface:#1A2523; --ink:#E7ECE8; --muted:#A3B0AB; --line:#2E3D3A;
+  --red:#F08A7E; --red-soft:#3B211E; --candle:#F2C162; --candle-soft:#3A2F17;
+  --fjord:#7DB8DE; --fjord-soft:#173041; --moss:#7CC79A; --moss-soft:#163226;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;
+  padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.05;text-wrap:balance;letter-spacing:-.015em}
+h1{font-size:clamp(2.1rem,6vw,3.4rem);font-weight:800}
+h2{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:800}
+h3{font-size:1.08rem;font-weight:700}
+p,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:1.12rem;color:var(--muted);max-width:62ch}
+.small{font-size:.9rem}
+.muted{color:var(--muted)}
+code{font-size:.85em;background:var(--bg);padding:1px 6px;border-radius:6px;overflow-wrap:anywhere}
+svg{display:block}
+
+header.top{display:flex;flex-direction:column;gap:14px}
+
+.done{display:flex;flex-wrap:wrap;gap:10px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;font-weight:600;font-size:.9rem;background:var(--moss-soft);color:var(--moss)}
+.pill svg{width:16px;height:16px}
+.pill.next{background:var(--candle-soft);color:var(--candle)}
+
+/* Route */
+.route{display:flex;flex-direction:column;gap:0;position:relative}
+.stop{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:36px}
+.stop:last-child{padding-bottom:0}
+.stop::before{content:"";position:absolute;left:31px;top:64px;bottom:0;width:3px;background:repeating-linear-gradient(180deg,var(--line) 0 8px,transparent 8px 14px)}
+.stop:last-child::before{display:none}
+.num{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-size:1.8rem;font-weight:800;color:var(--surface)}
+.s1 .num{background:var(--red)} .s2 .num{background:var(--candle)} .s3 .num{background:var(--fjord)}
+.body{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.body > header{display:flex;flex-direction:column;gap:6px}
+.unlocks{font-size:.85rem;font-weight:600;color:var(--muted);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.unlocks b{color:var(--ink)}
+
+.who{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.who > div{border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.who .you{background:var(--candle-soft)}
+.who .me{background:var(--fjord-soft)}
+.who .lbl{font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.who .you .lbl{color:var(--candle)} .who .me .lbl{color:var(--fjord)}
+.who ul{display:flex;flex-direction:column;gap:6px;font-size:.92rem}
+.who li{display:flex;gap:8px}
+.who li::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.45;flex:none;margin-top:.6em}
+
+.hosts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.host{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.host.rec{border-color:var(--moss);background:var(--moss-soft)}
+.host .name{font-family:var(--f-display);font-weight:800;font-size:1.05rem}
+.host .tag{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.host.rec .tag{color:var(--moss)}
+.host p{font-size:.86rem}
+
+/* Side track */
+.side{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;border:2px dashed var(--line);border-radius:18px;padding:22px}
+.side .ic{width:52px;height:52px;border-radius:16px;background:var(--red-soft);color:var(--red);display:grid;place-items:center}
+.side .ic svg{width:26px;height:26px}
+.side > div:last-child{display:flex;flex-direction:column;gap:10px;min-width:0}
+.chain{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.88rem;font-weight:600}
+.chain span{background:var(--bg);border-radius:8px;padding:4px 10px}
+.chain i{font-style:normal;color:var(--muted)}
+
+/* Sticker */
+.sticker-wrap{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center}
+.sticker{width:260px;height:260px;max-width:100%;border-radius:50%;background:#FBFBF7;color:#1D2E2B;border:10px solid #C2443B;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;box-shadow:0 10px 30px rgba(0,0,0,.12);transform:rotate(-4deg)}
+.sticker .say{font-family:var(--f-display);font-weight:800;font-size:1.05rem;text-align:center;line-height:1.1}
+.sticker .dom{font-family:var(--f-display);font-weight:800;font-size:.95rem;letter-spacing:-.01em}
+.sticker canvas{width:104px;height:104px;image-rendering:pixelated}
+.sample{font-size:.7rem;color:#56635F}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.spec{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.spec b{font-family:var(--f-display);font-size:1.3rem;font-variant-numeric:tabular-nums}
+.spec span{font-size:.85rem;color:var(--muted)}
+
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rules .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.rules li{display:flex;gap:10px;align-items:flex-start;font-size:.93rem}
+.rules li svg{width:18px;height:18px;flex:none;margin-top:3px}
+.ok svg{color:var(--moss)} .bad svg{color:var(--red)}
+.places{display:flex;flex-wrap:wrap;gap:8px}
+.places span{font-size:.88rem;font-weight:600;padding:6px 12px;border-radius:999px;background:var(--fjord-soft);color:var(--fjord)}
+
+footer{border-top:1px solid var(--line);padding-top:18px;display:flex;flex-direction:column;gap:4px}
+
+@media (max-width:720px){
+  .who,.hosts,.specs,.rules{grid-template-columns:1fr}
+  .sticker-wrap{grid-template-columns:1fr;justify-items:center}
+  .stop{grid-template-columns:44px 1fr;gap:14px}
+  .num{width:44px;height:44px;font-size:1.3rem}
+  .stop::before{left:21px;top:44px}
+  .side{grid-template-columns:1fr}
+}
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <p class="eyebrow">Denmark Ready Kit · plan from 21 Oct 2026</p>
+    <h1>Three steps to a live site, then a sticker on every fridge</h1>
+    <p class="lede">Each step unlocks the next one. The QR sticker comes last, because a printed code needs the final address.</p>
+    <div class="done">
+      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Code on GitHub</span>
+      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>10 of 10 tests pass</span>
+      <span class="pill next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/></svg>Next: choose a host</span>
+    </div>
+  </header>
+
+  <ol class="route" aria-label="Launch steps">
+    <li class="stop s1">
+      <span class="num" aria-hidden="true">1</span>
+      <div class="body">
+        <header>
+          <p class="eyebrow">Step 1</p>
+          <h2>Choose a host and go live</h2>
+          <p class="unlocks">Unlocks: <b>a working link</b> for step 2</p>
+        </header>
+        <div class="hosts">
+          <div class="host">
+            <span class="tag">Free</span>
+            <span class="name">Vercel Hobby</span>
+            <p>Non-commercial only. Remove the coffee button and the company option first.</p>
+          </div>
+          <div class="host rec">
+            <span class="tag">Recommended</span>
+            <span class="name">Vercel Pro</span>
+            <p>Paid. Commercial use is OK. The site works as it is today, with no code changes.</p>
+          </div>
+          <div class="host rec">
+            <span class="tag">Recommended</span>
+            <span class="name">Cloudflare Pages</span>
+            <p>Free, and commercial use is OK. The contact function and the security headers need small changes.</p>
+          </div>
+        </div>
+        <div class="who">
+          <div class="you"><span class="lbl">You</span><ul><li>Pick one host</li><li>Log in and approve the GitHub link</li></ul></div>
+          <div class="me"><span class="lbl">Claude</span><ul><li>Deploy the site</li><li>Make the code changes if you pick Cloudflare</li><li>Check the page on phone and desktop</li></ul></div>
+        </div>
+      </div>
+    </li>
+
+    <li class="stop s2">
+      <span class="num" aria-hidden="true">2</span>
+      <div class="body">
+        <header>
+          <p class="eyebrow">Step 2</p>
+          <h2>Buy the domain and connect it</h2>
+          <p class="unlocks">Unlocks: <b>search and share previews</b>, and <b>the QR code</b></p>
+        </header>
+        <div class="who">
+          <div class="you"><span class="lbl">You</span><ul><li>Buy <code>3dageklar.dk</code> through a Punktum dk registrar</li><li>Buy <code>readykit.dk</code> as an English door, if you want it</li></ul></div>
+          <div class="me"><span class="lbl">Claude</span><ul><li>Connect the domain to the host</li><li>Add canonical link, share image tags and <code>sitemap.xml</code></li><li>Add the <code>/qr</code> redirect for the sticker</li></ul></div>
+        </div>
+      </div>
+    </li>
+
+    <li class="stop s3">
+      <span class="num" aria-hidden="true">3</span>
+      <div class="body">
+        <header>
+          <p class="eyebrow">Step 3</p>
+          <h2>Turn on the contact form</h2>
+          <p class="unlocks">Unlocks: <b>a fully live site</b> that saves messages to your private Sheet</p>
+        </header>
+        <div class="who">
+          <div class="you"><span class="lbl">You</span><ul><li>Create the Google Sheet and Apps Script with the guide</li><li>Add the two secret values in the host settings</li><li>Turn on the monthly clean-up after 12 months</li></ul></div>
+          <div class="me"><span class="lbl">Claude</span><ul><li>Guide you click by click</li><li>Send one real test message</li><li>Add a rate limit rule for the form</li></ul></div>
+        </div>
+      </div>
+    </li>
+  </ol>
+
+  <section class="side" aria-labelledby="sideH">
+    <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></span>
+    <div>
+      <p class="eyebrow">At the same time, outside the code</p>
+      <h2 id="sideH">Find one charity partner</h2>
+      <p class="small">Talk to a local charity, for example the Red Cross or Kirkens Korshær. Agree on a simple way to hand out sponsored kits. Claude can write the company rules in English and Danish now, so the section is ready on day one.</p>
+      <div class="chain" aria-label="Order of the company feature">
+        <span>Charity says yes</span><i>→</i><span>Commercial host ready</span><i>→</i><span>"For companies" section and button</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:24px" aria-labelledby="qrH">
+    <header style="display:flex;flex-direction:column;gap:10px">
+      <p class="eyebrow">After step 2</p>
+      <h2 id="qrH">The QR sticker</h2>
+      <p class="lede">People see it at home, at work and on notice boards, where the topic is easy to forget. Scan it and the site opens.</p>
+    </header>
+
+    <div class="sticker-wrap">
+      <div class="sticker" role="img" aria-label="Round sticker mockup: Klar til 3 dage? Scan her, a QR code, and 3dageklar.dk">
+        <span class="say">Klar til 3 dage?<br>Scan her</span>
+        <canvas id="qr" width="25" height="25" aria-hidden="true"></canvas>
+        <span class="dom">3dageklar.dk</span>
+        <span class="sample">Example pattern, not a real code</span>
+      </div>
+      <div class="specs">
+        <div class="spec"><b>5–6 cm</b><span>Round sticker</span></div>
+        <div class="spec"><b>2 cm or more</b><span>Size of the code</span></div>
+        <div class="spec"><b>Dark on light</b><span>With a white border around the code</span></div>
+        <div class="spec"><b>Domain as text</b><span>For people who do not scan</span></div>
+      </div>
+    </div>
+
+    <div class="rules">
+      <div class="card ok">
+        <h3>Do</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg><span>Point the code to <code>3dageklar.dk/qr</code>. You can change where it goes later without reprinting.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg><span>Make the code offline, on your own computer.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg><span>Print on vinyl, so it lasts outside too.</span></li>
+        </ul>
+      </div>
+      <div class="card bad">
+        <h3>Do not</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Point it to a temporary <code>vercel.app</code> address.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Use "dynamic" QR services. They track scans, or stop working when a trial ends.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Put stickers in shared spaces without asking first.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h3>Good places</h3>
+      <div class="places"><span>Fridge at home</span><span>Storage room</span><span>Building notice board</span><span>Library</span><span>Workplace pack</span><span>Fridge magnet version</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="small"><strong>Denmark Ready Kit</strong> follows the Danish authorities' advice for 3 days at home.</p>
+    <p class="small muted">Plan only. The domain names were free when checked on 21 Oct 2026. Check again before you buy.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  // Draws a QR-like example pattern with three corner squares. It is not a scannable code.
+  var c=document.getElementById('qr'); if(!c||!c.getContext) return;
+  var x=c.getContext('2d'), N=25, seed=7;
+  function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647;}
+  x.fillStyle='#FBFBF7'; x.fillRect(0,0,N,N);
+  x.fillStyle='#1D2E2B';
+  function finder(cx,cy){
+    x.fillRect(cx,cy,7,7); x.fillStyle='#FBFBF7'; x.fillRect(cx+1,cy+1,5,5);
+    x.fillStyle='#1D2E2B'; x.fillRect(cx+2,cy+2,3,3);
+  }
+  function inFinder(i,j){return (i<8&&j<8)||(i>N-9&&j<8)||(i<8&&j>N-9);}
+  for(var i=0;i<N;i++)for(var j=0;j<N;j++){ if(!inFinder(i,j)&&rnd()>.52) x.fillRect(i,j,1,1); }
+  finder(0,0); finder(N-7,0); finder(0,N-7);
+})();
+</script>

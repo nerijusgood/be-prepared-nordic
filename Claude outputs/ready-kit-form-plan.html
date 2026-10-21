@@ -1,0 +1,500 @@
+<title>Ready Kit Form Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:wght@400..800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: sticky progress strip, a time bar, nine steps as a checklist route, a fix-it table, then name ideas */
+:root{
+  --bg:#F1F2EC; --surface:#FBFBF7; --ink:#1D2E2B; --muted:#56635F; --line:#D5DAD2;
+  --red:#C2443B; --red-soft:#F6DFDA;
+  --candle:#9A6510; --candle-soft:#F7EACB;
+  --fjord:#2F6D96; --fjord-soft:#DCEAF3;
+  --moss:#3A7452; --moss-soft:#DCEEE2;
+  --code-bg:#E7EBE3;
+  --f-display:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;
+  --f-body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121A19; --surface:#1A2523; --ink:#E7ECE8; --muted:#A3B0AB; --line:#2E3D3A;
+  --red:#F08A7E; --red-soft:#3B211E; --candle:#F2C162; --candle-soft:#3A2F17;
+  --fjord:#7DB8DE; --fjord-soft:#173041; --moss:#7CC79A; --moss-soft:#163226; --code-bg:#0E1514;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121A19; --surface:#1A2523; --ink:#E7ECE8; --muted:#A3B0AB; --line:#2E3D3A;
+  --red:#F08A7E; --red-soft:#3B211E; --candle:#F2C162; --candle-soft:#3A2F17;
+  --fjord:#7DB8DE; --fjord-soft:#173041; --moss:#7CC79A; --moss-soft:#163226; --code-bg:#0E1514;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;
+  padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.06;text-wrap:balance;letter-spacing:-.015em}
+h1{font-size:clamp(2.1rem,6vw,3.3rem);font-weight:800}
+h2{font-size:clamp(1.45rem,4vw,2rem);font-weight:800}
+h3{font-size:1.15rem;font-weight:700}
+p,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:1.1rem;color:var(--muted);max-width:62ch}
+.small{font-size:.9rem}
+.muted{color:var(--muted)}
+code{font-family:var(--f-mono);font-size:.85em;background:var(--code-bg);padding:1px 6px;border-radius:6px;overflow-wrap:anywhere}
+svg{display:block}
+a{color:var(--fjord)}
+:focus-visible{outline:3px solid var(--fjord);outline-offset:2px;border-radius:6px}
+
+/* Sticky progress */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:12px 0;border-bottom:1px solid var(--line);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.bar-in{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:16px}
+.meter{flex:1;height:10px;border-radius:999px;background:var(--line);overflow:hidden;min-width:0}
+.meter i{display:block;height:100%;width:0;background:var(--moss);border-radius:999px;transition:width .35s ease}
+.bar-txt{font-size:.88rem;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+header.top{display:flex;flex-direction:column;gap:14px;padding-top:28px}
+
+/* Before you start */
+.before{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card ul{display:flex;flex-direction:column;gap:8px}
+.card li{display:flex;gap:10px;align-items:flex-start;font-size:.95rem}
+.card li svg{width:18px;height:18px;flex:none;margin-top:3px}
+.have svg{color:var(--moss)} .never{border:2px solid var(--red)} .never svg{color:var(--red)}
+
+/* Time bar */
+.timebar{display:flex;gap:3px;height:64px}
+.timebar a{display:flex;flex-direction:column;justify-content:center;align-items:center;border-radius:10px;text-decoration:none;color:var(--ink);font-weight:700;font-size:.9rem;min-width:0;overflow:hidden;border:1.5px solid transparent}
+.timebar a small{font-weight:600;font-size:.7rem;opacity:.8}
+.timebar a.v{background:var(--fjord-soft);color:var(--fjord)}
+.timebar a.g{background:var(--candle-soft);color:var(--candle)}
+.timebar a.t{background:var(--moss-soft);color:var(--moss)}
+.timebar a.p{background:var(--red-soft);color:var(--red)}
+.timebar a:hover{border-color:currentColor}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.85rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:4px;display:inline-block}
+
+/* Steps */
+.steps{display:flex;flex-direction:column;gap:18px}
+.step{display:grid;grid-template-columns:56px 1fr;gap:18px;scroll-margin-top:84px}
+.n{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:1.6rem;color:var(--surface);background:var(--ink);transition:background .2s}
+.step.done .n{background:var(--moss)}
+.step .box{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.step.done .box{background:var(--moss-soft);border-color:var(--moss)}
+.box > header{display:flex;flex-direction:column;gap:8px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.chip.v{background:var(--fjord-soft);color:var(--fjord)}
+.chip.g{background:var(--candle-soft);color:var(--candle)}
+.chip.t{background:var(--moss-soft);color:var(--moss)}
+.chip.p{background:var(--red-soft);color:var(--red)}
+.chip.time{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.clicks{display:flex;flex-direction:column;gap:8px;counter-reset:c}
+.clicks li{display:grid;grid-template-columns:24px 1fr;gap:10px;font-size:.96rem;counter-increment:c}
+.clicks li::before{content:counter(c);width:24px;height:24px;border-radius:50%;background:var(--bg);border:1px solid var(--line);display:grid;place-items:center;font-size:.75rem;font-weight:700;color:var(--muted);margin-top:1px}
+.clicks li > span{min-width:0}
+.copy{display:flex;gap:10px;align-items:stretch;background:var(--code-bg);border-radius:12px;padding:10px 10px 10px 14px}
+.copy pre,.copy code.blk{margin:0;flex:1;min-width:0;overflow-x:auto;font-family:var(--f-mono);font-size:.82rem;line-height:1.6;white-space:pre;background:none;padding:0}
+.copy button{align-self:flex-start;font:inherit;font-size:.82rem;font-weight:700;padding:6px 12px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;flex:none}
+.copy button:hover{border-color:var(--fjord);color:var(--fjord)}
+.tip{display:flex;gap:10px;padding:12px 14px;border-radius:12px;background:var(--fjord-soft);font-size:.9rem}
+.tip svg{width:18px;height:18px;flex:none;color:var(--fjord);margin-top:2px}
+.tip.warn{background:var(--candle-soft)} .tip.warn svg{color:var(--candle)}
+.foot{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;border-top:1px dashed var(--line);padding-top:12px}
+.donewhen{font-size:.9rem;color:var(--muted);min-width:0;flex:1 1 260px}
+.donewhen b{color:var(--ink)}
+.tick{display:inline-flex;gap:8px;align-items:center;font-weight:700;font-size:.92rem;cursor:pointer}
+.tick input{width:20px;height:20px;accent-color:var(--moss);cursor:pointer}
+.claude{font-size:.88rem;color:var(--muted)}
+.claude b{color:var(--fjord)}
+
+/* Fix table */
+.fix{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface)}
+.fix > div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:8px 20px;padding:14px 18px;border-top:1px solid var(--line)}
+.fix > div:first-child{border-top:0}
+.fix b{font-family:var(--f-mono);font-size:.82rem;overflow-wrap:anywhere}
+.fix span{font-size:.92rem}
+
+/* Domains */
+.picks{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pick{border:2px solid var(--moss);background:var(--surface);border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.pick .d{font-family:var(--f-display);font-weight:800;font-size:1.6rem;letter-spacing:-.02em;overflow-wrap:anywhere}
+.groups{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.groups .card h3{font-size:1rem}
+.names{display:flex;flex-wrap:wrap;gap:8px}
+.names span{font-family:var(--f-mono);font-size:.82rem;padding:4px 10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);overflow-wrap:anywhere}
+
+footer{border-top:1px solid var(--line);padding-top:18px;display:flex;flex-direction:column;gap:4px}
+
+@media (max-width:720px){
+  .before,.picks,.groups{grid-template-columns:1fr}
+  .step{grid-template-columns:40px 1fr;gap:12px}
+  .n{width:40px;height:40px;font-size:1.15rem}
+  .step .box{padding:16px}
+  .fix > div{grid-template-columns:1fr}
+  .timebar a small{display:none}
+  .bar-txt{font-size:.8rem}
+}
+@media (prefers-reduced-motion:reduce){.meter i,.n{transition:none}}
+</style>
+
+<div class="bar" role="status" aria-live="polite">
+  <div class="bar-in">
+    <div class="meter" aria-hidden="true"><i id="fill"></i></div>
+    <span class="bar-txt" id="stat">0 of 9 steps done</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="top">
+    <p class="eyebrow">Contact form · plan for Thu 22 Oct 2026</p>
+    <h1>Switch on the contact form in about 75 minutes</h1>
+    <p class="lede">Nine steps. Tick each one when it is done. Your ticks stay on this device only, so you can close the page and come back.</p>
+  </header>
+
+  <section class="before" aria-label="Before you start">
+    <div class="card have">
+      <h3>Have ready</h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg><span>A Google account for the Sheet (the account that will own the messages)</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg><span>Your Vercel login (the personal account <code>nerijusgood</code>)</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg><span>The Terminal app on your Mac, and a password manager or a private note</span></li>
+      </ul>
+    </div>
+    <div class="card never">
+      <h3>Never</h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Paste the secret into a chat, a file in the repo, or a screenshot</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Commit a <code>.env</code> file</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Share the Sheet with anyone</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="tbH" style="display:flex;flex-direction:column;gap:12px">
+    <h2 id="tbH">The morning at a glance</h2>
+    <nav class="timebar" aria-label="Steps by time. Each block links to its step.">
+      <a class="v" href="#step-1" style="flex:10"><span>1</span><small>10 min</small></a>
+      <a class="g" href="#step-2" style="flex:10"><span>2</span><small>10 min</small></a>
+      <a class="t" href="#step-3" style="flex:5"><span>3</span><small>5</small></a>
+      <a class="g" href="#step-4" style="flex:7"><span>4</span><small>7 min</small></a>
+      <a class="v" href="#step-5" style="flex:8"><span>5</span><small>8 min</small></a>
+      <a class="t" href="#step-6" style="flex:10"><span>6</span><small>10 min</small></a>
+      <a class="g" href="#step-7" style="flex:3"><span>7</span><small>3</small></a>
+      <a class="v" href="#step-8" style="flex:10"><span>8</span><small>10 min</small></a>
+      <a class="p" href="#step-9" style="flex:10"><span>9</span><small>10 min</small></a>
+    </nav>
+    <p class="legend" aria-label="Where each step happens">
+      <span><i style="background:var(--fjord)"></i>Vercel</span>
+      <span><i style="background:var(--candle)"></i>Google</span>
+      <span><i style="background:var(--moss)"></i>Terminal</span>
+      <span><i style="background:var(--red)"></i>Your phone</span>
+    </p>
+  </section>
+
+  <ol class="steps">
+
+    <li class="step" id="step-1" data-min="10">
+      <span class="n" aria-hidden="true">1</span>
+      <div class="box">
+        <header>
+          <div class="meta"><span class="chip v">Vercel</span><span class="chip time">10 min</span></div>
+          <h3>Put the site on Vercel</h3>
+        </header>
+        <ol class="clicks">
+          <li><span>Open <a href="https://vercel.com/new" target="_blank" rel="noopener">vercel.com/new</a> and sign in with GitHub.</span></li>
+          <li><span>Pick the repo <code>nerijusgood/be-prepared-nordic</code> and click Import.</span></li>
+          <li><span>Set Framework Preset to <b>Other</b>. Leave Build Command and Output Directory empty.</span></li>
+          <li><span>Click Deploy and wait for the confetti.</span></li>
+        </ol>
+        <div class="foot">
+          <p class="donewhen"><b>Done when</b> the vercel.app link opens the site.</p>
+          <label class="tick"><input type="checkbox" id="done-1">Step done</label>
+        </div>
+        <p class="claude"><b>Claude</b> can do this step for you through the Vercel connection. Say so in the morning.</p>
+      </div>
+    </li>
+
+    <li class="step" id="step-2" data-min="10">
+      <span class="n" aria-hidden="true">2</span>
+      <div class="box">
+        <header>
+          <div class="meta"><span class="chip g">Google</span><span class="chip time">10 min</span></div>
+          <h3>Create the Sheet and add the script</h3>
+        </header>
+        <ol class="clicks">
+          <li><span>Open <a href="https://sheets.new" target="_blank" rel="noopener">sheets.new</a> and name the file <b>Ready Kit messages</b>.</span></li>
+          <li><span>Click Extensions, then Apps Script.</span></li>
+          <li><span>Delete the sample code. Paste the full content of <code>docs/google-sheet-Code.gs</code> from the repo. Click Save.</span></li>
+          <li><span>In the function list choose <code>setup</code> and click Run.</span></li>
+          <li><span>Google asks for access. If it says the app is not verified, click Advanced, then Go to the project, then Allow. This is your own script.</span></li>
+        </ol>
+        <div class="foot">
+          <p class="donewhen"><b>Done when</b> the Sheet has a tab called <b>Messages</b> with 7 headers.</p>
+          <label class="tick"><input type="checkbox" id="done-2">Step done</label>
+        </div>
+      </div>
+    </li>
+
+    <li class="step" id="step-3" data-min="5">
+      <span class="n" aria-hidden="true">3</span>
+      <div class="box">
+        <header>
+          <div class="meta"><span class="chip t">Terminal</span><span class="chip g">Google</span><span class="chip time">5 min</span></div>
+          <h3>Make a secret and save it in the script</h3>
+        </header>
+        <ol class="clicks">
+          <li><span>Run this in Terminal. It prints a long random text.</span></li>
+        </ol>
+        <div class="copy"><code class="blk" id="cmd-secret">openssl rand -hex 24</code><button type="button" data-copy="cmd-secret">Copy</button></div>
+        <ol class="clicks">
+          <li><span>Save that text in your password manager. You need it again in step 5.</span></li>
+          <li><span>In Apps Script click the gear (Project Settings). Scroll to Script Properties and click Add script property.</span></li>
+          <li><span>Name: <code>SECRET</code>. Value: the random text. Click Save script properties.</span></li>
+        </ol>
+        <div class="tip warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.5"/></svg><span>Do not send the secret to Claude. Claude never needs to see it.</span></div>
+        <div class="foot">
+          <p class="donewhen"><b>Done when</b> Script Properties lists <code>SECRET</code>.</p>
+          <label class="tick"><input type="checkbox" id="done-3">Step done</label>
+        </div>
+      </div>
+    </li>
+
+    <li class="step" id="step-4" data-min="7">
+      <span class="n" aria-hidden="true">4</span>
+      <div class="box">
+        <header>
+          <div class="meta"><span class="chip g">Google</span><span class="chip time">7 min</span></div>
+          <h3>Publish the script as a web app</h3>
+        </header>
+        <ol class="clicks">
+          <li><span>Click Deploy, then New deployment. Click the gear and choose <b>Web app</b>.</span></li>
+          <li><span>Execute as: <b>Me</b>. Who has access: <b>Anyone</b>. The secret protects it.</span></li>
+          <li><span>Click Deploy and copy the Web app URL. It ends with <code>/exec</code>.</span></li>
+          <li><span>Keep the URL in a private note for step 5.</span></li>
+        </ol>
+        <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v.5M12 11v5"/></svg><span>If you open the URL in a browser, you see an error about <code>doGet</code>. That is normal. The script only accepts messages from the website.</span></div>
+        <div class="foot">
+          <p class="donewhen"><b>Done when</b> you have a URL that ends with <code>/exec</code>.</p>
+          <label class="tick"><input type="checkbox" id="done-4">Step done</label>
+        </div>
+      </div>
+    </li>
+
+    <li class="step" id="step-5" data-min="8">
+      <span class="n" aria-hidden="true">5</span>
+      <div class="box">
+        <header>
+          <div class="meta"><span class="chip v">Vercel</span><span class="chip time">8 min</span></div>
+          <h3>Give Vercel the two values and redeploy</h3>
+        </header>
+        <ol class="clicks">
+          <li><span>In your Vercel project open Settings, then Environment Variables.</span></li>
+          <li><span>Add <code>SHEET_WEBHOOK_URL</code> with the Web app URL from step 4.</span></li>
+          <li><span>Add <code>SHEET_SECRET</code> with the random text from step 3. Turn on <b>Sensitive</b> if Vercel offers it.</span></li>
+          <li><span>Select Production and Preview for both. Click Save.</span></li>
+          <li><span>Open Deployments, click the three dots on the latest one, and choose Redeploy.</span></li>
+        </ol>
+        <div class="copy"><code class="blk" id="names">SHEET_WEBHOOK_URL
+SHEET_SECRET</code><button type="button" data-copy="names">Copy names</button></div>
+        <div class="foot">
+          <p class="donewhen"><b>Done when</b> the new deployment says <b>Ready</b>. A change to a variable only works after a redeploy.</p>
+          <label class="tick"><input type="checkbox" id="done-5">Step done</label>
+        </div>
+      </div>
+    </li>
+
+    <li class="step" id="step-6" data-min="10">
+      <span class="n" aria-hidden="true">6</span>
+      <div class="box">
+        <header>
+          <div class="meta"><span class="chip t">Terminal</span><span class="chip g">Google</span><span class="chip time">10 min</span></div>
+          <h3>Send a test message</h3>
+        </header>
+        <ol class="clicks">
+          <li><span>Replace <code>YOUR-SITE.vercel.app</code> with your real address in both places, then run the command.</span></li>
+        </ol>
+        <div class="copy"><pre id="cmd-test">curl -s -X POST https://YOUR-SITE.vercel.app/api/contact \
+  -H 'Content-Type: application/json' \
+  -H 'Origin: https://YOUR-SITE.vercel.app' \
+  -d '{"subject":"other","email":"test@example.com","message":"Hello, this is a test message","consent":true,"website":"","elapsed":9000,"lang":"en"}'</pre><button type="button" data-copy="cmd-test">Copy</button></div>
+        <ol class="clicks">
+          <li><span>You must see <code>{"ok":true}</code>.</span></li>
+          <li><span>Open the Sheet. A new row appears with Status <b>New</b>.</span></li>
+          <li><span>Now send one message from the real form on the site.</span></li>
+        </ol>
+        <div class="foot">
+          <p class="donewhen"><b>Done when</b> the Sheet has one row from the command and one from the form.</p>
+          <label class="tick"><input type="checkbox" id="done-6">Step done</label>
+        </div>
+        <p class="claude"><b>Claude</b> reads the Vercel runtime logs if anything fails. See the fix table below.</p>
+      </div>
+    </li>
+
+    <li class="step" id="step-7" data-min="3">
+      <span class="n" aria-hidden="true">7</span>
+      <div class="box">
+        <header>
+          <div class="meta"><span class="chip g">Google</span><span class="chip time">3 min</span></div>
+          <h3>Turn on the 12-month clean-up</h3>
+        </header>
+        <ol class="clicks">
+          <li><span>In Apps Script click the clock icon (Triggers), then Add Trigger.</span></li>
+          <li><span>Function: <code>purgeOld</code>. Event source: Time-driven. Type: Month timer. Pick any day and time. Click Save.</span></li>
+        </ol>
+        <div class="foot">
+          <p class="donewhen"><b>Done when</b> the trigger shows in the list. The privacy notice promises deletion after 12 months, so this step matters.</p>
+          <label class="tick"><input type="checkbox" id="done-7">Step done</label>
+        </div>
+      </div>
+    </li>
+
+    <li class="step" id="step-8" data-min="10">
+      <span class="n" aria-hidden="true">8</span>
+      <div class="box">
+        <header>
+          <div class="meta"><span class="chip v">Vercel</span><span class="chip time">10 min</span></div>
+          <h3>Add a rate limit for the form</h3>
+        </header>
+        <ol class="clicks">
+          <li><span>In your Vercel project open Firewall, then add a new rule. Name it <b>Limit contact form</b>.</span></li>
+          <li><span>Condition: Request Path equals <code>/api/contact</code>.</span></li>
+          <li><span>Action: Rate limit. For example 5 requests per 1 minute for each IP address. When the limit is reached: Deny.</span></li>
+          <li><span>Save the rule, then publish the changes.</span></li>
+        </ol>
+        <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v.5M12 11v5"/></svg><span>Menu names can change. If the rate limit option is missing on the Hobby plan, tell Claude. The function has its own limit of 5 per hour as a backup.</span></div>
+        <div class="foot">
+          <p class="donewhen"><b>Done when</b> the rule shows as active in the Firewall page.</p>
+          <label class="tick"><input type="checkbox" id="done-8">Step done</label>
+        </div>
+      </div>
+    </li>
+
+    <li class="step" id="step-9" data-min="10">
+      <span class="n" aria-hidden="true">9</span>
+      <div class="box">
+        <header>
+          <div class="meta"><span class="chip p">Your phone</span><span class="chip g">Google</span><span class="chip time">10 min</span></div>
+          <h3>Final check and clean up</h3>
+        </header>
+        <ol class="clicks">
+          <li><span>Open the live site on your phone. Switch to Dansk and send a message from the contact form.</span></li>
+          <li><span>In the Sheet, check that the new row says language <b>da</b>.</span></li>
+          <li><span>Delete all test rows from the Sheet.</span></li>
+          <li><span>Read the privacy notice once more: your name and the 12-month rule. Tell Claude if the wording needs a change.</span></li>
+        </ol>
+        <div class="foot">
+          <p class="donewhen"><b>Done when</b> the Sheet is empty and you are happy with the notice.</p>
+          <label class="tick"><input type="checkbox" id="done-9">Step done</label>
+        </div>
+      </div>
+    </li>
+  </ol>
+
+  <section aria-labelledby="fixH" style="display:flex;flex-direction:column;gap:14px">
+    <h2 id="fixH">If something fails</h2>
+    <p class="lede">The function answers with a short code. These are the real ones from the code.</p>
+    <div class="fix">
+      <div><b>Form shows an error, code "config"</b><span>Vercel has no <code>SHEET_WEBHOOK_URL</code> or <code>SHEET_SECRET</code>, or you did not redeploy after adding them. Repeat step 5.</span></div>
+      <div><b>Code "store" (HTTP 502)</b><span>The Sheet script said no. The secret differs between Vercel and Apps Script, the URL is wrong, or access is not set to Anyone. Check steps 3 and 4. Claude can read the Vercel log line that starts with <code>contact:</code>.</span></div>
+      <div><b>Code "origin" (HTTP 403)</b><span>The command had no <code>Origin</code> header, or the Origin differs from the site address. Copy the command again and replace both addresses.</span></div>
+      <div><b>Code "rate" (HTTP 429)</b><span>You tried more than 5 times in one hour. Wait, or test from another network.</span></div>
+      <div><b>Answer is ok but no row appears</b><span>The function hides spam by answering ok. It does this when <code>elapsed</code> is under 2500 or <code>website</code> is not empty. Use the command exactly as shown.</span></div>
+      <div><b>Codes "email", "message", "consent", "links"</b><span>The test data failed a check. The message needs 10 or more letters, a valid email, <code>consent</code> true, and at most 2 links.</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="dnH" style="display:flex;flex-direction:column;gap:18px">
+    <header style="display:flex;flex-direction:column;gap:10px">
+      <p class="eyebrow">Later, not tomorrow</p>
+      <h2 id="dnH">20 names for the Nordics and the Baltics</h2>
+      <p class="lede">"Klar" means ready in Danish, Swedish and Norwegian. Baltic readers know "ready" and numbers best, and "valmis" and "gatavs" mean ready in Estonian and Finnish and in Latvian. All names below were free at the last check.</p>
+    </header>
+
+    <div class="picks">
+      <div class="pick"><span class="eyebrow" style="color:var(--moss)">Whole region</span><span class="d">nordready.eu</span><p class="small">English, no number, no country. Works from Denmark to Estonia.</p></div>
+      <div class="pick"><span class="eyebrow" style="color:var(--moss)">Danish door</span><span class="d">3dageklar.dk</span><p class="small">For the Danish pages, the sticker and local ads.</p></div>
+    </div>
+
+    <div class="groups">
+      <div class="card">
+        <h3>Nordic "klar" names</h3>
+        <div class="names"><span>klarkit.eu</span><span>klarbox.eu</span><span>klarliste.eu</span><span>bliklar.eu</span><span>klarvalmis.eu</span></div>
+      </div>
+      <div class="card">
+        <h3>English "ready" names</h3>
+        <div class="names"><span>nordready.eu</span><span>readynordic.eu</span><span>readynorth.eu</span><span>bagready.eu</span><span>prepnord.eu</span></div>
+      </div>
+      <div class="card">
+        <h3>72-hour names</h3>
+        <div class="names"><span>kit72.eu</span><span>72klar.eu</span><span>72timer.eu</span><span>72tundi.eu</span><span>72stundas.eu</span><span>72tuntia.eu</span></div>
+      </div>
+      <div class="card">
+        <h3>Baltic and Finnish words, brand names</h3>
+        <div class="names"><span>gatavs.eu</span><span>valmiskit.eu</span><span>fyrkit.eu</span><span>lanternkit.eu</span></div>
+      </div>
+    </div>
+    <p class="small muted">Checked on 21 Oct 2026. The lookup gave two different answers for a few names, so check again at the registrar before you buy. The advice differs by country. Sweden, Norway and the Baltic states have their own official guides, and names with "72" fit a 3-day message best.</p>
+  </section>
+
+  <footer>
+    <p class="small"><strong>Denmark Ready Kit</strong> follows the Danish authorities' advice for 3 days at home.</p>
+    <p class="small muted">Plan only. Your ticks on this page are saved in this browser and are not sent anywhere.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var KEY='readykit-form-plan-v1';
+  var steps=[].slice.call(document.querySelectorAll('.step'));
+  var fill=document.getElementById('fill'), stat=document.getElementById('stat');
+  var saved={};
+  try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ saved={}; }
+
+  function update(){
+    var done=0, left=0;
+    steps.forEach(function(s){
+      var cb=s.querySelector('input[type=checkbox]');
+      var min=Number(s.getAttribute('data-min'))||0;
+      s.classList.toggle('done',cb.checked);
+      if(cb.checked) done++; else left+=min;
+    });
+    fill.style.width=(done/steps.length*100)+'%';
+    stat.textContent= done===steps.length
+      ? 'All done. The form is live'
+      : done+' of '+steps.length+' steps done · about '+left+' min left';
+  }
+  steps.forEach(function(s,i){
+    var cb=s.querySelector('input[type=checkbox]');
+    cb.checked=!!saved[cb.id];
+    cb.addEventListener('change',function(){
+      saved[cb.id]=cb.checked;
+      try{ localStorage.setItem(KEY,JSON.stringify(saved)); }catch(e){}
+      update();
+    });
+  });
+  update();
+
+  function selectText(el){
+    var r=document.createRange(); r.selectNodeContents(el);
+    var sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+  }
+  [].slice.call(document.querySelectorAll('button[data-copy]')).forEach(function(b){
+    var label=b.textContent;
+    b.addEventListener('click',function(){
+      var el=document.getElementById(b.getAttribute('data-copy'));
+      var text=el.textContent;
+      function ok(){ b.textContent='Copied'; setTimeout(function(){b.textContent=label;},1600); }
+      function fail(){ selectText(el); b.textContent='Press Cmd+C'; setTimeout(function(){b.textContent=label;},2400); }
+      try{
+        if(navigator.clipboard&&navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(ok,fail);
+        } else { fail(); }
+      }catch(e){ fail(); }
+    });
+  });
+})();
+</script>
