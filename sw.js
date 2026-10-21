@@ -1,6 +1,6 @@
 /* Offline support: the page keeps working without internet or power-grid problems. */
-var CACHE = 'ready-kit-v1';
-var CORE = ['./', 'index.html', 'manifest.webmanifest', 'icon.svg', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
+var CACHE = 'ready-kit-v2';
+var CORE = ['./', 'index.html', 'manifest.webmanifest', 'icon.svg', 'favicon.ico', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(CORE); }).then(function () { return self.skipWaiting(); }));

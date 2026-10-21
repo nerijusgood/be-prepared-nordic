@@ -7,6 +7,8 @@ A one-page website (Danish and English) that explains the official Danish advice
 - "Add to phone" button with step-by-step help for iPhone and Android
 - Works offline after the first visit (installable web app)
 - Accessible: keyboard friendly, screen reader labels, WCAG AA contrast in light and dark mode
+- SEO basics: title, description, link-preview tags, structured data, crawlable checklist text
+- Full favicon set and a share image (`og-image.png`)
 - No tracking, no cookies, no build step
 
 Based on the official Danish advice for households (borger.dk and the Danish Emergency Management Agency). See also https://samsik.dk. Not medical advice.
@@ -14,7 +16,9 @@ Based on the official Danish advice for households (borger.dk and the Danish Eme
 ## Files
 
 - `index.html` the whole page (HTML, CSS, JS)
-- `manifest.webmanifest`, `sw.js`, `icon*.png`, `icon.svg`, `apple-touch-icon.png` installable app and offline support
+- `manifest.webmanifest`, `sw.js` installable app and offline support
+- `favicon.ico`, `favicon-16/32/48.png`, `icon.svg`, `icon-192/512.png`, `icon-maskable-512.png`, `apple-touch-icon.png` icons
+- `og-image.png` share image (1200x630)
 - `robots.txt`
 
 ## Run locally
@@ -29,4 +33,4 @@ Any static host works (for example Vercel: import this repo, framework "Other", 
 
 - Add `<link rel="canonical" href="https://YOUR-DOMAIN/">` to `index.html`
 - Add `sitemap.xml` and a `Sitemap:` line in `robots.txt`
-- Add a 1200x630 share image and `og:image` / `og:url` tags
+- Add `og:image` and `og:url` tags that point to `https://YOUR-DOMAIN/og-image.png` (the image already exists), and switch `twitter:card` to `summary_large_image`
