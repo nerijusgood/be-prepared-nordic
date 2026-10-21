@@ -196,11 +196,21 @@ dialog::backdrop{background:rgba(8,14,20,.6)}
 .btn.coffee-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #13202B}
 @media (prefers-color-scheme: dark){.btn.coffee-btn{border-color:#FFDD00;box-shadow:3px 3px 0 #FFDD00}.btn.coffee-btn:hover{box-shadow:4px 4px 0 #FFDD00}.btn.coffee-btn:active{box-shadow:1px 1px 0 #FFDD00}}
 
+/* gear offers */
+.gear{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--water-soft);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+.gear .ico2{width:52px;height:52px;flex:none;color:var(--water)}
+.gear .txt{flex:1;min-width:220px;display:flex;flex-direction:column;gap:4px}
+.gear h2{font-size:1.35rem}
+.gear p{color:var(--ink);max-width:58ch}
+.gear .mail{font-family:var(--f-data);font-size:.85rem;color:var(--muted);overflow-wrap:anywhere}
+.gear .act{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.btn.contact{min-height:48px;padding:0 22px;text-decoration:none}
+
 @media(max-width:520px){.days{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media print{
   body{background:#fff;color:#000;padding:0}
-  .tools,.skip,#a2hs,.coffee,.bottles,.strip,input[type=range]{display:none!important}
+  .tools,.skip,#a2hs,.coffee,.gear,.bottles,.strip,input[type=range]{display:none!important}
   .card,.cat,.step,.day,.fact{break-inside:avoid;border-color:#999}
   a{color:#000}
 }
@@ -295,6 +305,12 @@ dialog::backdrop{background:rgba(8,14,20,.6)}
     <a class="btn coffee-btn" id="coffeeLink" href="https://www.buymeacoffee.com/YOUR-USERNAME" target="_blank" rel="noopener noreferrer"><span data-t="coffeeB">Buy me a coffee</span></a>
   </aside>
 
+  <aside class="gear" aria-labelledby="gearH" hidden id="gear">
+    <svg class="ico2" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="20" y="22" width="24" height="38" rx="5"/><path d="M26 22V8h12v14"/><path d="M26 32h12M26 40h12"/><circle cx="32" cy="50" r="3"/></svg>
+    <div class="txt"><h2 id="gearH" data-t="gearH">Got gear for people in need?</h2><p data-t="gearP">Do you make or sell walkie-talkies, power banks or solar chargers? Offer a discount for people in need and tell me. I may share good offers here. I do not sell anything on this page.</p></div>
+    <div class="act"><a class="btn primary contact" id="contactLink" href="mailto:YOUR-EMAIL@EXAMPLE.COM?subject=Ready%20Kit%3A%20discount%20offer"><span data-t="gearB">Get in touch</span></a><span class="mail" id="contactMail">YOUR-EMAIL@EXAMPLE.COM</span></div>
+  </aside>
+
   <footer>
     <p data-t="foot">Based on the official Danish advice for households. Use the calculator and checklist at <a href="https://samsik.dk" target="_blank" rel="noopener">samsik.dk</a> for your exact needs. Not medical advice.</p>
     <p><span data-t="src">Sources:</span> <a href="https://www.borger.dk/politi-retsvaesen-forsvar/Forsvar-og-beredskab/forberedt-paa-kriser" target="_blank" rel="noopener">borger.dk, Forberedt på kriser</a> &middot; <a href="https://brs.dk/globalassets/brs---beredskabsstyrelsen/dokumenter/forberedt/oversaettelser/-forberedt-pa-kriser_en-.pdf" target="_blank" rel="noopener">Be prepared for crises (English, Danish Emergency Management Agency)</a></p>
@@ -363,6 +379,7 @@ dialog::backdrop{background:rgba(8,14,20,.6)}
     a1:'Åbn siden i Chrome.',a2:'Tryk på menuen <kbd>⋮</kbd> øverst til højre.',
     a3:'Tryk på <kbd>Føj til startskærm</kbd> eller <kbd>Installer app</kbd>.',a4:'Tryk på <kbd>Installer</kbd> eller <kbd>Tilføj</kbd>.',
     coffeeH:'Kan du lide projektet?',coffeeP:'Så giv mig en kop kaffe. Siden er lavet på koffein, og dåsebønnerne var ikke gratis.',coffeeB:'Giv mig en kop kaffe',
+    gearH:'Har du udstyr til dem, der har brug for det?',gearP:'Laver eller sælger du walkie-talkies, powerbanks eller solcelleopladere? Tilbyd rabat til folk i nød og skriv til mig. Jeg deler gerne gode tilbud her. Jeg sælger ikke noget på denne side.',gearB:'Kontakt mig',
     installNow:'Installer nu',close:'Luk'
   };
   var DESC={en:document.querySelector('meta[name=description]').getAttribute('content'),
