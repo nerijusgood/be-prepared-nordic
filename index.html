@@ -193,10 +193,13 @@ dialog::backdrop{background:rgba(8,14,20,.6)}
 .coffee .txt{flex:1;min-width:220px;display:flex;flex-direction:column;gap:4px}
 .coffee h2{font-size:1.35rem}
 .coffee p{color:var(--muted);max-width:52ch}
-.btn.coffee-btn{background:#FFDD00;border-color:#13202B;color:#13202B;font-weight:700;text-decoration:none;min-height:48px;padding:0 22px;box-shadow:3px 3px 0 #13202B}
-.btn.coffee-btn:hover{background:#FFE84D;transform:translate(-1px,-1px);box-shadow:4px 4px 0 #13202B}
-.btn.coffee-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #13202B}
-@media (prefers-color-scheme: dark){.btn.coffee-btn{border-color:#FFDD00;box-shadow:3px 3px 0 #FFDD00}.btn.coffee-btn:hover{box-shadow:4px 4px 0 #FFDD00}.btn.coffee-btn:active{box-shadow:1px 1px 0 #FFDD00}}
+.btn.coffee-btn{background:#FFDD00;border:2px solid #13202B;border-radius:12px;color:#000;font-weight:800;font-size:1.05rem;letter-spacing:.005em;text-decoration:none;min-height:56px;padding:0 26px 0 20px;gap:10px;box-shadow:0 2px 0 rgba(19,32,43,.35);transition:transform .12s ease,background .12s ease}
+.btn.coffee-btn svg{width:26px;height:26px}
+.btn.coffee-btn:hover{background:#FFE84D;border-color:#13202B;transform:translateY(-1px)}
+.btn.coffee-btn:active{transform:translateY(1px);box-shadow:none}
+.btn.coffee-btn:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+@media (prefers-color-scheme: dark){.btn.coffee-btn{border-color:#FFDD00;box-shadow:0 2px 0 rgba(0,0,0,.5)}.btn.coffee-btn:hover{border-color:#FFE84D}}
+@media (prefers-reduced-motion:reduce){.btn.coffee-btn{transition:none}}
 
 /* gear offers */
 .gear{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--water-soft);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
@@ -326,7 +329,7 @@ textarea{min-height:120px;resize:vertical}
   <aside class="coffee" aria-labelledby="coffeeH" id="coffee">
     <svg class="cup" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 24h34v14a14 14 0 0 1-14 14h-6a14 14 0 0 1-14-14z"/><path d="M46 28h4a6 6 0 0 1 0 12h-5"/><path d="M20 8c-3 3 3 5 0 9M29 8c-3 3 3 5 0 9M38 8c-3 3 3 5 0 9"/></svg>
     <div class="txt"><h2 id="coffeeH" data-t="coffeeH">Dig this project?</h2><p data-t="coffeeP">Then get me a coffee. I built this on caffeine, and the tins of beans were not free.</p></div>
-    <a class="btn coffee-btn" id="coffeeLink" href="https://www.buymeacoffee.com/nerithegooddude" target="_blank" rel="noopener noreferrer"><span data-t="coffeeB">Buy me a coffee</span></a>
+    <a class="btn coffee-btn" id="coffeeLink" href="https://www.buymeacoffee.com/nerithegooddude" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 24h34v14a14 14 0 0 1-14 14h-6a14 14 0 0 1-14-14z"/><path d="M46 28h4a6 6 0 0 1 0 12h-5"/><path d="M22 8c-3 3 3 5 0 9M32 8c-3 3 3 5 0 9"/></svg><span data-t="coffeeB">Buy me a coffee</span></a>
   </aside>
 
   <aside class="gear" aria-labelledby="gearH" id="gear">
