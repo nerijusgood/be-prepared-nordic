@@ -65,6 +65,7 @@
   --warn:#F0B454; --warn-soft:#38290E; --focus:#8CC8F5}}
 
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;
   padding-block:0 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -184,11 +185,22 @@ dialog::backdrop{background:rgba(8,14,20,.6)}
 .os svg.inl{width:1.1em;height:1.1em;vertical-align:-.2em;display:inline-block}
 .os kbd{font-family:var(--f-data);font-size:.85em;background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
 
+/* coffee */
+.coffee{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--surface);border:2px dashed var(--muted);border-radius:16px;padding:20px 22px}
+.coffee .cup{width:52px;height:52px;flex:none;color:var(--ink)}
+.coffee .txt{flex:1;min-width:220px;display:flex;flex-direction:column;gap:4px}
+.coffee h2{font-size:1.35rem}
+.coffee p{color:var(--muted);max-width:52ch}
+.btn.coffee-btn{background:#FFDD00;border-color:#13202B;color:#13202B;font-weight:700;text-decoration:none;min-height:48px;padding:0 22px;box-shadow:3px 3px 0 #13202B}
+.btn.coffee-btn:hover{background:#FFE84D;transform:translate(-1px,-1px);box-shadow:4px 4px 0 #13202B}
+.btn.coffee-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #13202B}
+@media (prefers-color-scheme: dark){.btn.coffee-btn{border-color:#FFDD00;box-shadow:3px 3px 0 #FFDD00}.btn.coffee-btn:hover{box-shadow:4px 4px 0 #FFDD00}.btn.coffee-btn:active{box-shadow:1px 1px 0 #FFDD00}}
+
 @media(max-width:520px){.days{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media print{
   body{background:#fff;color:#000;padding:0}
-  .tools,.skip,#a2hs,.bottles,.strip,input[type=range]{display:none!important}
+  .tools,.skip,#a2hs,.coffee,.bottles,.strip,input[type=range]{display:none!important}
   .card,.cat,.step,.day,.fact{break-inside:avoid;border-color:#999}
   a{color:#000}
 }
@@ -277,6 +289,12 @@ dialog::backdrop{background:rgba(8,14,20,.6)}
     </section>
   </main>
 
+  <aside class="coffee" aria-labelledby="coffeeH" hidden id="coffee">
+    <svg class="cup" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 24h34v14a14 14 0 0 1-14 14h-6a14 14 0 0 1-14-14z"/><path d="M46 28h4a6 6 0 0 1 0 12h-5"/><path d="M20 8c-3 3 3 5 0 9M29 8c-3 3 3 5 0 9M38 8c-3 3 3 5 0 9"/></svg>
+    <div class="txt"><h2 id="coffeeH" data-t="coffeeH">Dig this project?</h2><p data-t="coffeeP">Then get me a coffee. I built this on caffeine, and the tins of beans were not free.</p></div>
+    <a class="btn coffee-btn" id="coffeeLink" href="https://www.buymeacoffee.com/YOUR-USERNAME" target="_blank" rel="noopener noreferrer"><span data-t="coffeeB">Buy me a coffee</span></a>
+  </aside>
+
   <footer>
     <p data-t="foot">Based on the official Danish advice for households. Use the calculator and checklist at <a href="https://samsik.dk" target="_blank" rel="noopener">samsik.dk</a> for your exact needs. Not medical advice.</p>
     <p><span data-t="src">Sources:</span> <a href="https://www.borger.dk/politi-retsvaesen-forsvar/Forsvar-og-beredskab/forberedt-paa-kriser" target="_blank" rel="noopener">borger.dk, Forberedt på kriser</a> &middot; <a href="https://brs.dk/globalassets/brs---beredskabsstyrelsen/dokumenter/forberedt/oversaettelser/-forberedt-pa-kriser_en-.pdf" target="_blank" rel="noopener">Be prepared for crises (English, Danish Emergency Management Agency)</a></p>
@@ -344,6 +362,7 @@ dialog::backdrop{background:rgba(8,14,20,.6)}
     i3:'Rul ned og tryk på <kbd>Føj til hjemmeskærm</kbd>.',i4:'Tryk på <kbd>Tilføj</kbd>.',
     a1:'Åbn siden i Chrome.',a2:'Tryk på menuen <kbd>⋮</kbd> øverst til højre.',
     a3:'Tryk på <kbd>Føj til startskærm</kbd> eller <kbd>Installer app</kbd>.',a4:'Tryk på <kbd>Installer</kbd> eller <kbd>Tilføj</kbd>.',
+    coffeeH:'Kan du lide projektet?',coffeeP:'Så giv mig en kop kaffe. Siden er lavet på koffein, og dåsebønnerne var ikke gratis.',coffeeB:'Giv mig en kop kaffe',
     installNow:'Installer nu',close:'Luk'
   };
   var DESC={en:document.querySelector('meta[name=description]').getAttribute('content'),
