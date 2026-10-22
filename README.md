@@ -9,6 +9,7 @@ A one-page website (Danish and English) that explains the official Danish advice
 - Works offline after the first visit (installable web app)
 - Contact form (subject list, privacy notice) that saves messages to a private Google Sheet, no email
 - Buy Me a Coffee button
+- Opens with a short "why this page exists" scenario in the chosen tone, then the 3-day rule, then the siren steps as the only red block on a paper-and-ink page
 - Accessible: keyboard friendly, screen reader labels, WCAG AA contrast in light and dark mode
 - Privacy friendly: no cookies, no analytics, no tracking, fonts hosted on the site itself
 - SEO basics: title, description, link-preview tags, structured data, crawlable checklist text

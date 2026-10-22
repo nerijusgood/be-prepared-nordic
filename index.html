@@ -7,8 +7,8 @@
 <meta name="description" content="Be ready at home for 3 days. A simple guide to the official Danish advice: water, food, medicine, power, and what to do when the siren sounds. In Danish and English.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#C8102E" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0D151C" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F3EFE6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B1D1A" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="icon.svg" type="image/svg+xml" sizes="any">
@@ -52,19 +52,20 @@
 @font-face{font-family:'IBM Plex Mono';src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format('woff2');font-weight:500;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 :root{
   color-scheme:light dark;
-  --bg:#F2F5F7; --surface:#FFFFFF; --ink:#13202B; --muted:#4A5B6D; --line:#C9D3DC;
-  --red:#C8102E; --red-ink:#B00D28; --red-soft:#FBE4E8; --on-red:#FFFFFF;
-  --water:#145F8F; --water-soft:#DDEEF8; --ok:#1F6B4A; --ok-soft:#DDF0E6;
-  --warn:#8A5000; --warn-soft:#FBEFD5; --focus:#0B5CAD;
+  /* paper, ink, one red; green only on ticks */
+  --bg:#F3EFE6; --surface:#FAF8F2; --ink:#1D1F1B; --muted:#5F5E55; --line:#D8D3C6;
+  --red:#C8322B; --red-ink:#B02A24; --red-soft:#F6DDD8; --on-red:#FFFFFF;
+  --water:#1D1F1B; --water-soft:#E9E4D8; --ok:#3F6B3F; --ok-soft:#E2EADC;
+  --warn:#1D1F1B; --warn-soft:#E9E4D8; --focus:#1D1F1B;
   --f-display:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;
   --f-body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
   --f-data:'IBM Plex Mono',ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){:root{
-  --bg:#0D151C; --surface:#15212B; --ink:#E8EEF3; --muted:#A5B3C0; --line:#2B3C4A;
-  --red:#FF7487; --red-ink:#FF8C9B; --red-soft:#3A1A22; --on-red:#1A0A0E;
-  --water:#6CBDEE; --water-soft:#143142; --ok:#5ECB9B; --ok-soft:#13322A;
-  --warn:#F0B454; --warn-soft:#38290E; --focus:#8CC8F5}}
+  --bg:#1B1D1A; --surface:#242723; --ink:#ECE7DA; --muted:#A8A699; --line:#3A3D37;
+  --red:#E4564E; --red-ink:#EE6B63; --red-soft:#3D2320; --on-red:#1B1D1A;
+  --water:#ECE7DA; --water-soft:#2E312C; --ok:#8FBF86; --ok-soft:#253326;
+  --warn:#ECE7DA; --warn-soft:#2E312C; --focus:#ECE7DA}}
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -85,6 +86,10 @@ a{color:var(--water);text-underline-offset:3px}
 .eyebrow{font-family:var(--f-data);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .lead{color:var(--muted);max-width:60ch}
 section{display:flex;flex-direction:column;gap:16px;min-width:0}
+main>section>h2{border-bottom:1px solid var(--ink);padding-bottom:8px}
+.why{border-top:3px solid var(--ink);padding-top:18px;gap:12px}
+.why h2{font-size:clamp(1.7rem,4vw,2.4rem);letter-spacing:-.02em;border:0;padding:0}
+.why p:not(.eyebrow){font-size:clamp(1.02rem,2vw,1.15rem);max-width:62ch;line-height:1.55}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
 
 /* header controls */
@@ -93,19 +98,19 @@ section{display:flex;flex-direction:column;gap:16px;min-width:0}
 .btn{display:inline-flex;align-items:center;gap:8px;font:600 .9rem var(--f-body);min-height:44px;padding:0 16px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
 .btn:hover{border-color:var(--muted)}
 .btn svg{width:18px;height:18px;flex:none}
-.btn.primary{background:var(--red);border-color:var(--red);color:var(--on-red)}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:var(--bg)}
 .lang{display:inline-flex;border:1px solid var(--line);border-radius:99px;background:var(--surface);padding:2px}
 .lang button{font:600 .9rem var(--f-body);min-height:44px;min-width:44px;border:0;background:transparent;color:var(--muted);padding:0 14px;border-radius:99px;cursor:pointer}
-.lang button[aria-pressed=true]{background:var(--red);color:var(--on-red)}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
 .tone{display:inline-flex;border:1px solid var(--line);border-radius:99px;background:var(--surface);padding:2px}
 .tone button{display:inline-flex;align-items:center;gap:6px;font:600 .85rem var(--f-body);min-height:44px;border:0;background:transparent;color:var(--muted);padding:0 12px 0 5px;border-radius:99px;cursor:pointer}
-.tone button[aria-pressed=true]{background:var(--red);color:var(--on-red)}
-.tone .face{width:34px;height:34px;border-radius:50%;background:#fff;overflow:hidden;display:block;flex:none}
-.tone .face svg{width:100%;height:100%;display:block}
+.tone button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.tone .face{width:34px;height:34px;border-radius:50%;background:var(--bg);overflow:hidden;display:block;flex:none}
+.tone .face svg{width:100%;height:100%;display:block;filter:grayscale(1)}
 @media (max-width:420px){.tone button{padding-right:9px;font-size:.8rem}}
 
 /* hero */
-.hero{padding-top:8px;display:grid;grid-template-columns:1fr;gap:20px}
+.hero{padding-top:0;display:grid;grid-template-columns:1fr;gap:20px}
 .hero h1{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;letter-spacing:-.04em}
 .hero .num{font-weight:800;font-size:clamp(6rem,24vw,13rem);line-height:.8;color:var(--red-ink)}
 .hero .unit{font-weight:800;font-size:clamp(1.8rem,6vw,3.4rem);line-height:1;letter-spacing:-.02em}
@@ -117,9 +122,10 @@ section{display:flex;flex-direction:column;gap:16px;min-width:0}
 .day dd{font-family:var(--f-data);color:var(--ink);text-align:right}
 .bar{height:10px;border-radius:5px;background:var(--water-soft);overflow:hidden}
 .bar i{display:block;height:100%;width:100%;background:var(--water)}
+.day .bar{height:2px;border-radius:0;background:var(--ink)}
 .strip{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--muted);flex-wrap:wrap}
 .strip .line{flex:1;min-width:24px;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px)}
-.strip .pill{background:var(--red-soft);color:var(--red-ink);font-weight:600;padding:3px 10px;border-radius:99px}
+.strip .pill{border:1px solid var(--ink);color:var(--ink);font-weight:600;padding:3px 10px;border-radius:99px}
 
 /* calculator */
 .calc{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
@@ -145,11 +151,8 @@ input[type=range]{width:100%;accent-color:var(--red);height:44px}
 .kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .cat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;min-width:0;display:flex;flex-direction:column;gap:10px}
 .cat header{display:flex;align-items:center;gap:10px}
-.ico{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex:none;background:var(--water-soft);color:var(--water)}
-.ico svg{width:22px;height:22px}
-.cat.r .ico{background:var(--red-soft);color:var(--red-ink)}
-.cat.o .ico{background:var(--ok-soft);color:var(--ok)}
-.cat.y .ico{background:var(--warn-soft);color:var(--warn)}
+.ico{width:30px;height:30px;display:grid;place-items:center;flex:none;color:var(--ink)}
+.ico svg{width:26px;height:26px;stroke-width:1.6}
 .cat .tag{white-space:nowrap;margin-left:auto;font-family:var(--f-data);font-size:.8rem;color:var(--muted);text-align:right}
 .cat ul{display:flex;flex-direction:column;gap:2px}
 .cat label{display:flex;gap:12px;align-items:flex-start;padding:8px 6px;min-height:44px;border-radius:8px;cursor:pointer;font-size:.95rem}
@@ -158,23 +161,28 @@ input[type=range]{width:100%;accent-color:var(--red);height:44px}
 .cat input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted)}
 
 /* steps */
+.siren{background:var(--red);color:var(--on-red);border-radius:14px;padding:20px 22px;gap:14px}
+.siren .eyebrow{color:var(--on-red);opacity:.85}
+.siren h2{border:0;padding:0}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px;min-width:0}
-.step .ico{width:48px;height:48px;border-radius:50%;background:var(--red-soft);color:var(--red-ink)}
-.step .ico svg{width:26px;height:26px}
-.step .tag{font-family:var(--f-data);font-size:.8rem;color:var(--muted)}
+.step{background:transparent;border:1px solid color-mix(in srgb,currentColor 35%,transparent);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.step .ico{width:40px;height:40px;border-radius:50%;border:2px solid currentColor;color:currentColor}
+.step .ico svg{width:22px;height:22px;stroke-width:2}
+.step .tag{font-family:var(--f-data);font-size:.8rem;opacity:.85}
 .radio{display:flex;gap:8px;flex-wrap:wrap}
-.radio b{font-family:var(--f-data);font-weight:500;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:2px 8px;font-size:.88rem}
+.radio b{font-family:var(--f-data);font-weight:500;border:1px solid currentColor;border-radius:6px;padding:2px 8px;font-size:.88rem}
 
 /* facts */
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
-.fact{border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px;min-width:0}
-.fact.a{background:var(--warn-soft)} .fact.b{background:var(--red-soft)} .fact.c{background:var(--ok-soft)}
-.fact h3{font-size:1rem}
-.fact .big{font-family:var(--f-display);font-weight:800;font-size:2.2rem;line-height:1}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.fact{padding:16px 18px;display:flex;flex-direction:column;gap:6px;min-width:0;border-left:1px solid var(--line)}
+.fact:first-child{border-left:0}
+.fact h3{font-family:var(--f-data);font-weight:500;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.fact .big{font-family:var(--f-display);font-weight:800;font-size:1.9rem;line-height:1}
+.fact.c .big{color:var(--red)}
+@media(max-width:640px){.facts{grid-template-columns:1fr}.fact{border-left:0;border-top:1px solid var(--line)}.fact:first-child{border-top:0}}
 .ages{display:flex;gap:6px;margin-top:4px}
-.ages i{flex:1;height:14px;border-radius:4px;background:var(--surface)}
-.ages i.on{background:var(--warn)}
+.ages i{flex:1;height:10px;border-radius:3px;background:var(--line)}
+.ages i.on{background:var(--ink)}
 .note{font-size:.9rem;color:var(--muted)}
 footer{font-size:.9rem;color:var(--muted);display:flex;flex-direction:column;gap:8px}
 
@@ -194,22 +202,20 @@ dialog::backdrop{background:rgba(8,14,20,.6)}
 .os kbd{font-family:var(--f-data);font-size:.85em;background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
 
 /* coffee */
-.coffee{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--surface);border:2px dashed var(--muted);border-radius:16px;padding:20px 22px}
+.coffee{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
 .coffee .cup{width:52px;height:52px;flex:none;color:var(--ink)}
 .coffee .txt{flex:1;min-width:220px;display:flex;flex-direction:column;gap:4px}
 .coffee h2{font-size:1.35rem}
 .coffee p{color:var(--muted);max-width:52ch}
-.btn.coffee-btn{background:#FFDD00;border:2px solid #13202B;border-radius:12px;color:#000;font-weight:800;font-size:1.05rem;letter-spacing:.005em;text-decoration:none;min-height:56px;padding:0 26px 0 20px;gap:10px;box-shadow:0 2px 0 rgba(19,32,43,.35);transition:transform .12s ease,background .12s ease}
+.btn.coffee-btn{background:transparent;border:1.5px solid var(--ink);border-radius:99px;color:var(--ink);font-weight:700;font-size:1rem;text-decoration:none;min-height:52px;padding:0 24px 0 18px;gap:10px;transition:background .12s ease,color .12s ease}
 .btn.coffee-btn svg{width:26px;height:26px}
-.btn.coffee-btn:hover{background:#FFE84D;border-color:#13202B;transform:translateY(-1px)}
-.btn.coffee-btn:active{transform:translateY(1px);box-shadow:none}
+.btn.coffee-btn:hover{background:var(--ink);color:var(--bg)}
 .btn.coffee-btn:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
-@media (prefers-color-scheme: dark){.btn.coffee-btn{border-color:#FFDD00;box-shadow:0 2px 0 rgba(0,0,0,.5)}.btn.coffee-btn:hover{border-color:#FFE84D}}
 @media (prefers-reduced-motion:reduce){.btn.coffee-btn{transition:none}}
 
 /* gear offers */
-.gear{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--water-soft);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
-.gear .ico2{width:52px;height:52px;flex:none;color:var(--water)}
+.gear{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.gear .ico2{width:52px;height:52px;flex:none;color:var(--ink)}
 .gear .txt{flex:1;min-width:220px;display:flex;flex-direction:column;gap:4px}
 .gear h2{font-size:1.35rem}
 .gear p{color:var(--ink);max-width:58ch}
@@ -273,6 +279,12 @@ textarea{min-height:120px;resize:vertical}
   </header>
 
   <main id="main" tabindex="-1" class="wrap">
+    <section class="why" aria-labelledby="h-why">
+      <p class="eyebrow" data-t="whyE">Why this page exists</p>
+      <h2 id="h-why" data-t="whyH">It is Tuesday. The power is out.</h2>
+      <p data-t="whyP">The dishwasher stops mid-cycle. The router light goes dark. Your phone says 23%. At the supermarket the card terminal shows an error and the queue is not moving. Nobody knows if this lasts an hour or a week. The authorities ask one thing: every home manages on its own for 3 days, so help can go first to the hospital, the care home and the people who really need it. That is the whole idea behind this page. Not bunkers. Not towers of tinned food. A few things in the cupboard and a plan you can explain to your mother-in-law.</p>
+    </section>
+
     <section class="hero" aria-labelledby="h1">
       <h1 id="h1"><span class="num">3</span><span class="unit" data-t="unit">days ready at home</span></h1>
       <p class="intro" data-t="lead">The Danish authorities say every home should be able to manage on its own for 3 days in a crisis. That is the whole plan. The rest of this page shows what it takes.</p>
@@ -282,6 +294,16 @@ textarea{min-height:120px;resize:vertical}
         <li class="day"><strong><span data-t="day">Day</span> 3</strong><div class="bar" aria-hidden="true"><i></i></div><dl><div class="row"><dt data-t="water">Water</dt><dd>3 L</dd></div><div class="row"><dt data-t="power">Power</dt><dd data-t="pbank">power bank</dd></div></dl></li>
       </ul>
       <p class="strip"><span class="pill" data-t="alone">You are on your own</span><span class="line" aria-hidden="true"></span><span data-t="alone2">Help goes first to people who need it most</span></p>
+    </section>
+
+    <section class="siren" aria-labelledby="h-siren">
+      <p class="eyebrow" data-t="ifhappens">If something happens</p>
+      <h2 id="h-siren" data-t="siren">When the siren sounds</h2>
+      <ol class="steps">
+        <li class="step"><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div><span class="tag"><span data-t="step">Step</span> 1</span><h3 data-t="st1h">Go indoors</h3><p data-t="st1p">Come inside and stay inside. Close windows and doors.</p></li>
+        <li class="step"><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8l10-5"/><circle cx="9" cy="14" r="2.5"/><path d="M15 12h3M15 16h3"/></svg></div><span class="tag"><span data-t="step">Step</span> 2</span><h3 data-t="st2h">Get information</h3><p data-t="st2p">Listen to the news. A battery or wind-up FM radio works when the internet does not.</p><p class="radio"><b>DR</b><b>TV 2</b></p></li>
+        <li class="step"><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span class="tag"><span data-t="step">Step</span> 3</span><h3 data-t="st3h">Follow the advice</h3><p data-t="st3p">Do what the authorities say. Check a source before you share news, so rumours do not spread.</p></li>
+      </ol>
     </section>
 
     <section aria-labelledby="h-calc">
@@ -317,16 +339,6 @@ textarea{min-height:120px;resize:vertical}
       <div class="prog"><div class="bar" aria-hidden="true"><i id="progBar"></i></div><span id="progTxt" role="status"></span></div>
       <div class="kit" id="kit"><div class="cat " role="group" aria-labelledby="h-water"><header><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"></path></svg></div><h3 id="h-water">Water</h3><span class="tag">3 L per person per day</span></header><ul><li><label><input type="checkbox" id="k-water-0"><span>9 L per person for 3 days</span></label></li><li><label><input type="checkbox" id="k-water-1"><span>Bottled, or tap water in clean sealed food containers</span></label></li></ul></div><div class="cat o" role="group" aria-labelledby="h-food"><header><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16l-1.5 8h-13z"></path><path d="M8 11c0-3 1.5-5 4-5s4 2 4 5"></path></svg></div><h3 id="h-food">Food</h3><span class="tag">3 days</span></header><ul><li><label><input type="checkbox" id="k-food-0"><span>Food that keeps without a fridge</span></label></li><li><label><input type="checkbox" id="k-food-1"><span>Needs no oven or hob (tins, crispbread)</span></label></li><li><label><input type="checkbox" id="k-food-2"><span>Things your family already eats</span></label></li><li><label><input type="checkbox" id="k-food-3"><span>A camping stove to boil water (outside only)</span></label></li></ul></div><div class="cat r" role="group" aria-labelledby="h-med"><header><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M12 8v8M8 12h8"></path></svg></div><h3 id="h-med">Medicine and first aid</h3><span class="tag">3 days</span></header><ul><li><label><input type="checkbox" id="k-med-0"><span>3 days of regular medicine for everyone</span></label></li><li><label><input type="checkbox" id="k-med-1"><span>Plasters, dressings, bandages</span></label></li><li><label><input type="checkbox" id="k-med-2"><span>Wound cleaner and disinfectant</span></label></li><li><label><input type="checkbox" id="k-med-3"><span>Iodine tablets (under 40, pregnant or breastfeeding)</span></label></li></ul></div><div class="cat " role="group" aria-labelledby="h-hyg"><header><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v4H7z"></path><path d="M6 7h12v14H6z"></path><path d="M10 12h4"></path></svg></div><h3 id="h-hyg">Hygiene</h3></header><ul><li><label><input type="checkbox" id="k-hyg-0"><span>Toilet paper</span></label></li><li><label><input type="checkbox" id="k-hyg-1"><span>Wet wipes and hand sanitiser</span></label></li><li><label><input type="checkbox" id="k-hyg-2"><span>Sanitary products</span></label></li><li><label><input type="checkbox" id="k-hyg-3"><span>Nappies, baby formula if needed</span></label></li></ul></div><div class="cat y" role="group" aria-labelledby="h-warm"><header><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"></path></svg></div><h3 id="h-warm">Warmth</h3></header><ul><li><label><input type="checkbox" id="k-warm-0"><span>Blankets and duvets</span></label></li><li><label><input type="checkbox" id="k-warm-1"><span>Warm clothes</span></label></li><li><label><input type="checkbox" id="k-warm-2"><span>Candles on a solid surface, away from curtains</span></label></li><li><label><input type="checkbox" id="k-warm-3"><span>Plan to stay mostly in one room</span></label></li></ul></div><div class="cat y" role="group" aria-labelledby="h-power"><header><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"></path></svg></div><h3 id="h-power">Power and light</h3></header><ul><li><label><input type="checkbox" id="k-power-0"><span>Power bank for phones</span></label></li><li><label><input type="checkbox" id="k-power-1"><span>Torch</span></label></li><li><label><input type="checkbox" id="k-power-2"><span>Spare batteries</span></label></li><li><label><input type="checkbox" id="k-power-3"><span>Matches</span></label></li></ul></div><div class="cat o" role="group" aria-labelledby="h-cash"><header><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2"></rect><path d="M2 10h20M6 15h4"></path></svg></div><h3 id="h-cash">Cash and cards</h3></header><ul><li><label><input type="checkbox" id="k-cash-0"><span>Some coins and small notes</span></label></li><li><label><input type="checkbox" id="k-cash-1"><span>A physical bank card</span></label></li><li><label><input type="checkbox" id="k-cash-2"><span>Know your PIN by heart</span></label></li><li><label><input type="checkbox" id="k-cash-3"><span>Key phone numbers on paper</span></label></li></ul></div><div class="cat r" role="group" aria-labelledby="h-radio"><header><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"></rect><path d="M7 8l10-5"></path><circle cx="9" cy="14" r="2.5"></circle><path d="M15 12h3M15 16h3"></path></svg></div><h3 id="h-radio">Radio and news</h3><span class="tag">FM</span></header><ul><li><label><input type="checkbox" id="k-radio-0"><span>Battery, wind-up or solar FM radio (a car radio can work)</span></label></li><li><label><input type="checkbox" id="k-radio-1"><span>Plan to listen to DR or TV 2</span></label></li><li><label><input type="checkbox" id="k-radio-2"><span>Know where your nearest neighbours are</span></label></li></ul></div><div class="cat o" role="group" aria-labelledby="h-pets"><header><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12.5c-3.2 0-5.5 2.6-5.5 5 0 1.6 1.2 2.7 2.7 2.7 1 0 1.9-.5 2.8-.5s1.8.5 2.8.5c1.5 0 2.7-1.1 2.7-2.7 0-2.4-2.3-5-5.5-5z"></path><circle cx="6.5" cy="9.5" r="1.8"></circle><circle cx="17.5" cy="9.5" r="1.8"></circle><circle cx="9.5" cy="5.5" r="1.8"></circle><circle cx="14.5" cy="5.5" r="1.8"></circle></svg></div><h3 id="h-pets">Pets</h3><span class="tag">3 days</span></header><ul><li><label><input type="checkbox" id="k-pets-0"><span>Pet food for 3 days</span></label></li><li><label><input type="checkbox" id="k-pets-1"><span>Water: about 1 L a day for a dog or cat</span></label></li><li><label><input type="checkbox" id="k-pets-2"><span>Any medicine your pet takes</span></label></li><li><label><input type="checkbox" id="k-pets-3"><span>Lead, carrier or cage, and a blanket</span></label></li><li><label><input type="checkbox" id="k-pets-4"><span>Litter or waste bags</span></label></li><li><label><input type="checkbox" id="k-pets-5"><span>Photo of the vaccination card and chip number on your phone</span></label></li></ul></div></div>
       <p class="note" data-t="ticks">Ticks stay on this device only. Buy a little extra on each normal shop and rotate it, so it stays cheap and fresh.</p>
-    </section>
-
-    <section aria-labelledby="h-siren">
-      <p class="eyebrow" data-t="ifhappens">If something happens</p>
-      <h2 id="h-siren" data-t="siren">When the siren sounds</h2>
-      <ol class="steps">
-        <li class="step"><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div><span class="tag"><span data-t="step">Step</span> 1</span><h3 data-t="st1h">Go indoors</h3><p data-t="st1p">Come inside and stay inside. Close windows and doors.</p></li>
-        <li class="step"><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8l10-5"/><circle cx="9" cy="14" r="2.5"/><path d="M15 12h3M15 16h3"/></svg></div><span class="tag"><span data-t="step">Step</span> 2</span><h3 data-t="st2h">Get information</h3><p data-t="st2p">Listen to the news. A battery or wind-up FM radio works when the internet does not.</p><p class="radio"><b>DR</b><b>TV 2</b></p></li>
-        <li class="step"><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span class="tag"><span data-t="step">Step</span> 3</span><h3 data-t="st3h">Follow the advice</h3><p data-t="st3p">Do what the authorities say. Check a source before you share news, so rumours do not spread.</p></li>
-      </ol>
     </section>
 
     <section aria-labelledby="h-facts">
