@@ -11,12 +11,7 @@
 <filter id="sh" filterUnits="userSpaceOnUse" x="-60" y="-60" width="260" height="360"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#1D1F1B" flood-opacity=".18"/></filter>
 </defs>
 <rect width="1200" height="630" fill="#F3EFE6"/>
-<!-- masthead -->
-<g class="m" fill="#1D1F1B" font-size="22" letter-spacing="3">
-<text x="64" y="70">TUESDAY 16:40 · THE POWER IS OUT</text>
-<text x="1136" y="70" text-anchor="end">DENMARK READY KIT</text>
-</g>
-<path d="M64 88H1136M64 94H1136" stroke="#1D1F1B" stroke-width="2.5"/>
+<g transform="translate(0,-34)">
 <!-- giant 3 -->
 <text class="d" x="40" y="520" font-size="560" fill="#C8322B" letter-spacing="-20">3</text>
 <!-- headline -->
@@ -35,6 +30,7 @@
 <rect x="35" y="67" width="11" height="20" rx="2" fill="#C8322B"/>
 <text class="m" x="56" y="124" text-anchor="middle" font-size="26" fill="#F3EFE6">23%</text>
 <text class="m" x="56" y="150" text-anchor="middle" font-size="12" letter-spacing="1" fill="#A8A699">NO SIGNAL</text>
+</g>
 </g>
 <!-- bottom band -->
 <rect y="500" width="1200" height="130" fill="#C8322B"/>
