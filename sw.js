@@ -1,5 +1,5 @@
 /* Offline support: the page keeps working without internet or power-grid problems. */
-var CACHE = 'ready-kit-v13';
+var CACHE = 'ready-kit-v14';
 var CORE = ['./', 'index.html', 'app.js', 'theme.js', 'fonts/figtree-latin-wght-normal.woff2', 'fonts/bricolage-grotesque-latin-wght-normal.woff2', 'fonts/ibm-plex-mono-latin-500-normal.woff2', 'manifest.webmanifest', 'icon.svg', 'favicon.ico', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 
 self.addEventListener('install', function (e) {
