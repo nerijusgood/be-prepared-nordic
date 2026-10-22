@@ -6,11 +6,11 @@
     lead:'De danske myndigheder anbefaler, at alle hjem kan klare sig selv i 3 døgn i en krise. Det er hele planen. Resten af siden viser, hvad der skal til.',
     day:'Dag',water:'Vand',food:'Mad',nocook:'ingen madlavning',medicine:'Medicin',oneday:'1 dag',power:'Strøm',pbank:'powerbank',
     alone:'I er på egen hånd',alone2:'Hjælpen går først til dem, der har mest brug for den',
-    yn:'Jeres tal',howmuch:'Hvor meget skal vi bruge?',people:'Personer i hjemmet (kæledyr skal også have vand)',
+    yn:'Jeres tal',howmuch:'Hvor meget skal vi bruge?',people:'Personer i hjemmet',pets:'Kæledyr (hund eller kat) &middot; ca. 1 L vand om dagen hver',
     s1:'drikkevand til 3 døgn',s2:'måltider uden køleskab eller komfur',s3:'flasker à 1,5 L',threedays:'3 dage',s4:'medicin til hver person',
     example:'Eksempel: starter ved 2 personer. Flyt skyderen, så det passer til jer.',
     bottlehead:'Hver flaske er 1,5 L &middot; 6 flasker pr. person',
-    yk:'Jeres beredskab',eight:'Otte ting at have hjemme',
+    yk:'Jeres beredskab',eight:'Ni ting at have hjemme',
     ticks:'Flueben gemmes kun på denne enhed. Køb lidt ekstra, hver gang I handler, og brug af lageret løbende, så er det billigt og friskt.',
     ifhappens:'Hvis noget sker',siren:'Når sirenen lyder',step:'Trin',
     st1h:'Gå indendørs',st1p:'Kom indenfor og bliv inde. Luk vinduer og døre.',
@@ -64,11 +64,12 @@
     warm:'<path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/>',
     power:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
     cash:'<rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 15h4"/>',
-    radio:'<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8l10-5"/><circle cx="9" cy="14" r="2.5"/><path d="M15 12h3M15 16h3"/>'
+    radio:'<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8l10-5"/><circle cx="9" cy="14" r="2.5"/><path d="M15 12h3M15 16h3"/>',
+    pets:'<path d="M12 12.5c-3.2 0-5.5 2.6-5.5 5 0 1.6 1.2 2.7 2.7 2.7 1 0 1.9-.5 2.8-.5s1.8.5 2.8.5c1.5 0 2.7-1.1 2.7-2.7 0-2.4-2.3-5-5.5-5z"/><circle cx="6.5" cy="9.5" r="1.8"/><circle cx="17.5" cy="9.5" r="1.8"/><circle cx="9.5" cy="5.5" r="1.8"/><circle cx="14.5" cy="5.5" r="1.8"/>'
   };
   var cats=[
-    {id:'water',c:'',en:{t:'Water',tag:'3 L per person per day',i:['9 L per person for 3 days','Bottled, or tap water in clean sealed food containers','Water for pets']},
-      da:{t:'Vand',tag:'3 L pr. person pr. dag',i:['9 L pr. person i 3 døgn','På flaske, eller postevand i rene, lukkede madbeholdere','Vand til kæledyr']}},
+    {id:'water',c:'',en:{t:'Water',tag:'3 L per person per day',i:['9 L per person for 3 days','Bottled, or tap water in clean sealed food containers']},
+      da:{t:'Vand',tag:'3 L pr. person pr. dag',i:['9 L pr. person i 3 døgn','På flaske, eller postevand i rene, lukkede madbeholdere']}},
     {id:'food',c:'o',en:{t:'Food',tag:'3 days',i:['Food that keeps without a fridge','Needs no oven or hob (tins, crispbread)','Things your family already eats','A camping stove to boil water (outside only)']},
       da:{t:'Mad',tag:'3 dage',i:['Mad, der kan holde sig uden køleskab','Skal ikke varmes i ovn eller på komfur (dåsemad, knækbrød)','Mad, som familien allerede spiser','Et campingkomfur til at koge vand (kun udendørs)']}},
     {id:'med',c:'r',en:{t:'Medicine and first aid',tag:'3 days',i:['3 days of regular medicine for everyone','Plasters, dressings, bandages','Wound cleaner and disinfectant','Iodine tablets (under 40, pregnant or breastfeeding)']},
@@ -82,7 +83,9 @@
     {id:'cash',c:'o',en:{t:'Cash and cards',tag:'',i:['Some coins and small notes','A physical bank card','Know your PIN by heart','Key phone numbers on paper']},
       da:{t:'Kontanter og kort',tag:'',i:['Lidt mønter og små sedler','Et fysisk betalingskort','Kend din pinkode udenad','Vigtige telefonnumre på papir']}},
     {id:'radio',c:'r',en:{t:'Radio and news',tag:'FM',i:['Battery, wind-up or solar FM radio (a car radio can work)','Plan to listen to DR or TV 2','Know where your nearest neighbours are']},
-      da:{t:'Radio og nyheder',tag:'FM',i:['Radio med FM og batteri, håndsving eller solcelle (en bilradio kan også bruges)','Lyt til DR eller TV 2','Kend dine nærmeste naboer']}}
+      da:{t:'Radio og nyheder',tag:'FM',i:['Radio med FM og batteri, håndsving eller solcelle (en bilradio kan også bruges)','Lyt til DR eller TV 2','Kend dine nærmeste naboer']}},
+    {id:'pets',c:'o',en:{t:'Pets',tag:'3 days',i:['Pet food for 3 days','Water: about 1 L a day for a dog or cat','Any medicine your pet takes','Lead, carrier or cage, and a blanket','Litter or waste bags','Photo of the vaccination card and chip number on your phone']},
+      da:{t:'Kæledyr',tag:'3 dage',i:['Foder til 3 døgn','Vand: ca. 1 L om dagen til en hund eller kat','Medicin, dyret får fast','Snor, transportkasse eller bur og et tæppe','Kattegrus eller hundeposer','Foto af vaccinationskort og chipnummer på telefonen']}}
   ];
   var lang='en',store={},total=0;
   try{store=JSON.parse(localStorage.getItem('dk-ready-kit')||'{}')||{}}catch(e){store={}}
@@ -112,11 +115,12 @@
       prog();}
   });
 
-  var range=document.getElementById('people');
+  var range=document.getElementById('people'),pets=document.getElementById('pets');
   var bottleSvg='<svg viewBox="0 0 20 44" aria-hidden="true"><rect x="7" y="1" width="6" height="5" rx="1.5" fill="var(--muted)"/><path d="M6 8h8c2 2 3 4 3 7v24a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V15c0-3 1-5 3-7z" fill="var(--water-soft)" stroke="var(--water)" stroke-width="1.5"/><path d="M3.8 21h12.4v18a2 2 0 0 1-2 2H5.8a2 2 0 0 1-2-2z" fill="var(--water)"/></svg>';
   function calc(){
-    var p=+range.value,L=p*9,b=Math.ceil(L/1.5),s='';
+    var p=+range.value,q=+pets.value,L=p*9+q*3,b=Math.ceil(L/1.5),s='';
     document.getElementById('peopleOut').textContent=p;
+    document.getElementById('petsOut').textContent=q;
     document.getElementById('litres').textContent=L+' L';
     document.getElementById('meals').textContent=p*9;
     document.getElementById('bottleN').textContent=b;
@@ -124,11 +128,14 @@
     document.getElementById('bottles').innerHTML=s;
     var da=lang==='da';
     range.setAttribute('aria-valuetext',p+(da?(p===1?' person':' personer'):(p===1?' person':' people')));
+    pets.setAttribute('aria-valuetext',q+(da?' kæledyr':(q===1?' pet':' pets')));
+    var petPart=q?(da?' + '+q+' kæledyr × 1 L × 3 dage':' + '+q+(q===1?' pet':' pets')+' × 1 L × 3 days'):'';
     document.getElementById('bottleCap').textContent=da
-      ? p+(p===1?' person':' personer')+' × 3 L × 3 dage = '+L+' liter ('+b+' flasker). Læg mere til for kæledyr.'
-      : p+(p===1?' person':' people')+' × 3 L × 3 days = '+L+' litres ('+b+' bottles). Add more for pets.';
+      ? p+(p===1?' person':' personer')+' × 3 L × 3 dage'+petPart+' = '+L+' liter ('+b+' flasker).'
+      : p+(p===1?' person':' people')+' × 3 L × 3 days'+petPart+' = '+L+' litres ('+b+' bottles).';
   }
   range.addEventListener('input',calc);
+  pets.addEventListener('input',calc);
 
   var meta=document.querySelector('meta[name=description]');
   function setLang(l,save){
