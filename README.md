@@ -3,6 +3,8 @@
 A one-page website (Danish and English) that explains the official Danish advice for 3-day home preparedness.
 
 - Language switch: Dansk / English (remembers your choice, follows the phone language the first time)
+- Light / dark switch (follows the system until you choose; remembered on the device)
+- "Do this now" block at the end: add to phone, tick what you have, buy a little extra
 - Tone switch: Labrador / Mum and dad / Nerd. Rewrites the intro and the kit list items only; numbers, official advice and privacy text never change. Faces are Open Peeps (CC0, via DiceBear) plus a hand-drawn dog, all inline SVG
 - Water calculator and a tick-off kit list (saved on the device only)
 - "Add to phone" button with step-by-step help for iPhone and Android
@@ -19,7 +21,7 @@ Based on the official Danish advice for households (borger.dk and the Danish Eme
 
 ## Files
 
-- `index.html`, `app.js` the page
+- `index.html`, `app.js` the page; `theme.js` applies the saved light/dark choice before first paint
 - `api/contact.js` Vercel function: checks and cleans the message, saves it to the Sheet
 - `docs/google-sheet-setup.md` and `docs/google-sheet-Code.gs` how to set up the Sheet (10 minutes)
 - `vercel.json` security headers (strict Content Security Policy)

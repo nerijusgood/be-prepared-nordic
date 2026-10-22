@@ -2,6 +2,8 @@
   var DA={
     skip:'Hop til indhold',
     eyebrow:'Beredskab derhjemme &middot; Danmark',a2hs:'Tilføj til telefon',
+    lblLang:'Sprog',lblTone:'Tonen',lblTheme:'Tema',thLight:'Lys',thDark:'Mørk',
+    startE:'Gør det nu',startH:'Tre små skridt',td1h:'Føj siden til din telefon',td1p:'Så virker den uden internet, og det er hele pointen.',td2h:'Sæt flueben ved det, I allerede har',td2p:'De fleste hjem er halvvejs. Listen husker jeres flueben på denne enhed.',td3h:'Køb lidt ekstra næste gang I handler',td3p:'Et par dåser, en pakke batterier, en flaske vand mere. Klaret på en måned.',
     unit:'dages beredskab derhjemme',
     lead:'De danske myndigheder anbefaler, at alle hjem kan klare sig selv i 3 døgn i en krise. Det er hele planen. Resten af siden viser, hvad der skal til.',
     day:'Dag',water:'Vand',food:'Mad',nocook:'ingen madlavning',medicine:'Medicin',oneday:'1 dag',power:'Strøm',pbank:'powerbank',
@@ -148,6 +150,7 @@
     nodes.forEach(function(el){var k=el.getAttribute('data-t');if(dict[k]!=null)el.innerHTML=dict[k];});
     applyLead();
     document.getElementById('toneGroup').setAttribute('aria-label',l==='da'?'Tonen i teksten':'Tone of the text');
+    document.getElementById('themeGroup').setAttribute('aria-label',l==='da'?'Lys eller mørk':'Light or dark');
     document.getElementById('b-da').setAttribute('aria-pressed',l==='da');
     document.getElementById('b-en').setAttribute('aria-pressed',l==='en');
     document.querySelector('.days').setAttribute('aria-label',l==='da'?'Hvad én person har brug for hver dag':'What one person needs each day');
@@ -169,9 +172,19 @@
   document.querySelectorAll('#toneGroup button').forEach(function(b){
     b.addEventListener('click',function(){setTone(b.getAttribute('data-tone'),true);});
   });
-  document.querySelectorAll('.lang button').forEach(function(b){
+  document.querySelectorAll('button[data-l]').forEach(function(b){
     b.addEventListener('click',function(){setLang(b.getAttribute('data-l'),true);});
   });
+  /* light / dark: follows the system until a button is pressed; theme.js applies the saved choice before paint */
+  var mq=window.matchMedia('(prefers-color-scheme: dark)');
+  function effTheme(){return document.documentElement.getAttribute('data-theme')||(mq.matches?'dark':'light');}
+  function paintTheme(){var t=effTheme();
+    document.querySelectorAll('#themeGroup button').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-theme')===t);});
+    var c=t==='dark'?'#1B1D1A':'#F3EFE6';document.querySelectorAll('meta[name=theme-color]').forEach(function(m){m.setAttribute('content',c);});}
+  function setTheme(t){document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('dk-ready-theme',t)}catch(e){}paintTheme();}
+  document.querySelectorAll('#themeGroup button').forEach(function(b){b.addEventListener('click',function(){setTheme(b.getAttribute('data-theme'));});});
+  if(mq.addEventListener)mq.addEventListener('change',paintTheme);
+  paintTheme();
   setTone(tone,false);setLang(lang,false);
 
   /* add to home screen */

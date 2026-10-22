@@ -1,6 +1,6 @@
 /* Offline support: the page keeps working without internet or power-grid problems. */
-var CACHE = 'ready-kit-v9';
-var CORE = ['./', 'index.html', 'app.js', 'fonts/figtree-latin-wght-normal.woff2', 'fonts/bricolage-grotesque-latin-wght-normal.woff2', 'fonts/ibm-plex-mono-latin-500-normal.woff2', 'manifest.webmanifest', 'icon.svg', 'favicon.ico', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
+var CACHE = 'ready-kit-v11';
+var CORE = ['./', 'index.html', 'app.js', 'theme.js', 'fonts/figtree-latin-wght-normal.woff2', 'fonts/bricolage-grotesque-latin-wght-normal.woff2', 'fonts/ibm-plex-mono-latin-500-normal.woff2', 'manifest.webmanifest', 'icon.svg', 'favicon.ico', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(CORE); }).then(function () { return self.skipWaiting(); }));
