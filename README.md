@@ -3,6 +3,7 @@
 A one-page website (Danish and English) that explains the official Danish advice for 3-day home preparedness.
 
 - Language switch: Dansk / English (remembers your choice, follows the phone language the first time)
+- Tone switch: Labrador / Mum and dad / Nerd. Rewrites the intro and the kit list items only; numbers, official advice and privacy text never change. Faces are Open Peeps (CC0, via DiceBear) plus a hand-drawn dog, all inline SVG
 - Water calculator and a tick-off kit list (saved on the device only)
 - "Add to phone" button with step-by-step help for iPhone and Android
 - Works offline after the first visit (installable web app)

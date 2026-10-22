@@ -10,7 +10,7 @@
     s1:'drikkevand til 3 døgn',s2:'måltider uden køleskab eller komfur',s3:'flasker à 1,5 L',threedays:'3 dage',s4:'medicin til hver person',
     example:'Eksempel: starter ved 2 personer. Flyt skyderen, så det passer til jer.',
     bottlehead:'Hver flaske er 1,5 L &middot; 6 flasker pr. person',
-    yk:'Jeres beredskab',eight:'Ni ting at have hjemme',
+    yk:'Jeres beredskab',eight:'Ni ting at have hjemme',toneDog:'Labrador',toneMid:'Mor og far',toneNerd:'Nørd',
     ticks:'Flueben gemmes kun på denne enhed. Køb lidt ekstra, hver gang I handler, og brug af lageret løbende, så er det billigt og friskt.',
     ifhappens:'Hvis noget sker',siren:'Når sirenen lyder',step:'Trin',
     st1h:'Gå indendørs',st1p:'Kom indenfor og bliv inde. Luk vinduer og døre.',
@@ -56,6 +56,7 @@
   nodes.forEach(function(el){EN[el.getAttribute('data-t')]=el.innerHTML;});
   EN.e1='Too many messages. Please try again later.';EN.e2='Please check the form and try again.';EN.e3='Could not send your message. Please try again later.';EN.e4='Sending...';
 
+  var TONE_LEAD={en:{dog:'WATER. FOOD. FRIENDS. The humans in charge say every home must manage alone for 3 days. That is the whole plan. Everything below is the list. Good list. Very good list.',nerd:'Official guidance from the Danish Emergency Management Agency: every household should be self-sufficient for 72 hours in a crisis. No power, no water, no shops, no help. The list below is the full spec. Store, rotate, repeat.'},da:{dog:'VAND. MAD. VENNER. De voksne i Danmark siger, at hvert hjem skal kunne klare sig selv i 3 døgn. Det er hele planen. Resten er en liste. God liste. Meget god liste.',nerd:'Beredskabsstyrelsens anbefaling: hver husstand skal kunne klare sig selv i 72 timer i en krise. Ingen strøm, intet vand, ingen butikker, ingen hjælp. Listen herunder er hele specifikationen. Køb, rotér, gentag.'}};
   var icons={
     water:'<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/>',
     food:'<path d="M4 11h16l-1.5 8h-13z"/><path d="M8 11c0-3 1.5-5 4-5s4 2 4 5"/>',
@@ -68,26 +69,27 @@
     pets:'<path d="M12 12.5c-3.2 0-5.5 2.6-5.5 5 0 1.6 1.2 2.7 2.7 2.7 1 0 1.9-.5 2.8-.5s1.8.5 2.8.5c1.5 0 2.7-1.1 2.7-2.7 0-2.4-2.3-5-5.5-5z"/><circle cx="6.5" cy="9.5" r="1.8"/><circle cx="17.5" cy="9.5" r="1.8"/><circle cx="9.5" cy="5.5" r="1.8"/><circle cx="14.5" cy="5.5" r="1.8"/>'
   };
   var cats=[
-    {id:'water',c:'',en:{t:'Water',tag:'3 L per person per day',i:['9 L per person for 3 days','Bottled, or tap water in clean sealed food containers']},
-      da:{t:'Vand',tag:'3 L pr. person pr. dag',i:['9 L pr. person i 3 døgn','På flaske, eller postevand i rene, lukkede madbeholdere']}},
-    {id:'food',c:'o',en:{t:'Food',tag:'3 days',i:['Food that keeps without a fridge','Needs no oven or hob (tins, crispbread)','Things your family already eats','A camping stove to boil water (outside only)']},
-      da:{t:'Mad',tag:'3 dage',i:['Mad, der kan holde sig uden køleskab','Skal ikke varmes i ovn eller på komfur (dåsemad, knækbrød)','Mad, som familien allerede spiser','Et campingkomfur til at koge vand (kun udendørs)']}},
-    {id:'med',c:'r',en:{t:'Medicine and first aid',tag:'3 days',i:['3 days of regular medicine for everyone','Plasters, dressings, bandages','Wound cleaner and disinfectant','Iodine tablets (under 40, pregnant or breastfeeding)']},
-      da:{t:'Medicin og førstehjælp',tag:'3 dage',i:['3 dages fast medicin til alle','Plastre, forbindinger, bandager','Sårrens og desinfektion','Jodtabletter (under 40 år, gravide eller ammende)']}},
-    {id:'hyg',c:'',en:{t:'Hygiene',tag:'',i:['Toilet paper','Wet wipes and hand sanitiser','Sanitary products','Nappies, baby formula if needed']},
-      da:{t:'Hygiejne',tag:'',i:['Toiletpapir','Vådservietter og håndsprit','Menstruationsbeskyttelse','Bleer og modermælkserstatning, hvis det er nødvendigt']}},
-    {id:'warm',c:'y',en:{t:'Warmth',tag:'',i:['Blankets and duvets','Warm clothes','Candles on a solid surface, away from curtains','Plan to stay mostly in one room']},
-      da:{t:'Varme',tag:'',i:['Tæpper og dyner','Varmt tøj','Stearinlys på et fast underlag, væk fra gardiner','Hold jer mest i ét rum']}},
-    {id:'power',c:'y',en:{t:'Power and light',tag:'',i:['Power bank for phones','Torch','Spare batteries','Matches']},
-      da:{t:'Strøm og lys',tag:'',i:['Powerbank til mobiler','Lommelygte','Ekstra batterier','Tændstikker']}},
-    {id:'cash',c:'o',en:{t:'Cash and cards',tag:'',i:['Some coins and small notes','A physical bank card','Know your PIN by heart','Key phone numbers on paper']},
-      da:{t:'Kontanter og kort',tag:'',i:['Lidt mønter og små sedler','Et fysisk betalingskort','Kend din pinkode udenad','Vigtige telefonnumre på papir']}},
-    {id:'radio',c:'r',en:{t:'Radio and news',tag:'FM',i:['Battery, wind-up or solar FM radio (a car radio can work)','Plan to listen to DR or TV 2','Know where your nearest neighbours are']},
-      da:{t:'Radio og nyheder',tag:'FM',i:['Radio med FM og batteri, håndsving eller solcelle (en bilradio kan også bruges)','Lyt til DR eller TV 2','Kend dine nærmeste naboer']}},
-    {id:'pets',c:'o',en:{t:'Pets',tag:'3 days',i:['Pet food for 3 days','Water: about 1 L a day for a dog or cat','Any medicine your pet takes','Lead, carrier or cage, and a blanket','Litter or waste bags','Photo of the vaccination card and chip number on your phone']},
-      da:{t:'Kæledyr',tag:'3 dage',i:['Foder til 3 døgn','Vand: ca. 1 L om dagen til en hund eller kat','Medicin, dyret får fast','Snor, transportkasse eller bur og et tæppe','Kattegrus eller hundeposer','Foto af vaccinationskort og chipnummer på telefonen']}}
+    {id:'water',c:'',en:{t:'Water',tag:'3 L per person per day',i:['9 L per person for 3 days','Bottled, or tap water in clean sealed food containers'],dog:['9 L per human for 3 days. That is many bowls.', 'Bottles, or tap water in clean closed tubs. Not the toilet. Never the toilet.'],nerd:['9 L per person for 3 days: 3 L × 3 days, drinking and cooking only', 'Sealed bottled water, or tap water in clean food-grade containers. Label with the fill date.']},
+      da:{t:'Vand',tag:'3 L pr. person pr. dag',i:['9 L pr. person i 3 døgn','På flaske, eller postevand i rene, lukkede madbeholdere'],dog:['9 L pr. menneske i 3 døgn. Det er mange skåle.', 'Flasker, eller postevand i rene, lukkede bøtter. Ikke toilettet. Aldrig toilettet.'],nerd:['9 L pr. person i 3 døgn: 3 L × 3 døgn, kun til at drikke og lave mad', 'Lukkede flasker, eller postevand i rene beholdere, der er godkendt til mad. Skriv dato på.']}},
+    {id:'food',c:'o',en:{t:'Food',tag:'3 days',i:['Food that keeps without a fridge','Needs no oven or hob (tins, crispbread)','Things your family already eats','A camping stove to boil water (outside only)'],dog:['Food that stays good without the cold box', 'Food you can eat with no oven, no hob, no waiting (tins, crispbread)', 'Food the pack already likes. New food makes tummies sad.', 'A camping stove to boil water. Outside only. Fire is not a toy.'],nerd:['Shelf-stable food, no refrigeration required', 'Ready to eat without an oven or hob: tins, crispbread, nut butter', 'Food your household already eats, so it rotates through normal meals', 'A camping stove to boil water. Outdoors only: carbon monoxide.']},
+      da:{t:'Mad',tag:'3 dage',i:['Mad, der kan holde sig uden køleskab','Skal ikke varmes i ovn eller på komfur (dåsemad, knækbrød)','Mad, som familien allerede spiser','Et campingkomfur til at koge vand (kun udendørs)'],dog:['Mad, der holder sig uden den kolde kasse', 'Mad, der kan spises uden ovn, uden komfur, uden at vente (dåser, knækbrød)', 'Mad, flokken allerede kan lide. Ny mad giver ondt i maven.', 'Et campingkomfur til at koge vand. Kun udenfor. Ild er ikke legetøj.'],nerd:['Holdbar mad, der ikke kræver køleskab', 'Klar til at spise uden ovn eller komfur: dåser, knækbrød, nøddesmør', 'Mad, I allerede spiser, så lageret roterer gennem de almindelige måltider', 'Et campingkomfur til at koge vand. Kun udendørs: kulilte.']}},
+    {id:'med',c:'r',en:{t:'Medicine and first aid',tag:'3 days',i:['3 days of regular medicine for everyone','Plasters, dressings, bandages','Wound cleaner and disinfectant','Iodine tablets (under 40, pregnant or breastfeeding)'],dog:['3 days of the pills your humans take every day', 'Plasters and bandages for paws and hands', 'Something to clean a scratch so it does not get itchy', 'Iodine tablets for humans under 40, and for the ones growing or feeding a puppy'],nerd:['3 days of all prescription medicine for every person, plus the prescription list', 'Plasters, sterile dressings, bandages, tape', 'Wound irrigation and a disinfectant', 'Potassium iodide tablets for people under 40, pregnant or breastfeeding. Nuclear incidents only, on official instruction.']},
+      da:{t:'Medicin og førstehjælp',tag:'3 dage',i:['3 dages fast medicin til alle','Plastre, forbindinger, bandager','Sårrens og desinfektion','Jodtabletter (under 40 år, gravide eller ammende)'],dog:['3 dages piller til de mennesker, der tager piller hver dag', 'Plastre og bandager til poter og hænder', 'Noget at rense en rift med, så den ikke klør', 'Jodtabletter til mennesker under 40, og til dem, der venter eller ammer en hvalp'],nerd:['3 dages fast medicin til hver person, plus en liste over recepterne', 'Plastre, sterile forbindinger, bandager, tape', 'Sårskyl og desinfektionsmiddel', 'Jodtabletter til personer under 40, gravide og ammende. Kun ved atomulykke og kun på myndighedernes besked.']}},
+    {id:'hyg',c:'',en:{t:'Hygiene',tag:'',i:['Toilet paper','Wet wipes and hand sanitiser','Sanitary products','Nappies, baby formula if needed'],dog:['Toilet paper. Not for chewing.', 'Wet wipes and hand gel for sticky humans', 'Pads and tampons for the humans who need them', 'Nappies and baby milk if there is a tiny human'],nerd:['Toilet paper, more than you think', 'Wet wipes and alcohol hand sanitiser when water is rationed', 'Sanitary products for 3 days plus margin', 'Nappies and formula if there is an infant, and extra water to mix it']},
+      da:{t:'Hygiejne',tag:'',i:['Toiletpapir','Vådservietter og håndsprit','Menstruationsbeskyttelse','Bleer og modermælkserstatning, hvis det er nødvendigt'],dog:['Toiletpapir. Ikke til at tygge på.', 'Vådservietter og håndsprit til klistrede mennesker', 'Bind og tamponer til de mennesker, der skal bruge dem', 'Bleer og babymælk, hvis der er et lille menneske'],nerd:['Toiletpapir, mere end du tror', 'Vådservietter og håndsprit, når vandet skal rationeres', 'Menstruationsbeskyttelse til 3 døgn plus margin', 'Bleer og modermælkserstatning, hvis der er et spædbarn, og ekstra vand til at blande den']}},
+    {id:'warm',c:'y',en:{t:'Warmth',tag:'',i:['Blankets and duvets','Warm clothes','Candles on a solid surface, away from curtains','Plan to stay mostly in one room'],dog:['Blankets and duvets. The big pile. Everyone in the pile.', 'Warm clothes with many layers', 'Candles on a hard flat thing, far from curtains and tails', 'Everyone stays in one room. One warm room. One happy pack.'],nerd:['Blankets, duvets, sleeping bags', 'Layered clothing: base layer, insulation, hat', 'Candles on a non-flammable surface, away from curtains. Never leave them burning unattended.', 'Heat one room and close the others. Smaller volume, warmer air.']},
+      da:{t:'Varme',tag:'',i:['Tæpper og dyner','Varmt tøj','Stearinlys på et fast underlag, væk fra gardiner','Hold jer mest i ét rum'],dog:['Tæpper og dyner. Den store bunke. Alle i bunken.', 'Varmt tøj i mange lag', 'Stearinlys på noget hårdt og fladt, langt fra gardiner og haler', 'Alle bliver i ét rum. Ét varmt rum. Én glad flok.'],nerd:['Tæpper, dyner, soveposer', 'Tøj i lag: inderlag, isolering, hue', 'Stearinlys på et ubrændbart underlag, væk fra gardiner. Gå aldrig fra et tændt lys.', 'Varm ét rum op, og luk de andre. Mindre rum, varmere luft.']}},
+    {id:'power',c:'y',en:{t:'Power and light',tag:'',i:['Power bank for phones','Torch','Spare batteries','Matches'],dog:['A power bank so the phone keeps working', 'A torch for finding the ball in the dark', 'Spare batteries for the torch', 'Matches. Humans only.'],nerd:['Power bank, 10,000 mAh or more, kept charged', 'Torch, ideally head-mounted so your hands are free', 'Spare batteries in the sizes your devices actually use', 'Matches or a lighter, stored dry']},
+      da:{t:'Strøm og lys',tag:'',i:['Powerbank til mobiler','Lommelygte','Ekstra batterier','Tændstikker'],dog:['En powerbank, så telefonen bliver ved med at virke', 'En lommelygte til at finde bolden i mørket', 'Ekstra batterier til lygten', 'Tændstikker. Kun til mennesker.'],nerd:['Powerbank på mindst 10.000 mAh, altid opladet', 'Lommelygte, helst pandelampe, så hænderne er fri', 'Ekstra batterier i de størrelser, jeres ting faktisk bruger', 'Tændstikker eller en lighter, opbevaret tørt']}},
+    {id:'cash',c:'o',en:{t:'Cash and cards',tag:'',i:['Some coins and small notes','A physical bank card','Know your PIN by heart','Key phone numbers on paper'],dog:['Coins and small notes. Paper money, not treats.', 'A real bank card, not just the phone', 'The PIN code in your head, not on the card', 'Important phone numbers on paper, in case the phone sleeps'],nerd:['Cash in small denominations: card terminals fail when the power does', 'A physical bank card as a fallback for mobile pay', 'PIN memorised, not stored on the phone', 'Key phone numbers written down: family, doctor, insurance, 1813 and 112']},
+      da:{t:'Kontanter og kort',tag:'',i:['Lidt mønter og små sedler','Et fysisk betalingskort','Kend din pinkode udenad','Vigtige telefonnumre på papir'],dog:['Mønter og små sedler. Papirpenge, ikke godbidder.', 'Et rigtigt betalingskort, ikke kun telefonen', 'Pinkoden i hovedet, ikke på kortet', 'Vigtige telefonnumre på papir, hvis telefonen sover'],nerd:['Kontanter i små sedler: kortterminaler dør, når strømmen gør', 'Et fysisk betalingskort som backup for MobilePay', 'Pinkoden i hovedet, ikke gemt på telefonen', 'Vigtige numre på papir: familie, læge, forsikring, 1813 og 112']}},
+    {id:'radio',c:'r',en:{t:'Radio and news',tag:'FM',i:['Battery, wind-up or solar FM radio (a car radio can work)','Plan to listen to DR or TV 2','Know where your nearest neighbours are'],dog:['A radio that works without the wall: batteries, a crank or the sun. The car has one too.', 'Listen to DR or TV 2. The humans on the radio know things.', 'Know the neighbours. Neighbours are pack.'],nerd:['FM radio on batteries, hand crank or solar. A car radio is a valid fallback.', 'DR and TV 2 carry official broadcasts when the internet is down', 'Know your nearest neighbours: shared resources, shared information']},
+      da:{t:'Radio og nyheder',tag:'FM',i:['Radio med FM og batteri, håndsving eller solcelle (en bilradio kan også bruges)','Lyt til DR eller TV 2','Kend dine nærmeste naboer'],dog:['En radio, der virker uden væggen: batterier, et håndsving eller solen. Bilen har også en.', 'Lyt til DR eller TV 2. Menneskene i radioen ved ting.', 'Kend naboerne. Naboer er flok.'],nerd:['FM-radio på batterier, håndsving eller solceller. Bilradioen er en gyldig backup.', 'DR og TV 2 sender myndighedernes beskeder, når nettet er nede', 'Kend dine nærmeste naboer: delte ressourcer, delt information']}},
+    {id:'pets',c:'o',en:{t:'Pets',tag:'3 days',i:['Pet food for 3 days','Water: about 1 L a day for a dog or cat','Any medicine your pet takes','Lead, carrier or cage, and a blanket','Litter or waste bags','Photo of the vaccination card and chip number on your phone'],dog:['Food for 3 days. For me. Three whole days.', 'Water: about 1 L a day for a dog or cat. My bowl. Full.', 'My pills, if I have pills', 'Lead, carrier or cage, and my blanket. The blanket matters.', 'Litter for the cat, bags for me', 'A photo of my vaccination card and my chip number on the phone'],nerd:['Pet food for 3 days, same brand as usual to avoid stomach upsets', 'Water: about 1 L a day for a dog or cat, on top of the human total', 'Any medicine the animal takes, plus the vet\'s number', 'Lead, carrier or cage, and a blanket for warmth and calm', 'Cat litter or waste bags: hygiene matters more indoors', 'Photo of the vaccination card and the chip number, in case you have to evacuate']},
+      da:{t:'Kæledyr',tag:'3 dage',i:['Foder til 3 døgn','Vand: ca. 1 L om dagen til en hund eller kat','Medicin, dyret får fast','Snor, transportkasse eller bur og et tæppe','Kattegrus eller hundeposer','Foto af vaccinationskort og chipnummer på telefonen'],dog:['Foder til 3 døgn. Til mig. Tre hele døgn.', 'Vand: ca. 1 L om dagen til en hund eller kat. Min skål. Fuld.', 'Mine piller, hvis jeg har piller', 'Snor, transportkasse eller bur og mit tæppe. Tæppet er vigtigt.', 'Grus til katten, poser til mig', 'Et foto af mit vaccinationskort og mit chipnummer på telefonen'],nerd:['Foder til 3 døgn, samme mærke som altid, så maven ikke bliver sur', 'Vand: ca. 1 L om dagen til en hund eller kat, oven i menneskernes total', 'Den medicin, dyret får, plus dyrlægens nummer', 'Snor, transportkasse eller bur og et tæppe til varme og ro', 'Kattegrus eller hundeposer: hygiejne betyder mere indendørs', 'Foto af vaccinationskort og chipnummer, hvis I skal evakueres']}}
   ];
-  var lang='en',store={},total=0;
+  var lang='en',store={},total=0,tone='mid';
+  try{var st=localStorage.getItem('dk-ready-tone');if(st==='dog'||st==='nerd')tone=st;}catch(e){}
   try{store=JSON.parse(localStorage.getItem('dk-ready-kit')||'{}')||{}}catch(e){store={}}
   try{var sl=localStorage.getItem('dk-ready-lang');if(sl==='da'||sl==='en')lang=sl;else if((navigator.language||'').toLowerCase().indexOf('da')===0)lang='da';}catch(e){}
 
@@ -98,7 +100,8 @@
       var d=c[lang],hid='h-'+c.id,el=document.createElement('div');el.className='cat '+c.c;
       el.setAttribute('role','group');el.setAttribute('aria-labelledby',hid);
       var h='<header><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+icons[c.id]+'</svg></div><h3 id="'+hid+'">'+d.t+'</h3>'+(d.tag?'<span class="tag">'+d.tag+'</span>':'')+'</header><ul>';
-      d.i.forEach(function(t,n){total++;var id='k-'+c.id+'-'+n;
+      var items=(tone!=='mid'&&d[tone])?d[tone]:d.i;
+      items.forEach(function(t,n){total++;var id='k-'+c.id+'-'+n;
         h+='<li><label><input type="checkbox" id="'+id+'"'+(store[id]?' checked':'')+'><span>'+t+'</span></label></li>';});
       el.innerHTML=h+'</ul>';kit.appendChild(el);
     });
@@ -142,6 +145,8 @@
     lang=l;document.documentElement.lang=l;
     var dict=l==='da'?DA:EN;
     nodes.forEach(function(el){var k=el.getAttribute('data-t');if(dict[k]!=null)el.innerHTML=dict[k];});
+    applyLead();
+    document.getElementById('toneGroup').setAttribute('aria-label',l==='da'?'Tonen i teksten':'Tone of the text');
     document.getElementById('b-da').setAttribute('aria-pressed',l==='da');
     document.getElementById('b-en').setAttribute('aria-pressed',l==='en');
     document.querySelector('.days').setAttribute('aria-label',l==='da'?'Hvad én person har brug for hver dag':'What one person needs each day');
@@ -152,10 +157,21 @@
     renderKit();calc();
     if(save){try{localStorage.setItem('dk-ready-lang',l)}catch(e){}}
   }
+  var leadEl=document.querySelector('[data-t=lead]');
+  function applyLead(){var dict=lang==='da'?DA:EN;leadEl.innerHTML=tone==='mid'?dict.lead:TONE_LEAD[lang][tone];}
+  function setTone(t,save){
+    tone=t;
+    document.querySelectorAll('#toneGroup button').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-tone')===t);});
+    applyLead();renderKit();
+    if(save){try{localStorage.setItem('dk-ready-tone',t)}catch(e){}}
+  }
+  document.querySelectorAll('#toneGroup button').forEach(function(b){
+    b.addEventListener('click',function(){setTone(b.getAttribute('data-tone'),true);});
+  });
   document.querySelectorAll('.lang button').forEach(function(b){
     b.addEventListener('click',function(){setLang(b.getAttribute('data-l'),true);});
   });
-  setLang(lang,false);
+  setTone(tone,false);setLang(lang,false);
 
   /* add to home screen */
   var dlg=document.getElementById('a2hs'),btn=document.getElementById('a2hsBtn'),inst=document.getElementById('installNow'),deferred=null;
