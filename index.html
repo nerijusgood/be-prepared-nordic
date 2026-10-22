@@ -93,9 +93,16 @@ a{color:var(--water);text-underline-offset:3px}
 .lead{color:var(--muted);max-width:60ch}
 section{display:flex;flex-direction:column;gap:16px;min-width:0}
 main>section>h2{border-bottom:1px solid var(--ink);padding-bottom:8px}
-.why{border-top:3px solid var(--ink);padding-top:18px;gap:12px}
-.why h2{font-size:clamp(1.7rem,4vw,2.4rem);letter-spacing:-.02em;border:0;padding:0}
-.why p:not(.eyebrow){font-size:clamp(1.02rem,2vw,1.15rem);max-width:62ch;line-height:1.55}
+/* newspaper cutout: torn paper edges, a slight tilt, a strip of tape, double-rule masthead */
+.why{position:relative;margin-top:14px;padding:22px 26px 26px;gap:12px;transform:rotate(-.6deg);filter:drop-shadow(0 1px 1px rgba(0,0,0,.14)) drop-shadow(0 10px 18px rgba(0,0,0,.09))}
+.why::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--surface);clip-path:polygon(0 2.5%,3% 0,9% 1.6%,15% .3%,22% 1.9%,30% .4%,37% 1.7%,45% .2%,52% 2%,60% .5%,68% 1.8%,75% .3%,83% 1.9%,91% .4%,97% 1.6%,100% 3%,99.4% 10%,100% 20%,99.2% 32%,100% 45%,99.5% 58%,100% 70%,99.3% 82%,100% 92%,99.2% 98%,97% 100%,90% 98.5%,82% 100%,74% 98.3%,66% 99.8%,58% 98.2%,50% 100%,42% 98.4%,34% 99.9%,26% 98.3%,18% 100%,10% 98.5%,4% 99.8%,0 97.5%,.6% 88%,0 76%,.8% 64%,0 52%,.7% 40%,0 28%,.8% 16%,0 8%)}
+.why::after{content:'';position:absolute;top:-11px;left:30px;width:86px;height:22px;transform:rotate(-5deg);background:color-mix(in srgb,var(--ink) 9%,transparent);border:1px solid color-mix(in srgb,var(--ink) 14%,transparent)}
+.why .mast{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:3px double var(--ink);padding-bottom:6px}
+.why .mast .eyebrow{color:var(--ink)}
+.why h2{font-size:clamp(1.8rem,4.4vw,2.6rem);letter-spacing:-.025em;line-height:1;border:0;padding:0}
+.why p:not(.eyebrow){font-size:clamp(1rem,1.9vw,1.1rem);line-height:1.55;columns:2 300px;column-gap:30px;column-rule:1px solid var(--line);hyphens:auto}
+@media(max-width:520px){.why{padding:18px 18px 22px;transform:rotate(-.4deg)}}
+@media print{.why{transform:none;filter:none}.why::before{clip-path:none}}
 /* phrase marks in the opener: each effect matches what the phrase says */
 .m-stop{font-style:italic;text-decoration:underline dotted var(--muted);text-underline-offset:4px;text-decoration-thickness:2px}
 .m-odd{text-decoration:underline wavy var(--red);text-underline-offset:4px}
@@ -309,7 +316,7 @@ textarea{min-height:120px;resize:vertical}
 
   <main id="main" tabindex="-1" class="wrap">
     <section class="why" aria-labelledby="h-why">
-      <p class="eyebrow" data-t="whyE">Why this page exists</p>
+      <div class="mast"><p class="eyebrow" data-t="whyE">Why this page exists</p><p class="eyebrow" data-t="whyD">Tuesday, late afternoon</p></div>
       <h2 id="h-why" data-t="whyH">It is Tuesday. The power is out.</h2>
       <p data-t="whyP">The <span class="m-stop">dishwasher stops mid-cycle</span>. The fridge <span class="m-odd">hums oddly, then not at all</span>. The <span class="m-dark">router light goes dark</span>. Your phone says <span class="m-num">23%</span>. At the supermarket the card terminal shows an error and the queue is not moving. Nobody knows if this lasts an hour or a week. The <span class="m-ask">authorities ask one thing</span>: every home manages on its own for <span class="m-key">3 days</span>, so help can go first to the hospital, the care home and the people who really need it. That is the whole idea behind this page. Not <span class="m-no">bunkers</span>. Not <span class="m-no">towers of tinned food</span>. A few things in the cupboard and a plan you can explain to your mother-in-law.</p>
     </section>
