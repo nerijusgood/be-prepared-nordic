@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+
+Sitemap: https://be-prepared-nordic.vercel.app/sitemap.xml

@@ -14,7 +14,7 @@ A one-page website (Danish and English) that explains the official Danish advice
 - Opens with a short "why this page exists" scenario in the chosen tone, then the 3-day rule, then the siren steps as the only red block on a paper-and-ink page
 - Accessible: keyboard friendly, screen reader labels, WCAG AA contrast in light and dark mode
 - Privacy friendly: no cookies, no analytics, no tracking, fonts hosted on the site itself
-- SEO basics: title, description, link-preview tags, structured data, crawlable checklist text
+- SEO: title and description under the snippet limits, canonical, hreflang (English at `/`, Danish at `/?lang=da`), link-preview tags with the share image, `sitemap.xml`, structured data, crawlable checklist text
 - Full favicon set and a share image (`og-image.png`)
 
 Based on the official Danish advice for households (borger.dk and the Danish Emergency Management Agency). See also https://samsik.dk. Not medical advice.
@@ -41,8 +41,7 @@ Import this repo. Framework: Other. No build command. Add the two environment va
 
 ## To do once the site has its final address
 
-- Add `<link rel="canonical" href="https://YOUR-DOMAIN/">` to `index.html`
-- Add `sitemap.xml` and a `Sitemap:` line in `robots.txt`
-- Add `og:image` and `og:url` tags that point to `https://YOUR-DOMAIN/og-image.png` (the image already exists), and switch `twitter:card` to `summary_large_image`
+- Replace `https://be-prepared-nordic.vercel.app` with the final domain in `index.html` (canonical, hreflang, og:url, og:image, twitter:image), `sitemap.xml` and `robots.txt`; it appears nowhere else
+- Regenerate `og-image.png` in the paper-and-ink palette (1200 x 630)
 - Add a Vercel Firewall rate-limit rule for `/api/contact`
 - Review the privacy notice text (it names the site owner and says messages are deleted after 12 months)

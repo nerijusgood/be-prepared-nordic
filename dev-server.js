@@ -7,7 +7,7 @@ const handler = require('./api/contact.js');
 const port = Number(process.argv[2] || 3000);
 let extra = {};
 try { const v = JSON.parse(fs.readFileSync(path.join(__dirname, 'vercel.json'), 'utf8')); (v.headers[0].headers || []).forEach((h) => { extra[h.key] = h.value; }); } catch (e) { /* no headers file */ }
-const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.webmanifest': 'application/manifest+json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.woff2': 'font/woff2', '.txt': 'text/plain' };
+const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.webmanifest': 'application/manifest+json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.woff2': 'font/woff2', '.txt': 'text/plain', '.xml': 'application/xml; charset=utf-8' };
 http.createServer((req, res) => {
   Object.keys(extra).forEach((k) => res.setHeader(k, extra[k]));
   const url = new URL(req.url, 'http://localhost');

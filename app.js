@@ -95,6 +95,7 @@
   try{var st=localStorage.getItem('dk-ready-tone');if(st==='dog'||st==='nerd')tone=st;}catch(e){}
   try{store=JSON.parse(localStorage.getItem('dk-ready-kit')||'{}')||{}}catch(e){store={}}
   try{var sl=localStorage.getItem('dk-ready-lang');if(sl==='da'||sl==='en')lang=sl;else if((navigator.language||'').toLowerCase().indexOf('da')===0)lang='da';}catch(e){}
+  try{var ql=new URLSearchParams(location.search).get('lang');if(ql==='da'||ql==='en')lang=ql;}catch(e){}
 
   var kit=document.getElementById('kit');
   function renderKit(){
@@ -156,7 +157,9 @@
     document.querySelector('.days').setAttribute('aria-label',l==='da'?'Hvad én person har brug for hver dag':'What one person needs each day');
     document.getElementById('a2hsX').setAttribute('aria-label',l==='da'?'Luk':'Close');
     ['cX','pX'].forEach(function(id){document.getElementById(id).setAttribute('aria-label',l==='da'?'Luk':'Close');});
-    document.title=l==='da'?'Klar i Danmark':'Denmark Ready Kit';
+    document.title=l==='da'?'Klar i Danmark: 3 døgns beredskab derhjemme, de officielle råd':'Denmark Ready Kit: 3-day home preparedness, Danish advice';
+    var canon=document.querySelector('link[rel=canonical]'),ogu=document.querySelector('meta[property="og:url"]');
+    if(canon){var base=canon.getAttribute('href').split('?')[0],u=l==='da'?base+'?lang=da':base;canon.setAttribute('href',u);if(ogu)ogu.setAttribute('content',u);}
     meta.setAttribute('content',DESC[l]);
     renderKit();calc();
     if(save){try{localStorage.setItem('dk-ready-lang',l)}catch(e){}}
