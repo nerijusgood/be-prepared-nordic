@@ -90,6 +90,13 @@ main>section>h2{border-bottom:1px solid var(--ink);padding-bottom:8px}
 .why{border-top:3px solid var(--ink);padding-top:18px;gap:12px}
 .why h2{font-size:clamp(1.7rem,4vw,2.4rem);letter-spacing:-.02em;border:0;padding:0}
 .why p:not(.eyebrow){font-size:clamp(1.02rem,2vw,1.15rem);max-width:62ch;line-height:1.55}
+/* phrase marks in the opener: each effect matches what the phrase says */
+.m-stop{font-style:italic;text-decoration:underline dotted var(--muted);text-underline-offset:4px;text-decoration-thickness:2px}
+.m-odd{text-decoration:underline wavy var(--red);text-underline-offset:4px}
+.m-dark{background:linear-gradient(90deg,var(--ink) 20%,var(--muted) 60%,var(--line));-webkit-background-clip:text;background-clip:text;color:transparent}
+.m-num{font-family:var(--f-data);font-size:.92em;border:1px solid var(--line);border-radius:5px;padding:0 5px;background:var(--surface);white-space:nowrap}
+.m-key{font-weight:700;background:linear-gradient(transparent 58%,var(--red-soft) 58%)}
+@media (forced-colors:active){.m-dark{color:CanvasText;background:none}.m-key{text-decoration:underline}}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
 
 /* header controls */
@@ -282,7 +289,7 @@ textarea{min-height:120px;resize:vertical}
     <section class="why" aria-labelledby="h-why">
       <p class="eyebrow" data-t="whyE">Why this page exists</p>
       <h2 id="h-why" data-t="whyH">It is Tuesday. The power is out.</h2>
-      <p data-t="whyP">The dishwasher stops mid-cycle. The router light goes dark. Your phone says 23%. At the supermarket the card terminal shows an error and the queue is not moving. Nobody knows if this lasts an hour or a week. The authorities ask one thing: every home manages on its own for 3 days, so help can go first to the hospital, the care home and the people who really need it. That is the whole idea behind this page. Not bunkers. Not towers of tinned food. A few things in the cupboard and a plan you can explain to your mother-in-law.</p>
+      <p data-t="whyP">The <span class="m-stop">dishwasher stops mid-cycle</span>. The fridge <span class="m-odd">hums oddly, then not at all</span>. The <span class="m-dark">router light goes dark</span>. Your phone says <span class="m-num">23%</span>. At the supermarket the card terminal shows an error and the queue is not moving. Nobody knows if this lasts an hour or a week. The authorities ask one thing: every home manages on its own for <span class="m-key">3 days</span>, so help can go first to the hospital, the care home and the people who really need it. That is the whole idea behind this page. Not bunkers. Not towers of tinned food. A few things in the cupboard and a plan you can explain to your mother-in-law.</p>
     </section>
 
     <section class="hero" aria-labelledby="h1">
