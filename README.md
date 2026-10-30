@@ -41,7 +41,7 @@ Import this repo. Framework: Other. No build command. Add the two environment va
 
 ## To do once the site has its final address
 
-- Replace `https://be-prepared-nordic.vercel.app` with the final domain in `index.html` (canonical, hreflang, og:url, og:image, twitter:image), `sitemap.xml` and `robots.txt`; it appears nowhere else
+- The production domain is `72ready.eu` (www redirects to it). It appears in `index.html` (canonical, hreflang, og:url, og:image, twitter:image), `sitemap.xml`, `robots.txt` and the share image text; change it only there
 - If the domain text in the share image changes, edit `og-image.svg` (fonts are embedded) and re-render it to `og-image.png` at 1200 x 630 with headless Chrome
 - Add a Vercel Firewall rate-limit rule for `/api/contact`
 - Review the privacy notice text (it names the site owner and says messages are deleted after 12 months)

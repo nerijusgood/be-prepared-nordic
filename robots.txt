@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://be-prepared-nordic.vercel.app/sitemap.xml
+Sitemap: https://72ready.eu/sitemap.xml
