@@ -3,6 +3,7 @@
     skip:'Hop til indhold',
     eyebrow:'Beredskab derhjemme &middot; Danmark',a2hs:'Tilføj til telefon',
     lblLang:'Sprog',lblTone:'Tonen',lblTheme:'Tema',thLight:'Lys',thDark:'Mørk',
+    whyLink:'Hvorfor findes denne side',wT:'Hvorfor denne side findes',w1:'Det startede med et meget roligt spørgsmål, stillet i en meget høj tone: &quot;Hvad skal vi egentlig have hjemme, hvis strømmen går?&quot;',w2:'Min kæreste havde læst nyhederne, åbnet fire faner og fundet fire forskellige lister. Jeg havde heller ikke et bedre svar. Vi stod i køkkenet og kiggede på ét stearinlys og en halv pose pasta, og det er åbenbart ikke en plan.',w3:'Så jeg læste de officielle danske råd og gjorde dem til én side: hvad man skal have, hvor meget vand, og hvad man gør, når sirenen lyder. Ingen panik, ingen reklamer, ingen sporing, og en tjekliste man kan sætte kryds i med en kop kaffe i hånden.',w4:'Hun har nu ni flasker vand og en radio. Jeg arbejder stadig på stearinlys-situationen. Hjælper det dig også, er det fint. Ved du en bedre måde at forklare noget på, så sig til.',legal:'72ready&trade; &middot; &copy; 2026 Nerijus Gudas. Et uafhængigt projekt, ikke drevet af eller tilknyttet Beredskabsstyrelsen eller nogen myndighed.',
     startE:'Gør det nu',startH:'Tre små skridt',td1h:'Føj siden til din telefon',td1p:'Så virker den uden internet, og det er hele pointen.',td2h:'Sæt flueben ved det, I allerede har',td2p:'De fleste hjem er halvvejs. Listen husker jeres flueben på denne enhed.',td3h:'Køb lidt ekstra næste gang I handler',td3p:'Et par dåser, en pakke batterier, en flaske vand mere. Klaret på en måned.',
     unit:'dages beredskab derhjemme',
     lead:'De danske myndigheder anbefaler, at alle hjem kan klare sig selv i 3 døgn i en krise. Det er hele planen. Resten af siden viser, hvad der skal til.',
@@ -156,7 +157,7 @@
     document.getElementById('b-en').setAttribute('aria-pressed',l==='en');
     document.querySelector('.days').setAttribute('aria-label',l==='da'?'Hvad én person har brug for hver dag':'What one person needs each day');
     document.getElementById('a2hsX').setAttribute('aria-label',l==='da'?'Luk':'Close');
-    ['cX','pX'].forEach(function(id){document.getElementById(id).setAttribute('aria-label',l==='da'?'Luk':'Close');});
+    ['cX','pX','wX'].forEach(function(id){document.getElementById(id).setAttribute('aria-label',l==='da'?'Luk':'Close');});
     document.title=l==='da'?'Klar i Danmark: 3 døgns beredskab derhjemme, de officielle råd':'Denmark Ready Kit: 3-day home preparedness, Danish advice';
     var canon=document.querySelector('link[rel=canonical]'),ogu=document.querySelector('meta[property="og:url"]');
     if(canon){var base=canon.getAttribute('href').split('?')[0],u=l==='da'?base+'?lang=da':base;canon.setAttribute('href',u);if(ogu)ogu.setAttribute('content',u);}
@@ -212,12 +213,12 @@
   function T(k){return (lang==='da'?DA:EN)[k];}
   function openD(d){ if(d.showModal){d.showModal();}else{d.setAttribute('open','');} }
   function closeD(d){ if(d.close){d.close();}else{d.removeAttribute('open');} }
-  var cDlg=document.getElementById('contactDlg'),pDlg=document.getElementById('privacyDlg'),cForm=document.getElementById('cForm');
+  var cDlg=document.getElementById('contactDlg'),pDlg=document.getElementById('privacyDlg'),wDlg=document.getElementById('whyDlg'),cForm=document.getElementById('cForm');
   var cSubject=document.getElementById('cSubject'),cName=document.getElementById('cName'),cEmail=document.getElementById('cEmail'),
       cMsg=document.getElementById('cMsg'),cConsent=document.getElementById('cConsent'),cWebsite=document.getElementById('cWebsite'),
       cErr=document.getElementById('cErr'),cOk=document.getElementById('cOk'),cSend=document.getElementById('cSend'),cCount=document.getElementById('cCount');
   var openedAt=0;
-  [cDlg,pDlg].forEach(function(d){d.addEventListener('click',function(e){if(e.target===d)closeD(d);});});
+  [cDlg,pDlg,wDlg].forEach(function(d){d.addEventListener('click',function(e){if(e.target===d)closeD(d);});});
   function setErr(m){cErr.textContent=m||'';cErr.hidden=!m;}
   function openContact(subject){
     cForm.reset();setErr('');cOk.hidden=true;cSend.hidden=false;cSend.disabled=false;cCount.textContent='0 / 1500';
@@ -231,6 +232,9 @@
   document.getElementById('openPrivacy').addEventListener('click',function(){openD(pDlg);});
   document.getElementById('cPriv').addEventListener('click',function(){openD(pDlg);});
   document.getElementById('pX').addEventListener('click',function(){closeD(pDlg);});
+  document.getElementById('openWhy').addEventListener('click',function(){openD(wDlg);});
+  document.getElementById('wX').addEventListener('click',function(){closeD(wDlg);});
+  document.getElementById('wClose').addEventListener('click',function(){closeD(wDlg);});
   document.getElementById('pClose').addEventListener('click',function(){closeD(pDlg);});
   cMsg.addEventListener('input',function(){cCount.textContent=cMsg.value.length+' / 1500';});
   cForm.addEventListener('submit',function(ev){

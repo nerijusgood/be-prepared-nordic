@@ -289,13 +289,17 @@ textarea{min-height:120px;resize:vertical}
 .pv{display:flex;flex-direction:column;gap:4px}
 .pv h3{font-size:1rem}
 .pv p{font-size:.95rem;color:var(--muted)}
+.story{display:flex;flex-direction:column;gap:12px}
+.story p{font-size:1rem;line-height:1.55;max-width:60ch}
+.story p:first-child{font-family:var(--f-display);font-weight:700;font-size:1.2rem;line-height:1.25}
+.legal{font-size:.8rem;color:var(--muted);max-width:70ch}
 .dlg.wide{gap:14px}
 
 @media(max-width:520px){.days{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media print{
   body{background:#fff;color:#000;padding:0}
-  .tools,.tone,.skip,#a2hs,.todo .btn,.coffee,.gear,.foot-actions,.bottles,.strip,input[type=range]{display:none!important}
+  .tools,.tone,.skip,#a2hs,#whyDlg,.todo .btn,.coffee,.gear,.foot-actions,.bottles,.strip,input[type=range]{display:none!important}
   .card,.cat,.step,.day,.fact{break-inside:avoid;border-color:#999}
   a{color:#000}
 }
@@ -427,9 +431,10 @@ textarea{min-height:120px;resize:vertical}
   </aside>
 
   <footer>
-    <div class="foot-actions"><button type="button" class="btn" id="openContact"><span data-t="footContact">Have suggestions? Looking for where to get survival gear cheaper? Contact</span></button><button type="button" class="linkbtn" id="openPrivacy" data-t="privacyLink">Privacy</button></div>
+    <div class="foot-actions"><button type="button" class="btn" id="openContact"><span data-t="footContact">Have suggestions? Looking for where to get survival gear cheaper? Contact</span></button><button type="button" class="linkbtn" id="openWhy" data-t="whyLink">Why this exists</button><button type="button" class="linkbtn" id="openPrivacy" data-t="privacyLink">Privacy</button></div>
     <p data-t="foot">Based on the official Danish advice for households. Use the calculator and checklist at <a href="https://samsik.dk" target="_blank" rel="noopener">samsik.dk</a> for your exact needs. Not medical advice.</p>
     <p><span data-t="src">Sources:</span> <a href="https://www.borger.dk/politi-retsvaesen-forsvar/Forsvar-og-beredskab/forberedt-paa-kriser" target="_blank" rel="noopener">borger.dk, Forberedt på kriser</a> &middot; <a href="https://www.brs.dk/en/prepared/" target="_blank" rel="noopener">Be prepared for crises (English, Danish Emergency Management Agency)</a></p>
+    <p class="legal" data-t="legal">72ready&trade; &middot; &copy; 2026 Nerijus Gudas. An independent project, not run by or affiliated with the Danish Emergency Management Agency or any authority.</p>
   </footer>
 </div>
 
@@ -466,6 +471,17 @@ textarea{min-height:120px;resize:vertical}
       <p class="okmsg" id="cOk" role="status" hidden data-t="cOk">Thank you! Your message was sent.</p>
       <div class="row-btns"><button type="submit" class="btn primary" id="cSend"><span data-t="send">Send</span></button><button type="button" class="btn" id="cClose" data-t="close">Close</button></div>
     </form>
+  </div>
+</dialog>
+
+<dialog id="whyDlg" aria-labelledby="wT">
+  <div class="dlg wide">
+    <div class="dlgh">
+      <h2 id="wT" data-t="wT">Why this exists</h2>
+      <button type="button" class="btn x" id="wX" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="story"><p data-t="w1">It started with a very calm question, asked at a very high pitch: &quot;What are we supposed to have at home if the power goes out?&quot;</p><p data-t="w2">My girlfriend had read the news, opened four tabs and found four different lists. I had no better answer. We stood in the kitchen looking at one candle and half a bag of pasta, which, it turns out, is not a plan.</p><p data-t="w3">So I read the official Danish advice and turned it into one page: what to have, how much water, what to do when the siren sounds. No panic, no ads, no tracking, and a checklist you can tick off with a coffee in your hand.</p><p data-t="w4">She now owns nine bottles of water and a radio. I am still working on the candle situation. If this helps you too, great. If you know a better way to explain something, tell me.</p></div>
+    <button type="button" class="btn" id="wClose" data-t="close">Close</button>
   </div>
 </dialog>
 
