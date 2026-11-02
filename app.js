@@ -158,7 +158,7 @@
     document.querySelector('.days').setAttribute('aria-label',l==='da'?'Hvad én person har brug for hver dag':'What one person needs each day');
     document.getElementById('a2hsX').setAttribute('aria-label',l==='da'?'Luk':'Close');
     ['cX','pX','wX'].forEach(function(id){document.getElementById(id).setAttribute('aria-label',l==='da'?'Luk':'Close');});
-    document.title=l==='da'?'Klar i Danmark: 3 døgns beredskab derhjemme, de officielle råd':'Denmark Ready Kit: 3-day home preparedness, Danish advice';
+    document.title=l==='da'?'72ready: Hjemme klar på 72 timer | De officielle råd':'72ready: Home ready in 72 hours | Danish advice';
     var canon=document.querySelector('link[rel=canonical]'),ogu=document.querySelector('meta[property="og:url"]');
     if(canon){var base=canon.getAttribute('href').split('?')[0],u=l==='da'?base+'?lang=da':base;canon.setAttribute('href',u);if(ogu)ogu.setAttribute('content',u);}
     meta.setAttribute('content',DESC[l]);

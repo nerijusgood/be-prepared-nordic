@@ -1,4 +1,6 @@
-# Be Prepared Nordic
+# 72ready (Be Prepared Nordic)
+
+**Home ready in 72 hours.** Live at https://72ready.eu
 
 A one-page website (Danish and English) that explains the official Danish advice for 3-day home preparedness.
 
